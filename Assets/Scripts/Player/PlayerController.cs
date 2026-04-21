@@ -4,6 +4,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Variables - Inspector Settings
+    [Header("Class Configuration")]
+    public CharacterClassData classData;
+
     [Header("Movement & Physicality")]
     public float moveSpeed = 8f;
     public float jumpForce = 6f;
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private IInteractable currentInteractable;
 
     private float invincibilityTimer;
     private float nextAttackTime = 0f;
@@ -110,6 +114,27 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Public API (For Other Systems)
+
+    public void ApplyClassData(CharacterClassData data)
+    {
+        if (data == null) return;
+
+        // Assign ScriptableObject data to current session variables
+        classData = data;
+        moveSpeed = data.speed;
+        jumpForce = data.jumpForce;
+        dashForce = data.dashForce;
+        maxHealth = data.maxHealth;
+        currentHealth = maxHealth; // Heal to full on class change
+        isRangedClass = data.isRanged;
+        attackDamage = data.damage;
+        attackRange = data.attackRange;
+        attackRate = data.attackRate;
+
+        // Change visual feedback (placeholder color)
+        spriteRenderer.color = data.classPreviewColor;
+    }
+
     public void TakeDamage(int damage)
     {
         // Ignore damage if player is in invincibility frames
@@ -146,8 +171,30 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Private Logic
+
     private void InitializeStats()
     {
+        //Cjeck if there's a selected class from the character selection screen
+        if (CharacterClassData.SelectedClass != null)
+        {
+            classData = CharacterClassData.SelectedClass;
+        }
+
+        // Apply class data if available
+        if (classData != null)
+        {
+            moveSpeed = classData.speed;
+            jumpForce = classData.jumpForce;
+            dashForce = classData.dashForce;
+            maxHealth = classData.maxHealth;
+            isRangedClass = classData.isRanged;
+            attackDamage = classData.damage;
+            attackRange = classData.attackRange;
+            attackRate = classData.attackRate;
+
+            spriteRenderer.color = classData.classPreviewColor;
+        }
+
         currentHealth = maxHealth;
     }
 
@@ -176,21 +223,31 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // Search for all interactable objects within range on the specific layer
-            Collider2D[] foundObjects = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
+        //Look for interactable objects within range
+        Collider2D[] foundObjects = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
 
-            foreach (Collider2D obj in foundObjects)
-            {
-                // Try to find a component that implements IInteractable
-                IInteractable interactable = obj.GetComponent<IInteractable>();
-                if (interactable != null)
-                {
-                    interactable.Interact();
-                    break; // Stop after the first successful interaction
-                }
-            }
+        IInteractable nearest = null;
+        if (foundObjects.Length > 0)
+        {
+            //Choose the closest one (for simplicity, we take the first one found)
+            nearest = foundObjects[0].GetComponent<IInteractable>();
+        }
+
+        //Handling the glow effect for the nearest interactable
+        if (nearest != currentInteractable)
+        {
+            //Disbale old highlight
+            if (currentInteractable != null) currentInteractable.SetHighlight(false);
+
+            //SEt and enable new one
+            currentInteractable = nearest;
+            if (currentInteractable != null) currentInteractable.SetHighlight(true);
+        }
+
+        //The interaction input (E key) - only works if there's a valid interactable in range
+        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        {
+            currentInteractable.Interact();
         }
     }
 
@@ -204,8 +261,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Reset to full visibility when timer ends
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+            if (classData != null)
+                // Reset to full visibility when timer ends
+                spriteRenderer.color = classData.classPreviewColor;
+            else
+                spriteRenderer.color = Color.white;
         }
     }
 
