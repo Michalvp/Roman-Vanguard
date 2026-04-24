@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ClassStatue : MonoBehaviour, IInteractable
 {
+    public bool isHubVersion = false;
     public CharacterClassData classToGrant;
     public string deityName;
     [TextArea(3, 10)] // Allows for multi-line editing in Inspector
@@ -11,13 +12,18 @@ public class ClassStatue : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        // Find the manager and tell it to show this class
-        ClassSelectionManager manager = Object.FindFirstObjectByType<ClassSelectionManager>();
-        if (manager != null)
+        if (isHubVersion)
         {
-            manager.OpenConfirmation(classToGrant, deityName, classDescription);
+            // TUTAJ: Wywo³amy otwarcie drzewka umiejêtnoœci
+            Debug.Log($"Opening Skill Tree for {deityName}!");
+            // OpenSkillTree(); // To napiszemy w kolejnym kroku
         }
-
+        else
+        {
+            // Logika wyboru klasy (to co ju¿ masz)
+            ClassSelectionManager manager = Object.FindFirstObjectByType<ClassSelectionManager>();
+            if (manager != null) manager.OpenConfirmation(classToGrant, deityName, classDescription);
+        }
     }
 
     public void SetHighlight(bool isActive)

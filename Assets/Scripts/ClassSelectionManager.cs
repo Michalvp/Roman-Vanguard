@@ -14,7 +14,7 @@ public class ClassSelectionManager : MonoBehaviour
     public TextMeshProUGUI tutorialIntroText; 
 
     [Header("Scene Management")]
-    public string tutorialSceneName = "Level0(Test-ReplacewithRealTutorialLevel)";
+    public string tutorialSceneName = "Village"; // Name of the tutorial scene to load - changed to Village for testing purposes, should be the tutorial scene name in final version
 
     private CharacterClassData pendingClass;
     private string pendingDeityName;

@@ -22,10 +22,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask interactableLayer;
 
     [Header("Base RPG Stats")]
-    public int maxHealth = 100;
-    public int currentHealth;
-    public int denarii = 0;
-    public float invincibilityDuration = 0.5f; // Time of protection after being hit
+    public float invincibilityDuration = 0.5f;
+    private PlayerStats stats; // Time of protection after being hit
 
     [Header("Combat - Melee")]
     public Transform attackPoint;
@@ -58,10 +56,10 @@ public class PlayerController : MonoBehaviour
     #region Unity Callbacks
     void Start()
     {
-        // Cache necessary components
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        stats = GetComponent<PlayerStats>();
 
         InitializeStats();
     }
@@ -115,6 +113,7 @@ public class PlayerController : MonoBehaviour
 
     #region Public API (For Other Systems)
 
+    //Apply class data when player selects a class in the ClassSelection scene
     public void ApplyClassData(CharacterClassData data)
     {
         if (data == null) return;
@@ -124,8 +123,8 @@ public class PlayerController : MonoBehaviour
         moveSpeed = data.speed;
         jumpForce = data.jumpForce;
         dashForce = data.dashForce;
-        maxHealth = data.maxHealth;
-        currentHealth = maxHealth; // Heal to full on class change
+        stats.maxHealth = data.maxHealth;
+        stats.currentHealth = stats.maxHealth; // Heal to full on class change
         isRangedClass = data.isRanged;
         attackDamage = data.damage;
         attackRange = data.attackRange;
@@ -137,65 +136,38 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // Ignore damage if player is in invincibility frames
         if (invincibilityTimer > 0) return;
 
-        currentHealth -= damage;
+        stats.currentHealth -= damage; 
         invincibilityTimer = invincibilityDuration;
 
-        Debug.Log($"Damage taken! Remaining HP: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void AddDenarii(int amount)
-    {
-        denarii += amount;
-        Debug.Log($"Collected {amount} denarii. Total: {denarii}");
-    }
-
-    public bool TrySpendDenarii(int amount)
-    {
-        if (denarii >= amount)
-        {
-            denarii -= amount;
-            return true; // Transaction successful
-        }
-
-        Debug.Log("Not enough denarii!");
-        return false; // Transaction failed
+        if (stats.currentHealth <= 0) Die();
     }
     #endregion
 
     #region Private Logic
 
+    //Initializes player stats based on the selected class at the start of the game
     private void InitializeStats()
     {
-        //Cjeck if there's a selected class from the character selection screen
         if (CharacterClassData.SelectedClass != null)
-        {
             classData = CharacterClassData.SelectedClass;
-        }
 
-        // Apply class data if available
         if (classData != null)
         {
             moveSpeed = classData.speed;
             jumpForce = classData.jumpForce;
             dashForce = classData.dashForce;
-            maxHealth = classData.maxHealth;
-            isRangedClass = classData.isRanged;
+
+            stats.maxHealth = classData.maxHealth;
+            stats.currentHealth = stats.maxHealth;
+
             attackDamage = classData.damage;
             attackRange = classData.attackRange;
             attackRate = classData.attackRate;
 
             spriteRenderer.color = classData.classPreviewColor;
         }
-
-        currentHealth = maxHealth;
     }
 
     private void HandleInput()
@@ -312,14 +284,12 @@ public class PlayerController : MonoBehaviour
 
     private void MeleeAttack()
     {
-        // Detect enemies in a circle at the attack point
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit: " + enemy.name);
-            // This is where communication with Enemy scripts will happen
-            // enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            int totalDamage = attackDamage + stats.bonusDamage;
+            Debug.Log($"Attacking for {totalDamage} damage!");
+            //enemy.GetComponent<Enemy>().TakeDamage(totalDamage);
         }
     }
 
