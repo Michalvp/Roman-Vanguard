@@ -10,17 +10,25 @@ public class ClassStatue : MonoBehaviour, IInteractable
     public string classDescription;
     public GameObject glowObject;
 
+    void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Village") isHubVersion = true;
+    }
+
     public void Interact()
     {
         if (isHubVersion)
         {
-            // TUTAJ: Wywo³amy otwarcie drzewka umiejêtnoœci
-            Debug.Log($"Opening Skill Tree for {deityName}!");
-            // OpenSkillTree(); // To napiszemy w kolejnym kroku
+            //Manage the skill tree UI for the hub version
+            SkillTreeManager uiManager = Object.FindFirstObjectByType<SkillTreeManager>();
+            if (uiManager != null)
+            {
+                uiManager.OpenTree(deityName);
+            }
         }
         else
         {
-            // Logika wyboru klasy (to co ju¿ masz)
+            //Open the class selection confirmation for the non-hub version
             ClassSelectionManager manager = Object.FindFirstObjectByType<ClassSelectionManager>();
             if (manager != null) manager.OpenConfirmation(classToGrant, deityName, classDescription);
         }
