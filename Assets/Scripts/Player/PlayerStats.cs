@@ -21,6 +21,11 @@ public class PlayerStats : MonoBehaviour
     public int currentHealth;
     public int bonusDamage = 0;
 
+    [Header("Class Special Abilities")]
+    public bool hasSpecialAbility = false;
+
+
+
     private void Awake()
     {
         if (Instance == null) Instance = this;

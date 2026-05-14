@@ -23,4 +23,5 @@ public class CharacterClassData : ScriptableObject
     public int damage = 20;
     public float attackRange = 0.5f;
     public float attackRate = 2f;
+    public float criticalChance = 0.1f; 
 }

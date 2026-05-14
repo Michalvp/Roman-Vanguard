@@ -22,20 +22,22 @@ public class PlayerController : MonoBehaviour
     public LayerMask interactableLayer;
 
     [Header("Base RPG Stats")]
-    public float invincibilityDuration = 0.5f;
-    private PlayerStats stats; // Time of protection after being hit
+    public float invincibilityDuration = 0.5f;// Time of protection after being hit
+    public float attackRate = 2f;
+    public float criticalChance = 0.1f; // 10% base critical hit chance
+    private PlayerStats stats; 
 
     [Header("Combat - Melee")]
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public int attackDamage = 20;     // Base damage for melee attacks
-    public float attackRate = 2f;      // Attacks per second
     public LayerMask enemyLayers;      // Layer assigned to enemies
 
     [Header("Combat - Ranged")]
     public bool isRangedClass = false; // Toggle for Archer-type classes
     public GameObject arrowPrefab;    // Projectile to spawn
     public float arrowSpeed = 20f;
+
     #endregion
 
     #region Variables - Private State
@@ -86,6 +88,32 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // Check for special attack input (Right Mouse or Alt) - only if player has the skill and cooldown is ready
+        // Refined Fire2 logic using className instead of asset name
+        if (Input.GetButtonDown("Fire2") && stats.hasSpecialAbility && Time.time >= nextAttackTime)
+        {
+            // Use the className field defined in your ScriptableObject for reliability
+            if (classData.className == "Archer")
+            {
+                MultiShot();
+                nextAttackTime = Time.time + (1f / attackRate) * 1.5f; // Cooldown for Archer's special
+            }
+            else if (classData.className == "Legionary")
+            {
+                VanguardStrike();
+                nextAttackTime = Time.time + (1f / attackRate) * 2f; // Longer cooldown for Legionary's heavy hit
+            }
+            else if (classData.className == "Gladiator")
+            {
+                SpartanRage();
+                nextAttackTime = Time.time + 15f; // Very long cooldown for powerful invincibility mode
+            }
+            else
+            {
+                Debug.Log("Special attack not implemented for this class yet!");
+            }
+        }
+
         // Trigger dash if Shift is pressed and cooldown is over
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
@@ -129,6 +157,7 @@ public class PlayerController : MonoBehaviour
         attackDamage = data.damage;
         attackRange = data.attackRange;
         attackRate = data.attackRate;
+        criticalChance = data.criticalChance;
 
         // Change visual feedback (placeholder color)
         spriteRenderer.color = data.classPreviewColor;
@@ -167,6 +196,7 @@ public class PlayerController : MonoBehaviour
             attackDamage = classData.damage;
             attackRange = classData.attackRange;
             attackRate = classData.attackRate;
+            criticalChance = classData.criticalChance;
 
             spriteRenderer.color = classData.classPreviewColor;
         }
@@ -229,14 +259,22 @@ public class PlayerController : MonoBehaviour
     {
         if (invincibilityTimer > 0)
         {
-            // Create a flashing effect using a Sine wave
-            float alpha = Mathf.Sin(Time.time * 20f) > 0 ? 1f : 0.2f;
-            spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
+            if (invincibilityTimer > 1f) // If timer is long, it's probably "Rage"
+            {
+                // Intense red tint for Rage mode
+                spriteRenderer.color = new Color(1f, 0.2f, 0.2f, 1f);
+            }
+            else
+            {
+                // Standard flashing for short invincibility after hit
+                float alpha = Mathf.Sin(Time.time * 20f) > 0 ? 1f : 0.2f;
+                spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
+            }
         }
         else
         {
+            // Reset to class color
             if (classData != null)
-                // Reset to full visibility when timer ends
                 spriteRenderer.color = classData.classPreviewColor;
             else
                 spriteRenderer.color = Color.white;
@@ -263,37 +301,98 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            MeleeAttack();
+            MeleeAttack(false);
         }
     }
 
-    private void Shoot()
+    private void Shoot(bool isExtraArrow = false)
     {
-        // Spawn the arrow at the designated attack point
         GameObject arrow = Instantiate(arrowPrefab, attackPoint.position, Quaternion.identity);
-
-        // Apply velocity to the projectile
         Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
         float direction = isFacingRight ? 1f : -1f;
-        arrowRb.linearVelocity = new Vector2(direction * arrowSpeed, 0f);
 
-        // Mirror the arrow sprite if shooting left
-        if (!isFacingRight)
+        int totalDamage = attackDamage + stats.bonusDamage;
+        bool isCritical = Random.value < criticalChance;
+        if (isCritical)
         {
-            arrow.transform.localScale = new Vector3(-1, 1, 1);
+            totalDamage = Mathf.RoundToInt(totalDamage * 2f); // Apply 100% bonus for critical hits
+            Debug.Log("Critical hit!");
         }
+
+        arrowRb.linearVelocity = new Vector2(direction * arrowSpeed, 0f);
+        if (!isFacingRight) arrow.transform.localScale = new Vector3(-1, 1, 1);
+
+        // We should pass totalDamage to the Arrow script here if you have one
     }
 
-    private void MeleeAttack()
+    private void MeleeAttack(bool isSpecial = false)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
             int totalDamage = attackDamage + stats.bonusDamage;
+            bool isCritical = Random.value < criticalChance;
+            if (isCritical)
+            {
+                totalDamage = Mathf.RoundToInt(totalDamage * 2f); // Apply 100% bonus for critical hits
+                Debug.Log("Critical hit!");
+            }
+
+            if (isSpecial)
+            {
+                totalDamage *= 3; // Vanguard Strike is 3x stronger
+                Debug.Log("Vanguard Strike hit for: " + totalDamage);
+            }
             Debug.Log($"Attacking for {totalDamage} damage!");
             //enemy.GetComponent<Enemy>().TakeDamage(totalDamage);
         }
     }
+
+    private void MultiShot()
+    {
+        anim.SetTrigger("Attack"); // Reuse existing animation
+
+        Debug.Log("Performing Multi-Shot!");
+
+        // Shoot 3 arrows with slight vertical offsets/angles
+        for (int i = -1; i <= 1; i++)
+        {
+            GameObject arrow = Instantiate(arrowPrefab, attackPoint.position, Quaternion.identity);
+            Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
+            float direction = isFacingRight ? 1f : -1f;
+
+            // Add vertical spread
+            float verticalSpread = i * 2f;
+            arrowRb.linearVelocity = new Vector2(direction * arrowSpeed, verticalSpread);
+
+            if (!isFacingRight) arrow.transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    private void VanguardStrike()
+    {
+        // Trigger special animation if you have one, or reuse standard attack
+        anim.SetTrigger("Attack");
+
+        Debug.Log("Performing Vanguard Strike!");
+
+        // Call melee attack with 'isSpecial' flag set to true
+        MeleeAttack(true);
+    }
+
+    private void SpartanRage()
+    {
+        Debug.Log("Hercules enters SPARTAN RAGE!");
+
+        // Use the existing invincibility system
+        // Set the timer to the duration unlocked in PlayerStats
+        invincibilityTimer = 5f;
+
+        // Optional: Trigger an animation or sound effect here
+        anim.SetTrigger("Attack");
+    }
+
+
 
     private IEnumerator Dash()
     {

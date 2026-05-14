@@ -160,12 +160,18 @@ public class SkillTreeManager : MonoBehaviour
         PlayerStats.Instance.maxHealth += skill.healthBonus;
         PlayerStats.Instance.currentHealth += skill.healthBonus;
         PlayerStats.Instance.bonusDamage += skill.damageBonus;
+        PlayerStats.Instance.hasSpecialAbility = skill.unlocksSpecialAbility;
+
 
         PlayerController player = Object.FindFirstObjectByType<PlayerController>();
         if (player != null)
         {
             player.attackRange += skill.attackRangeBonus;
+            player.attackRate += skill.attackSpeedBonus;
             player.moveSpeed += skill.speedBonus;
+            player.dashForce += skill.dashBonus;
+            player.criticalChance += skill.criticalChanceBonus;
+
         }
     }
 }

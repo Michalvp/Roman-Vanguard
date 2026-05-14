@@ -12,6 +12,12 @@ public class SkillData : ScriptableObject
     public int damageBonus;
     public float attackRangeBonus;
     public float speedBonus;
+    public float dashBonus;
+    public float attackSpeedBonus;
+    public float criticalChanceBonus;
+
+    [Header("Special Ability")]
+    public bool unlocksSpecialAbility;
 
     [Header("Requirements")]
     public SkillData requiredSkill; // The skill that must be purchased first
