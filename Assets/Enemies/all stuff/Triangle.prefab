@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 243164473973441074}
   - component: {fileID: 3491717831901729952}
   - component: {fileID: 4531643376739916632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.01
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1

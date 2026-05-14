@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8947299492504418683}
   - component: {fileID: 4734396740307243070}
   - component: {fileID: 9097995639200380294}
-  - component: {fileID: 8997207857724127589}
+  - component: {fileID: 4855564417677411027}
   m_Layer: 7
   m_Name: Soldier_sprite
   m_TagString: Untagged
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8997207857724127589
+--- !u!114 &4855564417677411027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,18 +148,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 842447640653070874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1997613e65e79a640b79020abe6d8bda, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ec5d8a28fd38e34095c4b9d85f3e3d3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Rangedenemy
+  m_EditorClassIdentifier: Assembly-CSharp::EliteArcher
   movementspeed: 5
   shootingspeed: 5
-  size: 7
-  range: 3
+  size: 10
+  range: 5
   anim: {fileID: 0}
   playermask:
     serializedVersion: 2
-    m_Bits: 8
-  projstart: {fileID: 8947299492504418683}
+    m_Bits: 64
+  projstart: {fileID: 0}
   boxCollider2: {fileID: 9097995639200380294}
   maxrightpoint: {fileID: 7552925845315612778}
   maxleftpoint: {fileID: 8259648151987868123}
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 8785931075984986074}
   - component: {fileID: 3674092814249619343}
   m_Layer: 7
-  m_Name: Soldier ranged
+  m_Name: Elite Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

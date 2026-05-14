@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Rangedenemy : MonoBehaviour
+public class EliteArcher : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float movementspeed = 5f;
@@ -32,13 +32,14 @@ public class Rangedenemy : MonoBehaviour
     {
         GameObject currentBullet = Instantiate(bullet, transform);
         currentBullet.transform.position = transform.position;
+        currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * -20, 0), ForceMode2D.Impulse);
         if (currentBullet.GetComponent<Collider2D>())
             Destroy(currentBullet, 3);
-        
+
     }
     bool playerinsight()
     {
-        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center  + range  * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
+        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + range * transform.right * transform.localScale.x + (transform.up * transform.localScale.y * 2), new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y+3, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
 
         return inshootingsight.collider != null;
 
@@ -46,7 +47,7 @@ public class Rangedenemy : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider2.bounds.center  + range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z));
+        Gizmos.DrawWireCube(boxCollider2.bounds.center + range * transform.localScale.x * transform.right + (transform.up*transform.localScale.y *2), new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y+3, boxCollider2.bounds.size.z));
     }
     private void Move(int direction)
     {

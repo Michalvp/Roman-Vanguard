@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Meleeenemyscript : MonoBehaviour
+public class Meleeenemywithshield : MonoBehaviour
 {
 
     // Start is called before the first frame update
@@ -15,9 +15,9 @@ public class Meleeenemyscript : MonoBehaviour
     [SerializeField] private float size = 1;
     [SerializeField] private float range = 1;
     [SerializeField] private Animator anim;
-    //[SerializeField] private float jumpcooldown = 5;
+    [SerializeField] private GameObject weapon;
     private float timepassed = 0;
-    [SerializeField] private Rigidbody2D enemy;
+    private bool attacking = false;
     void Start()
     {
 
@@ -31,15 +31,6 @@ public class Meleeenemyscript : MonoBehaviour
         startingscale = soldiermov.localScale;
     }
     int timepassed2 = 0;
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("cebula");
-        }
-        
-    }*/
-    // Update is called once per frame
     bool playerinsight()
     {
         RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + size * range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
@@ -68,20 +59,12 @@ public class Meleeenemyscript : MonoBehaviour
     }
     void Update()
     {
-        // Debug.Log("troll");
         timepassed2++;
-       /* if (timepassed2 * Time.deltaTime >= jumpcooldown)
+
         {
-            if (ifhitwall())
+            if(attacking == false)
             {
-                timepassed2 = 0;
-                Debug.Log("Troll");
-                soldiermov.position = new Vector3(soldiermov.position.x, soldiermov.position.y + Time.deltaTime * movementspeed, soldiermov.position.z);
-            }
 
-        }*/
-
-        {
             if (movingleft)
             {
                 if (soldiermov.position.x >= maxleftpoint.position.x)
@@ -100,16 +83,30 @@ public class Meleeenemyscript : MonoBehaviour
                 else
                 { movingleft = !movingleft; }
             }
+            }
 
             timepassed++;
 
             if (playerinsight())
             {
-                if (timepassed % shootingspeed == 0)
+                attacking = true;
+                weapon.GetComponent<Spear>().attack = true;
+                if(movingleft)
                 {
-                    timepassed = 1;
-
+                    weapon.GetComponent<Spear>().direction = -1;
                 }
+                else
+                {
+                    weapon.GetComponent<Spear>().direction = 1;
+                }
+            }
+            else
+            {
+                if (weapon.GetComponent<Spear>().returning == false && weapon.GetComponent<Spear>().attack==false)
+                {
+                    attacking = false;
+                }
+
             }
         }
     }

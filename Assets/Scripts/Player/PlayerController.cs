@@ -315,6 +315,20 @@ public class PlayerController : MonoBehaviour
         localScale.x *= -1f;
         transform.localScale = localScale;
     }
+
+    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    {
+        // Check if we collided with a coin
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            denarii += 5; // Increment denarii count
+            Debug.Log("Collected a coin! Total denarii: " + denarii);
+        }
+        if (collision.gameObject.CompareTag("Treasure"))
+        {
+            denarii += 100;
+        }
+    }
     #endregion
 
     #region Debugging

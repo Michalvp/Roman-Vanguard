@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Meleeenemyscript : MonoBehaviour
+public class Elitesoldierscript : MonoBehaviour
 {
 
     // Start is called before the first frame update
@@ -40,9 +40,22 @@ public class Meleeenemyscript : MonoBehaviour
         
     }*/
     // Update is called once per frame
-    bool playerinsight()
+    private void setstats(int health, int damage, int armor)
+    {
+        this.health = health;
+        this.damage = damage;
+        this.armor = armor;
+    }
+    bool playerinmeleerange()
     {
         RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + size * range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
+
+        return inshootingsight.collider != null;
+
+    }
+    bool playerinsight()
+    {
+        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + size * range * transform.right*2 * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x*5 * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
 
         return inshootingsight.collider != null;
 
@@ -51,6 +64,8 @@ public class Meleeenemyscript : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(boxCollider2.bounds.center + transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z));
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(boxCollider2.bounds.center + transform.right * transform.localScale.x*2, new Vector3(boxCollider2.bounds.size.x * range*5, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z));
     }
     private void Move(int direction)
     {
@@ -70,16 +85,6 @@ public class Meleeenemyscript : MonoBehaviour
     {
         // Debug.Log("troll");
         timepassed2++;
-       /* if (timepassed2 * Time.deltaTime >= jumpcooldown)
-        {
-            if (ifhitwall())
-            {
-                timepassed2 = 0;
-                Debug.Log("Troll");
-                soldiermov.position = new Vector3(soldiermov.position.x, soldiermov.position.y + Time.deltaTime * movementspeed, soldiermov.position.z);
-            }
-
-        }*/
 
         {
             if (movingleft)
@@ -88,7 +93,7 @@ public class Meleeenemyscript : MonoBehaviour
                 { Move(-1); }
                 else
                 {
-
+                    movementspeed = 5f;
                     movingleft = !movingleft;
 
                 }
@@ -98,17 +103,22 @@ public class Meleeenemyscript : MonoBehaviour
                 if (soldiermov.position.x <= maxrightpoint.position.x)
                 { Move(1); }
                 else
-                { movingleft = !movingleft; }
+                { movingleft = !movingleft;
+                    movementspeed = 5f;
+                }
             }
 
             timepassed++;
-
             if (playerinsight())
+            {
+                movementspeed = 10f;
+            }
+                if (playerinmeleerange())
             {
                 if (timepassed % shootingspeed == 0)
                 {
                     timepassed = 1;
-
+                    // player takes damage
                 }
             }
         }

@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -11,7 +12,6 @@ public class Neptunattacks : MonoBehaviour
     [SerializeField] private GameObject Water;
     [SerializeField] private int HP;
     [SerializeField] private int MaxHP;
-    [SerializeField] private Transform Player;
     private int watercooldown=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,10 +39,10 @@ public class Neptunattacks : MonoBehaviour
             }
             if (attack == 0)
             {
+                Debug.Log("waterburst");
                 GameObject lightning = Instantiate(Waterburst, transform);
-                lightning.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                lightning.transform.position = new Vector3(transform.position.x - 5, transform.position.y+3, transform.position.z);
                 lightning.transform.localScale = new Vector3(0.1f, 0.1f, 0);
-                lightning.transform.rotation = new Quaternion(math.tan(math.abs(Player.position.x - transform.position.x) / math.abs(Player.position.y - transform.position.y)), transform.rotation.y, transform.rotation.z, transform.rotation.w);
                 if (lightning.GetComponent<Collider2D>())
                     Destroy(lightning, 3);
             }
@@ -51,7 +51,7 @@ public class Neptunattacks : MonoBehaviour
                 watercooldown = 50;
                 GameObject water = Instantiate(Water, transform);
                 water.transform.localScale = new Vector3(20, 0.5f, 1);
-                water.transform.position = new Vector3(transform.position.x - 50, transform.position.y - 30, transform.position.z);
+                water.transform.position = new Vector3(transform.position.x - 50, transform.position.y - 15, transform.position.z);
             }
             timepassed = 0;
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Meleeenemyscript : MonoBehaviour
+public class EliteMeleeenemywithshield : MonoBehaviour
 {
 
     // Start is called before the first frame update
@@ -15,9 +15,9 @@ public class Meleeenemyscript : MonoBehaviour
     [SerializeField] private float size = 1;
     [SerializeField] private float range = 1;
     [SerializeField] private Animator anim;
-    //[SerializeField] private float jumpcooldown = 5;
+    [SerializeField] private GameObject weapon;
     private float timepassed = 0;
-    [SerializeField] private Rigidbody2D enemy;
+    private bool attacking = false;
     void Start()
     {
 
@@ -31,15 +31,6 @@ public class Meleeenemyscript : MonoBehaviour
         startingscale = soldiermov.localScale;
     }
     int timepassed2 = 0;
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("cebula");
-        }
-        
-    }*/
-    // Update is called once per frame
     bool playerinsight()
     {
         RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + size * range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
@@ -68,24 +59,15 @@ public class Meleeenemyscript : MonoBehaviour
     }
     void Update()
     {
-        // Debug.Log("troll");
-        timepassed2++;
-       /* if (timepassed2 * Time.deltaTime >= jumpcooldown)
-        {
-            if (ifhitwall())
-            {
-                timepassed2 = 0;
-                Debug.Log("Troll");
-                soldiermov.position = new Vector3(soldiermov.position.x, soldiermov.position.y + Time.deltaTime * movementspeed, soldiermov.position.z);
-            }
-
-        }*/
 
         {
+
             if (movingleft)
             {
                 if (soldiermov.position.x >= maxleftpoint.position.x)
-                { Move(-1); }
+                { Move(-1);
+                    weapon.GetComponent<Spear>().direction = -1;
+                }
                 else
                 {
 
@@ -96,7 +78,9 @@ public class Meleeenemyscript : MonoBehaviour
             else
             {
                 if (soldiermov.position.x <= maxrightpoint.position.x)
-                { Move(1); }
+                { Move(1);
+                    weapon.GetComponent<Spear>().direction = 1;
+                }
                 else
                 { movingleft = !movingleft; }
             }
@@ -105,11 +89,7 @@ public class Meleeenemyscript : MonoBehaviour
 
             if (playerinsight())
             {
-                if (timepassed % shootingspeed == 0)
-                {
-                    timepassed = 1;
-
-                }
+                weapon.GetComponent<Spear>().attack = true;
             }
         }
     }
