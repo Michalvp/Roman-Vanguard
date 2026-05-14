@@ -162,6 +162,8 @@ public class PlayerController : MonoBehaviour
             stats.maxHealth = classData.maxHealth;
             stats.currentHealth = stats.maxHealth;
 
+            isRangedClass = classData.isRanged;
+
             attackDamage = classData.damage;
             attackRange = classData.attackRange;
             attackRate = classData.attackRate;
@@ -348,15 +350,32 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
-        // Check if we collided with a coin
+        // 1. Check if we collided with a coin
         if (collision.gameObject.CompareTag("Coin"))
         {
-            denarii += 5; // Increment denarii count
-            Debug.Log("Collected a coin! Total denarii: " + denarii);
+            // Accessing PlayerStats through the local reference 'stats' 
+            // which we cached in the Start() method.
+            if (stats != null)
+            {
+                stats.AddDenarii(5);
+                Debug.Log("Collected a coin! Total denarii: " + stats.denarii);
+            }
+
+            // Destroy the coin object after collection
+            Destroy(collision.gameObject);
         }
+
+        // 2. Check if we collided with a treasure
         if (collision.gameObject.CompareTag("Treasure"))
         {
-            denarii += 100;
+            if (stats != null)
+            {
+                stats.AddDenarii(100);
+                Debug.Log("Collected a coin! Total denarii: " + stats.denarii);
+            }
+
+            // Destroy the treasure object
+            Destroy(collision.gameObject);
         }
     }
     #endregion

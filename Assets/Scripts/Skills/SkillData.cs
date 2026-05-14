@@ -5,14 +5,17 @@ public class SkillData : ScriptableObject
 {
     public string skillName;
     [TextArea] public string description;
-    public int cost = 1; // Skill points required
+    public int cost = 1;
 
-    // Skill effects
+    [Header("Bonuses")]
     public int healthBonus;
     public int damageBonus;
     public float attackRangeBonus;
-    public bool unlocksSpecialAction;
+    public float speedBonus;
 
-    [Header("Requirement")]
-    public SkillData requiredSkill; // Optional: prerequisite skill
+    [Header("Requirements")]
+    public SkillData requiredSkill; // The skill that must be purchased first
+
+    [Header("State")]
+    public bool isUnlocked = false; // Persistent only during one session
 }

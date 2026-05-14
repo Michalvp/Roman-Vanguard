@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SkillTreeManager : MonoBehaviour
 {
@@ -17,6 +18,16 @@ public class SkillTreeManager : MonoBehaviour
     public GameObject minervaTree;
     public GameObject dianaTree;
     public GameObject herculesTree;
+
+    [Header("Confirmation Popup")]
+    public GameObject confirmPopup;
+    public TextMeshProUGUI skillNameText;
+    public TextMeshProUGUI skillDescriptionText;
+    public TextMeshProUGUI costText;
+    public Button unlockButton;
+    public TextMeshProUGUI unlockButtonText;
+
+    private SkillData selectedSkill;
 
     private static bool hasSeenWelcome = false; // Static variable to track if the welcome message has been seen across all instances
     private string currentDeity;
@@ -45,6 +56,8 @@ public class SkillTreeManager : MonoBehaviour
         {
             ShowMainTree();
         }
+
+        RefreshAllButtons();
     }
 
     public void ShowWelcome()
@@ -69,6 +82,8 @@ public class SkillTreeManager : MonoBehaviour
         if (selected == "Legionary") minervaTree.SetActive(true);
         else if (selected == "Archer") dianaTree.SetActive(true);
         else if (selected == "Gladiator") herculesTree.SetActive(true);
+
+        RefreshAllButtons();
     }
 
     public void CloseTree()
@@ -77,37 +92,80 @@ public class SkillTreeManager : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled = true;
     }
 
-    public void BuySkill(SkillData skill)
+    public void RefreshAllButtons()
     {
-        // Check if player has enough points and if prerequisites are met
-        if (PlayerStats.Instance.skillPoints >= skill.cost)
+        SkillButtonUI[] buttons = Object.FindObjectsByType<SkillButtonUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (var btn in buttons)
         {
-            // Deduct points
-            PlayerStats.Instance.skillPoints -= skill.cost;
+            btn.UpdateVisuals();
+        }
+    }
 
-            // Apply bonuses to PlayerStats or Controller
-            ApplySkillEffects(skill);
+    // Triggered when clicking a skill icon
+    public void SelectSkill(SkillData skill)
+    {
+        selectedSkill = skill;
+        confirmPopup.SetActive(true);
 
-            Debug.Log("Purchased: " + skill.skillName);
+        skillNameText.text = skill.skillName;
+        skillDescriptionText.text = skill.description;
+        costText.text = "Required Skill Points: " + skill.cost;
+
+        UpdateConfirmButtonState();
+    }
+
+    private void UpdateConfirmButtonState()
+    {
+        if (selectedSkill.isUnlocked)
+        {
+            unlockButton.interactable = false;
+            unlockButtonText.text = "Already unlocked";
+        }
+        else if (selectedSkill.requiredSkill != null && !selectedSkill.requiredSkill.isUnlocked)
+        {
+            unlockButton.interactable = false;
+            unlockButtonText.text = "Prerequisite required";
+        }
+        else if (PlayerStats.Instance.skillPoints < selectedSkill.cost)
+        {
+            unlockButton.interactable = false;
+            unlockButtonText.text = "Not enough skill points";
         }
         else
         {
-            Debug.Log("Not enough skill points!");
+            unlockButton.interactable = true;
+            unlockButtonText.text = "Unlock Skill";
         }
+    }
+
+    // Triggered by the "Unlock Skill" button in the popup
+    public void ConfirmPurchase()
+    {
+        if (selectedSkill == null) return;
+
+        PlayerStats.Instance.skillPoints -= selectedSkill.cost;
+        selectedSkill.isUnlocked = true;
+
+        // Apply effects (Logic from previous steps)
+        ApplySkillEffects(selectedSkill);
+
+        confirmPopup.SetActive(false);
+        RefreshAllButtons();
     }
 
     private void ApplySkillEffects(SkillData skill)
     {
-        // Accessing PlayerStats instance to add permanent bonuses
+        // Permanently add bonuses to global stats
         PlayerStats.Instance.maxHealth += skill.healthBonus;
-        PlayerStats.Instance.currentHealth += skill.healthBonus; // Heal by the bonus amount
+        PlayerStats.Instance.currentHealth += skill.healthBonus;
         PlayerStats.Instance.bonusDamage += skill.damageBonus;
 
-        // Accessing PlayerController for physical bonuses[cite: 1]
         PlayerController player = Object.FindFirstObjectByType<PlayerController>();
         if (player != null)
         {
             player.attackRange += skill.attackRangeBonus;
+            player.moveSpeed += skill.speedBonus;
         }
     }
 }
