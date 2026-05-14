@@ -4,6 +4,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Variables - Inspector Settings
+    [Header("Class Configuration")]
+    public CharacterClassData classData;
+
     [Header("Movement & Physicality")]
     public float moveSpeed = 8f;
     public float jumpForce = 6f;
@@ -19,10 +22,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask interactableLayer;
 
     [Header("Base RPG Stats")]
-    public int maxHealth = 100;
-    public int currentHealth;
-    public int denarii = 0;
-    public float invincibilityDuration = 0.5f; // Time of protection after being hit
+    public float invincibilityDuration = 0.5f;
+    private PlayerStats stats; // Time of protection after being hit
 
     [Header("Combat - Melee")]
     public Transform attackPoint;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private IInteractable currentInteractable;
 
     private float invincibilityTimer;
     private float nextAttackTime = 0f;
@@ -54,10 +56,10 @@ public class PlayerController : MonoBehaviour
     #region Unity Callbacks
     void Start()
     {
-        // Cache necessary components
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        stats = GetComponent<PlayerStats>();
 
         InitializeStats();
     }
@@ -110,45 +112,62 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Public API (For Other Systems)
+
+    //Apply class data when player selects a class in the ClassSelection scene
+    public void ApplyClassData(CharacterClassData data)
+    {
+        if (data == null) return;
+
+        // Assign ScriptableObject data to current session variables
+        classData = data;
+        moveSpeed = data.speed;
+        jumpForce = data.jumpForce;
+        dashForce = data.dashForce;
+        stats.maxHealth = data.maxHealth;
+        stats.currentHealth = stats.maxHealth; // Heal to full on class change
+        isRangedClass = data.isRanged;
+        attackDamage = data.damage;
+        attackRange = data.attackRange;
+        attackRate = data.attackRate;
+
+        // Change visual feedback (placeholder color)
+        spriteRenderer.color = data.classPreviewColor;
+    }
+
     public void TakeDamage(int damage)
     {
-        // Ignore damage if player is in invincibility frames
         if (invincibilityTimer > 0) return;
 
-        currentHealth -= damage;
+        stats.currentHealth -= damage; 
         invincibilityTimer = invincibilityDuration;
 
-        Debug.Log($"Damage taken! Remaining HP: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void AddDenarii(int amount)
-    {
-        denarii += amount;
-        Debug.Log($"Collected {amount} denarii. Total: {denarii}");
-    }
-
-    public bool TrySpendDenarii(int amount)
-    {
-        if (denarii >= amount)
-        {
-            denarii -= amount;
-            return true; // Transaction successful
-        }
-
-        Debug.Log("Not enough denarii!");
-        return false; // Transaction failed
+        if (stats.currentHealth <= 0) Die();
     }
     #endregion
 
     #region Private Logic
+
+    //Initializes player stats based on the selected class at the start of the game
     private void InitializeStats()
     {
-        currentHealth = maxHealth;
+        if (CharacterClassData.SelectedClass != null)
+            classData = CharacterClassData.SelectedClass;
+
+        if (classData != null)
+        {
+            moveSpeed = classData.speed;
+            jumpForce = classData.jumpForce;
+            dashForce = classData.dashForce;
+
+            stats.maxHealth = classData.maxHealth;
+            stats.currentHealth = stats.maxHealth;
+
+            attackDamage = classData.damage;
+            attackRange = classData.attackRange;
+            attackRate = classData.attackRate;
+
+            spriteRenderer.color = classData.classPreviewColor;
+        }
     }
 
     private void HandleInput()
@@ -176,21 +195,31 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // Search for all interactable objects within range on the specific layer
-            Collider2D[] foundObjects = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
+        //Look for interactable objects within range
+        Collider2D[] foundObjects = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
 
-            foreach (Collider2D obj in foundObjects)
-            {
-                // Try to find a component that implements IInteractable
-                IInteractable interactable = obj.GetComponent<IInteractable>();
-                if (interactable != null)
-                {
-                    interactable.Interact();
-                    break; // Stop after the first successful interaction
-                }
-            }
+        IInteractable nearest = null;
+        if (foundObjects.Length > 0)
+        {
+            //Choose the closest one (for simplicity, we take the first one found)
+            nearest = foundObjects[0].GetComponent<IInteractable>();
+        }
+
+        //Handling the glow effect for the nearest interactable
+        if (nearest != currentInteractable)
+        {
+            //Disbale old highlight
+            if (currentInteractable != null) currentInteractable.SetHighlight(false);
+
+            //SEt and enable new one
+            currentInteractable = nearest;
+            if (currentInteractable != null) currentInteractable.SetHighlight(true);
+        }
+
+        //The interaction input (E key) - only works if there's a valid interactable in range
+        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        {
+            currentInteractable.Interact();
         }
     }
 
@@ -204,8 +233,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Reset to full visibility when timer ends
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+            if (classData != null)
+                // Reset to full visibility when timer ends
+                spriteRenderer.color = classData.classPreviewColor;
+            else
+                spriteRenderer.color = Color.white;
         }
     }
 
@@ -252,14 +284,12 @@ public class PlayerController : MonoBehaviour
 
     private void MeleeAttack()
     {
-        // Detect enemies in a circle at the attack point
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit: " + enemy.name);
-            // This is where communication with Enemy scripts will happen
-            // enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            int totalDamage = attackDamage + stats.bonusDamage;
+            Debug.Log($"Attacking for {totalDamage} damage!");
+            //enemy.GetComponent<Enemy>().TakeDamage(totalDamage);
         }
     }
 

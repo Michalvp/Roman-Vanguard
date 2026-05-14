@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6883663492974094668}
   - component: {fileID: 2288222760095464375}
   - component: {fileID: 7812233969355863151}
+  - component: {fileID: 3811728702024132265}
   - component: {fileID: 7953029256331065514}
   m_Layer: 6
   m_Name: Player
@@ -85,10 +86,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -182,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de17f06934a3ec44ab69e12fc50b583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  classData: {fileID: 0}
   moveSpeed: 6
   jumpForce: 6
   dashForce: 12
@@ -195,10 +197,7 @@ MonoBehaviour:
   interactionRange: 2
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
-  maxHealth: 100
-  currentHealth: 100
-  denarii: 0
+    m_Bits: 128
   invincibilityDuration: 0.5
   attackPoint: {fileID: 7566737306282485087}
   attackRange: 0.5
@@ -210,6 +209,26 @@ MonoBehaviour:
   isRangedClass: 0
   arrowPrefab: {fileID: 0}
   arrowSpeed: 20
+--- !u!114 &3811728702024132265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467815085869011291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1816a11061e63574984c25d677d21e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  denarii: 0
+  currentLevel: 1
+  currentXP: 0
+  xpToNextLevel: 100
+  skillPoints: 0
+  maxHealth: 0
+  currentHealth: 0
+  bonusDamage: 0
 --- !u!95 &7953029256331065514
 Animator:
   serializedVersion: 7
