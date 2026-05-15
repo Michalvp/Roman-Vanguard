@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
 
     private float invincibilityTimer;
     private float nextAttackTime = 0f;
+    private float nextSpecialAttackTime = 0f;
+    private float lastSpecialCooldownDuration = 1f; // Storage for dynamic cooldown length
     private bool canDash = true;
     private bool isDashing;
     #endregion
@@ -76,42 +78,42 @@ public class PlayerController : MonoBehaviour
         HandleInput();
         HandleJump();
         HandleInteraction();
-        
 
-        // Check if attack is ready based on cooldown
+
+        // 1. Basic Attack Cooldown
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetButtonDown("Fire1")) // Default Left Mouse or Ctrl
+            if (Input.GetButtonDown("Fire1"))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
 
-        // Check for special attack input (Right Mouse or Alt) - only if player has the skill and cooldown is ready
-        // Refined Fire2 logic using className instead of asset name
-        if (Input.GetButtonDown("Fire2") && stats.hasSpecialAbility && Time.time >= nextAttackTime)
+        // 2. Special Attack Cooldown (Fire2) 
+        if (Input.GetButtonDown("Fire2") && stats.hasSpecialAbility && Time.time >= nextSpecialAttackTime)
         {
-            // Use the className field defined in your ScriptableObject for reliability
             if (classData.className == "Archer")
             {
+                lastSpecialCooldownDuration = (1f / attackRate) * 1.5f;
+                nextSpecialAttackTime = Time.time + lastSpecialCooldownDuration; 
                 MultiShot();
-                nextAttackTime = Time.time + (1f / attackRate) * 1.5f; // Cooldown for Archer's special
             }
             else if (classData.className == "Legionary")
             {
+                lastSpecialCooldownDuration = (1f / attackRate) * 2f;
+                nextSpecialAttackTime = Time.time + lastSpecialCooldownDuration; 
                 VanguardStrike();
-                nextAttackTime = Time.time + (1f / attackRate) * 2f; // Longer cooldown for Legionary's heavy hit
             }
             else if (classData.className == "Gladiator")
             {
+                lastSpecialCooldownDuration = 15f;
+                nextSpecialAttackTime = Time.time + lastSpecialCooldownDuration; 
                 SpartanRage();
-                nextAttackTime = Time.time + 15f; // Very long cooldown for powerful invincibility mode
             }
-            else
-            {
-                Debug.Log("Special attack not implemented for this class yet!");
-            }
+
+            //Trigger a short basic attack cooldown to prevent animation overlap
+            nextAttackTime = Time.time + (1f / attackRate);
         }
 
         // Trigger dash if Shift is pressed and cooldown is over
@@ -172,6 +174,13 @@ public class PlayerController : MonoBehaviour
 
         if (stats.currentHealth <= 0) Die();
     }
+
+    public float GetNextAttackTime() => nextAttackTime;
+
+    public float GetNextSpecialAttackTime() => nextSpecialAttackTime;
+
+    public float GetLastSpecialCooldownDuration() => lastSpecialCooldownDuration;  
+
     #endregion
 
     #region Private Logic
