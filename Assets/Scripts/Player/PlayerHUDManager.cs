@@ -65,7 +65,7 @@ public class PlayerHUDManager : MonoBehaviour
         // 2. Health Bar
         healthSlider.maxValue = PlayerStats.Instance.maxHealth;
         healthSlider.value = PlayerStats.Instance.currentHealth;
-        healthText.text = $"{PlayerStats.Instance.currentHealth} / {PlayerStats.Instance.maxHealth}";
+        healthText.text = $"{PlayerStats.Instance.currentHealth} / {PlayerStats.Instance.maxHealth} HP";
 
         // 3. XP Bar
         xpSlider.maxValue = PlayerStats.Instance.xpToNextLevel;

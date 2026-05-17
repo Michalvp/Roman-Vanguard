@@ -24,4 +24,4 @@ MonoBehaviour:
   criticalChanceBonus: 0
   unlocksSpecialAbility: 1
   requiredSkill: {fileID: 11400000, guid: a960ea229e7bf4741b36eabd7f4508d5, type: 2}
-  isUnlocked: 1
+  isUnlocked: 0
