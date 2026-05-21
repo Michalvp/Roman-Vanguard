@@ -265,14 +265,14 @@ MonoBehaviour:
   maxrightpoint: {fileID: 3864964878143242117}
   maxleftpoint: {fileID: 4322907601119119214}
   soldiermov: {fileID: 7237667338377231827}
-  shootingspeed: 10
-  size: 10
+  shootingspeed: 2
+  size: 2
   range: 1
   anim: {fileID: 0}
   enemy: {fileID: 0}
   playermask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   boxCollider2: {fileID: 1609321726492922725}
 --- !u!61 &1609321726492922725
 BoxCollider2D:

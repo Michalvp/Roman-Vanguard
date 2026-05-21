@@ -344,6 +344,7 @@ public class PlayerController : MonoBehaviour
             if (isCritical)
             {
                 totalDamage = Mathf.RoundToInt(totalDamage * 2f); // Apply 100% bonus for critical hits
+                
                 Debug.Log("Critical hit!");
             }
 
@@ -353,7 +354,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Vanguard Strike hit for: " + totalDamage);
             }
             Debug.Log($"Attacking for {totalDamage} damage!");
-            //enemy.GetComponent<Enemy>().TakeDamage(totalDamage);
+            enemy.GetComponent<Enemy>().takedamage(totalDamage);
         }
     }
 

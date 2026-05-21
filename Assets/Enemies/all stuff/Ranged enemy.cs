@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Rangedenemy : MonoBehaviour
+public class Rangedenemy : Enemy
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float movementspeed = 5f;
@@ -32,14 +32,14 @@ public class Rangedenemy : MonoBehaviour
     {
         GameObject currentBullet = Instantiate(bullet, transform);
         currentBullet.transform.position = transform.position;
+        currentBullet.GetComponent<Arrow>().setdamage(damage);
         if (currentBullet.GetComponent<Collider2D>())
             Destroy(currentBullet, 3);
         
     }
     bool playerinsight()
     {
-        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center  + range  * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
-
+        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center  + range  * transform.right * transform.localScale.x, new Vector2(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y), 0, Vector2.left, 0, playermask);
         return inshootingsight.collider != null;
 
     }
@@ -52,10 +52,6 @@ public class Rangedenemy : MonoBehaviour
     {
         soldiermov.position = new Vector3(soldiermov.position.x + movementspeed * Time.deltaTime * direction, soldiermov.position.y, soldiermov.position.z);
         soldiermov.localScale = new Vector3(Mathf.Abs(startingscale.x) * direction, startingscale.y, startingscale.z);
-    }
-    public void die()
-    {
-        anim.SetTrigger("Die");
     }
     void Update()
     {

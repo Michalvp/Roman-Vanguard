@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1997613e65e79a640b79020abe6d8bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rangedenemy
+  health: 150
+  damage: 20
+  armor: 10
   movementspeed: 5
   shootingspeed: 5
   size: 7
@@ -158,7 +161,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   playermask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   projstart: {fileID: 8947299492504418683}
   boxCollider2: {fileID: 9097995639200380294}
   maxrightpoint: {fileID: 7552925845315612778}

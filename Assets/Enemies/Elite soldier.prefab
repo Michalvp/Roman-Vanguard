@@ -265,7 +265,7 @@ MonoBehaviour:
   maxrightpoint: {fileID: 3864964878143242117}
   maxleftpoint: {fileID: 4322907601119119214}
   soldiermov: {fileID: 7237667338377231827}
-  shootingspeed: 10
+  shootingspeed: 2
   size: 1
   range: 1
   anim: {fileID: 0}

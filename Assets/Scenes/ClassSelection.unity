@@ -257,7 +257,7 @@ MonoBehaviour:
   headerText: {fileID: 1052099956}
   descriptionText: {fileID: 870170965}
   tutorialIntroText: {fileID: 489475773}
-  tutorialSceneName: Village
+  tutorialSceneName: Level0
 --- !u!4 &116349360
 Transform:
   m_ObjectHideFlags: 0

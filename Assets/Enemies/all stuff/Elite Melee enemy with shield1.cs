@@ -1,12 +1,9 @@
 using UnityEngine;
 
-public class EliteMeleeenemywithshield : MonoBehaviour
+public class EliteMeleeenemywithshield : Enemy
 {
 
     // Start is called before the first frame update
-    [SerializeField] private int health = 150;
-    [SerializeField] private int damage = 20;
-    [SerializeField] private int armor = 10;
     [SerializeField] private float movementspeed = 5f;
     [SerializeField] private Transform maxrightpoint;
     [SerializeField] private Transform maxleftpoint;
@@ -20,7 +17,7 @@ public class EliteMeleeenemywithshield : MonoBehaviour
     private bool attacking = false;
     void Start()
     {
-
+        weapon.GetComponent<Spear>().setdamage(damage);
     }
     private Vector3 startingscale;
     bool movingleft = true;
@@ -47,10 +44,6 @@ public class EliteMeleeenemywithshield : MonoBehaviour
     {
         soldiermov.position = new Vector3(soldiermov.position.x + movementspeed * Time.deltaTime * direction, soldiermov.position.y, soldiermov.position.z);
         soldiermov.localScale = new Vector3(Mathf.Abs(startingscale.x) * direction, startingscale.y, startingscale.z);
-    }
-    public void die()
-    {
-        anim.SetTrigger("Die");
     }
     public bool ifhitwall()
     {

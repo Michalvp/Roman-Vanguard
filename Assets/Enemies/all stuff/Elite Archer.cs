@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EliteArcher : MonoBehaviour
+public class EliteArcher : Enemy
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float movementspeed = 5f;
@@ -31,8 +31,9 @@ public class EliteArcher : MonoBehaviour
     public void rangedattack(int direction)
     {
         GameObject currentBullet = Instantiate(bullet, transform);
-        currentBullet.transform.position = transform.position;
-        currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * -20, 0), ForceMode2D.Impulse);
+        //currentBullet.transform.position = transform.position;
+        //currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * -20, 0), ForceMode2D.Impulse);
+        currentBullet.GetComponent<Arrow>().setdamage(damage);
         if (currentBullet.GetComponent<Collider2D>())
             Destroy(currentBullet, 3);
 
@@ -53,10 +54,6 @@ public class EliteArcher : MonoBehaviour
     {
         soldiermov.position = new Vector3(soldiermov.position.x + movementspeed * Time.deltaTime * direction, soldiermov.position.y, soldiermov.position.z);
         soldiermov.localScale = new Vector3(Mathf.Abs(startingscale.x) * direction, startingscale.y, startingscale.z);
-    }
-    public void die()
-    {
-        anim.SetTrigger("Die");
     }
     void Update()
     {

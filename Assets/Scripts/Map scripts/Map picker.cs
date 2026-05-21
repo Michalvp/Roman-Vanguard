@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Mappicker : MonoBehaviour
+public class Mappicker : MonoBehaviour,IInteractable
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public int completedLevels =-1;
+    public static int completedLevels =-1;
     private int randomnum;
+    public GameObject glowObject;
     void Start()
     {
-        
+        Debug.Log(completedLevels);
     }
 
     // Update is called once per frame
@@ -16,12 +17,16 @@ public class Mappicker : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    public void SetHighlight(bool isActive)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (glowObject != null)
         {
-            LevelCompleted();
+            glowObject.SetActive(isActive);
         }
+    }
+    public void Interact()
+    {
+            LevelCompleted();
     }
     private void LevelCompleted()
     {
