@@ -199,15 +199,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   invincibilityDuration: 0.5
+  attackRate: 2
+  criticalChance: 0.1
   attackPoint: {fileID: 7566737306282485087}
   attackRange: 0.5
   attackDamage: 20
-  attackRate: 2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
   isRangedClass: 0
-  arrowPrefab: {fileID: 0}
+  arrowPrefab: {fileID: 887037674044666990, guid: f6f73da6f8e517e4da636dc09a56b04c, type: 3}
   arrowSpeed: 20
 --- !u!114 &3811728702024132265
 MonoBehaviour:
@@ -229,6 +230,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   bonusDamage: 0
+  hasSpecialAbility: 0
 --- !u!95 &7953029256331065514
 Animator:
   serializedVersion: 7

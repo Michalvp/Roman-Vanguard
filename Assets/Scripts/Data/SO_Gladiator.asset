@@ -15,10 +15,11 @@ MonoBehaviour:
   className: Gladiator
   classPreviewColor: {r: 0.114012085, g: 0.47512895, b: 0.90188676, a: 1}
   speed: 8.5
-  jumpForce: 6
+  jumpForce: 12
   dashForce: 12
   maxHealth: 110
   isRanged: 0
   damage: 35
   attackRange: 1.3
   attackRate: 2
+  criticalChance: 0.1

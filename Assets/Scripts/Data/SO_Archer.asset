@@ -15,10 +15,11 @@ MonoBehaviour:
   className: Archer
   classPreviewColor: {r: 0.9197415, g: 0.9547169, b: 0.16392307, a: 1}
   speed: 9.5
-  jumpForce: 6
+  jumpForce: 12
   dashForce: 12
   maxHealth: 80
   isRanged: 1
   damage: 15
   attackRange: 0.5
   attackRate: 2
+  criticalChance: 0.1

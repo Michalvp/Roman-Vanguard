@@ -15,10 +15,11 @@ MonoBehaviour:
   className: Legionary
   classPreviewColor: {r: 0.9547169, g: 0.06304721, b: 0.06304721, a: 1}
   speed: 7.5
-  jumpForce: 6
+  jumpForce: 12
   dashForce: 12
   maxHealth: 150
   isRanged: 0
   damage: 25
   attackRange: 0.6
   attackRate: 2
+  criticalChance: 0.1
