@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        stats = GetComponent<PlayerStats>();
+        stats = PlayerStats.Instance;
 
         InitializeStats();
     }
@@ -467,7 +467,6 @@ public class PlayerController : MonoBehaviour
             if (stats != null)
             {
                 stats.AddDenarii(5);
-                Debug.Log("Collected a coin! Total denarii: " + stats.denarii);
             }
 
             // Destroy the coin object after collection
@@ -480,7 +479,6 @@ public class PlayerController : MonoBehaviour
             if (stats != null)
             {
                 stats.AddDenarii(100);
-                Debug.Log("Collected a coin! Total denarii: " + stats.denarii);
             }
 
             // Destroy the treasure object

@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7881619081774646932}
   - component: {fileID: 1638208352124790686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6175799802341822964}
   - component: {fileID: 8796218532084241445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Soldier with shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7228947753652704799}
   - component: {fileID: 5239258302109007894}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 1330573781586970204}
   - component: {fileID: 1639591588677365216}
   - component: {fileID: 1609321726492922725}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Soldier_sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5883016955202981892}
   - component: {fileID: 2401150755605403737}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 8135681709900378696}
   - component: {fileID: 2047810640175344533}
   - component: {fileID: 3738913554479754533}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,7 +752,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -770,7 +770,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -2.0548568, y: -0.11925495}
+  m_Offset: {x: -0.80407095, y: -0.11925495}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -780,5 +780,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.6328773, y: 0.17438745}
+  m_Size: {x: 0.1313057, y: 0.17438745}
   m_EdgeRadius: 0

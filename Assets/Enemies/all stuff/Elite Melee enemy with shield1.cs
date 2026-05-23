@@ -18,6 +18,7 @@ public class EliteMeleeenemywithshield : Enemy
     void Start()
     {
         weapon.GetComponent<Spear>().setdamage(damage);
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     private Vector3 startingscale;
     bool movingleft = true;

@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6175799802341822964}
   - component: {fileID: 8796218532084241445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elite soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1330573781586970204}
   - component: {fileID: 5016355883217607480}
   - component: {fileID: 1609321726492922725}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Soldier_sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

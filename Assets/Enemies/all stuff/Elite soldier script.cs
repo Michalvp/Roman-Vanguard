@@ -17,7 +17,7 @@ public class Elitesoldierscript : Enemy
     [SerializeField] private Rigidbody2D enemy;
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     private Vector3 startingscale;
     bool movingleft = true;

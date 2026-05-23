@@ -15,7 +15,7 @@ public class EliteArcher : Enemy
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     [SerializeField] private Transform maxrightpoint;
     [SerializeField] private Transform maxleftpoint;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4734396740307243070}
   - component: {fileID: 9097995639200380294}
   - component: {fileID: 4855564417677411027}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Soldier_sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec5d8a28fd38e34095c4b9d85f3e3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EliteArcher
+  health: 150
+  damage: 20
+  armor: 10
   movementspeed: 5
   shootingspeed: 5
   size: 10
@@ -159,7 +162,7 @@ MonoBehaviour:
   playermask:
     serializedVersion: 2
     m_Bits: 64
-  projstart: {fileID: 0}
+  projstart: {fileID: 8947299492504418683}
   boxCollider2: {fileID: 9097995639200380294}
   maxrightpoint: {fileID: 7552925845315612778}
   maxleftpoint: {fileID: 8259648151987868123}
@@ -175,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8785931075984986074}
   - component: {fileID: 3674092814249619343}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Elite Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7552925845315612778}
   - component: {fileID: 842292560367709529}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8259648151987868123}
   - component: {fileID: 8011071499649667379}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Waypoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

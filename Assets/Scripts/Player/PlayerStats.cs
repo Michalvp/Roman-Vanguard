@@ -33,32 +33,32 @@ public class PlayerStats : MonoBehaviour
 
     public void AddXP(int amount)
     {
-        currentXP += amount;
-        if (currentXP >= xpToNextLevel) LevelUp();
+        Instance.currentXP += amount;
+        if (Instance.currentXP >= Instance.xpToNextLevel) LevelUp();
     }
 
     private void LevelUp()
     {
-        currentLevel++;
-        skillPoints++;
-        currentXP -= xpToNextLevel;
-        xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.3f);
+        Instance.currentLevel++;
+        Instance.skillPoints++;
+        Instance.currentXP -= Instance.xpToNextLevel;
+        Instance.xpToNextLevel = Mathf.RoundToInt(Instance.xpToNextLevel * 1.3f);
 
         // Increase stats on level up
-        maxHealth += 10;
-        currentHealth = maxHealth;
-        bonusDamage += 2;
+        Instance.maxHealth += 10;
+        Instance.currentHealth = Instance.maxHealth;
+        Instance.bonusDamage += 2;
 
-        Debug.Log($"Level Up! Now at level {currentLevel}");
+        Debug.Log($"Level Up! Now at level {Instance.currentLevel}");
     }
 
-    public void AddDenarii(int amount) => denarii += amount;
+    public void AddDenarii(int amount) => Instance.denarii += amount;
 
     public bool TrySpendDenarii(int amount)
     {
-        if (denarii >= amount)
+        if (Instance.denarii >= amount)
         {
-            denarii -= amount;
+            Instance.denarii -= amount;
             return true;
         }
         return false;

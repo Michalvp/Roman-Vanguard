@@ -24,9 +24,11 @@ public class Enemy : MonoBehaviour
     }
     public void takedamage(int damage)
     {
+        Debug.Log("Enemy took " + (damage - armor) + " damage");
         health -= (damage - armor);
         if (health <= 0)
         {
+            player.GetComponent<PlayerStats>().AddXP(10*(Mappicker.completedLevels+1));
             Destroy(gameObject);
         }
     }

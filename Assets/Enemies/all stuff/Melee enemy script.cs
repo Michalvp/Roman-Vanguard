@@ -70,7 +70,6 @@ public class Meleeenemyscript : Enemy
 
             if (playerinsight())
             {
-            Debug.Log("Player in sight");
             if (timepassed *Time.deltaTime>= shootingspeed)
                 {
                     timepassed = 0;

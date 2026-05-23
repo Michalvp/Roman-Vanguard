@@ -16,6 +16,8 @@ public class Returntovillage : MonoBehaviour, IInteractable
     public void Interact()
     {
         Mappicker.completedLevels = -1;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerStats>().currentHealth = player.GetComponent<PlayerStats>().maxHealth;
         SceneManager.LoadScene("Village");
     }
     public void SetHighlight(bool isActive)
