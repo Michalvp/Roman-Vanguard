@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: 4e5a47f9c9140424a949b153002af23e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -106201657693006676
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_0
+  - first:
+      213: -6124589784310450283
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_1
+  - first:
+      213: 4755712773813446120
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_2
+  - first:
+      213: -3843315776999402181
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_3
+  - first:
+      213: 8098819466438991446
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_4
+  - first:
+      213: -3036821032266782541
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_5
+  - first:
+      213: 561587136745648831
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_6
+  - first:
+      213: -981700303774817789
+    second: pixel_art_rpg_equipment_icons_TRANSPARENT_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Icon_Scutum
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 656
+        width: 214
+        height: 395
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca496aea722b68ef0800000000000000
+      internalID: -106201657693006676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Lorica_Hamata
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 670
+        width: 279
+        height: 347
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59770376a06110ba0800000000000000
+      internalID: -6124589784310450283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Lorica_Segmentata
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 658
+        width: 329
+        height: 351
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e520f8229faff140800000000000000
+      internalID: 4755712773813446120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Manica
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 696
+        width: 180
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b35db40e9acc9aac0800000000000000
+      internalID: -3843315776999402181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Galea_Gladiatoria
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 261
+        width: 230
+        height: 345
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65e5d153569c46070800000000000000
+      internalID: 8098819466438991446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Padded_Leather_Tuni
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 266
+        width: 282
+        height: 307
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8ad456c5b0bd5d0800000000000000
+      internalID: -3036821032266782541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_EquipmentSlot_Weapon_Empty
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 272
+        width: 255
+        height: 266
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb2372486882bc700800000000000000
+      internalID: 561587136745648831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_EquipmentSlot_Armor_Empty
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 272
+        width: 254
+        height: 266
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 302eb9566cc4062f0800000000000000
+      internalID: -981700303774817789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e6b8444d2f57a0a4dab5946f62846dec
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Icon_Galea_Gladiatoria: 8098819466438991446
+      Icon_Lorica_Hamata: -6124589784310450283
+      Icon_Lorica_Segmentata: 4755712773813446120
+      Icon_Manica: -3843315776999402181
+      Icon_Padded_Leather_Tuni: -3036821032266782541
+      Icon_Scutum: -106201657693006676
+      UI_EquipmentSlot_Armor_Empty: -981700303774817789
+      UI_EquipmentSlot_Weapon_Empty: 561587136745648831
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

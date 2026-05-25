@@ -1,0 +1,379 @@
+fileFormatVersion: 2
+guid: 4c6ca2059aa23414787f17acb9d45f11
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1461573007922227591
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_0
+  - first:
+      213: 1638541962657467840
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_1
+  - first:
+      213: 6319437009605710911
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_2
+  - first:
+      213: -1495041541085200181
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_3
+  - first:
+      213: 7724727699294714906
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_4
+  - first:
+      213: -2163673954754918659
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_5
+  - first:
+      213: -3005398391561974693
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_6
+  - first:
+      213: 3012693776038647133
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_7
+  - first:
+      213: -5994188835109674476
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_8
+  - first:
+      213: -1170807924607297399
+    second: pixel_art_roman_weaponry_collection_TRANSPARENT_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Icon_Gladius_Hispaniensis
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 688
+        width: 82
+        height: 438
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 789e08e28ec884410800000000000000
+      internalID: 1461573007922227591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Pugio
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 688
+        width: 72
+        height: 356
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cd05c1db354db610800000000000000
+      internalID: 1638541962657467840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Pilum
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 680
+        width: 41
+        height: 499
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f34510a7a7623b750800000000000000
+      internalID: 6319437009605710911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Spatha
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 673
+        width: 101
+        height: 522
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc00a23b3ab804be0800000000000000
+      internalID: -1495041541085200181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Sica
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 680
+        width: 106
+        height: 417
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1cf4174aeeb33b60800000000000000
+      internalID: 7724727699294714906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel_art_roman_weaponry_collection_TRANSPARENT_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 115
+        width: 99
+        height: 455
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df68115700619f1e0800000000000000
+      internalID: -2163673954754918659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Retiarius_Trident
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 101
+        width: 133
+        height: 515
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5c0b6e061eaa46d0800000000000000
+      internalID: -3005398391561974693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Arcus_Romanus
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 99
+        width: 114
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5550d1070d3fc920800000000000000
+      internalID: 3012693776038647133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Eastern_Composite_Bo
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 95
+        width: 95
+        height: 504
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 412eca6530d50dca0800000000000000
+      internalID: -5994188835109674476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Funda_Sling
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 133
+        width: 174
+        height: 406
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 988d191556470cfe0800000000000000
+      internalID: -1170807924607297399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f9092d7043610704083c36a72a1f64b2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Icon_Arcus_Romanus: 3012693776038647133
+      Icon_Eastern_Composite_Bo: -5994188835109674476
+      Icon_Funda_Sling: -1170807924607297399
+      Icon_Gladius_Hispaniensis: 1461573007922227591
+      Icon_Pilum: 6319437009605710911
+      Icon_Pugio: 1638541962657467840
+      Icon_Retiarius_Trident: -3005398391561974693
+      Icon_Sica: 7724727699294714906
+      Icon_Spatha: -1495041541085200181
+      pixel_art_roman_weaponry_collection_TRANSPARENT_5: -2163673954754918659
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
