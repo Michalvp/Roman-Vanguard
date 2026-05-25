@@ -133,7 +133,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShopStall
+      name: World_Village_Shop_Stall
       rect:
         serializedVersion: 2
         x: 52
@@ -155,7 +155,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merchant
+      name: World_Shop_Merchant
       rect:
         serializedVersion: 2
         x: 554
@@ -177,7 +177,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPrompt
+      name: UI_Prompt_Press_S
       rect:
         serializedVersion: 2
         x: 696
@@ -199,7 +199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShopPanel
+      name: UI_Shop_Panel_Background
       rect:
         serializedVersion: 2
         x: 786
@@ -221,7 +221,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: InventoryPanel
+      name: UI_Inventory_Panel_Background
       rect:
         serializedVersion: 2
         x: 45
@@ -243,11 +243,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmptySlot
+      name: UI_Slot_Normal
       rect:
         serializedVersion: 2
-        x: 636
-        y: 497
+        x: 638
+        y: 493
         width: 147
         height: 148
       alignment: 0
@@ -265,7 +265,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_6
+      name: UI_Slot_Selected
       rect:
         serializedVersion: 2
         x: 832
@@ -287,7 +287,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_7
+      name: UI_Slot_Usable
       rect:
         serializedVersion: 2
         x: 1030
@@ -309,7 +309,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WeaponSlot
+      name: UI_EquipmentSlot_Weapon
       rect:
         serializedVersion: 2
         x: 694
@@ -331,7 +331,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArmorSlot
+      name: UI_EquipmentSlot_Armor
       rect:
         serializedVersion: 2
         x: 945
@@ -353,7 +353,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDenarii
+      name: UI_Currency_Denarii_Display
       rect:
         serializedVersion: 2
         x: 354
@@ -375,7 +375,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CurrencyDisplay
+      name: UI_Currency_Conversion_Table
       rect:
         serializedVersion: 2
         x: 613
@@ -410,18 +410,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ArmorSlot: -5087273306397375634
-      CurrencyDisplay: -1960793913933337257
-      EmptySlot: -3076071180910458155
-      InventoryPanel: -7980592320860133732
-      Merchant: -8192726544138728621
-      PlayerDenarii: 7826523013224318437
-      SPrompt: -1415182470789127101
-      ShopPanel: 78355509138458532
-      ShopStall: -8954183913112510102
-      WeaponSlot: 535911120593011231
-      roman_market_game_ui_mockup_TRANSPARENT_6: -9076403834429753274
-      roman_market_game_ui_mockup_TRANSPARENT_7: -7295281854090697490
+      UI_Currency_Conversion_Table: -1960793913933337257
+      UI_Currency_Denarii_Display: 7826523013224318437
+      UI_EquipmentSlot_Armor: -5087273306397375634
+      UI_EquipmentSlot_Weapon: 535911120593011231
+      UI_Inventory_Panel_Background: -7980592320860133732
+      UI_Prompt_Press_S: -1415182470789127101
+      UI_Shop_Panel_Background: 78355509138458532
+      UI_Slot_Normal: -3076071180910458155
+      UI_Slot_Selected: -9076403834429753274
+      UI_Slot_Usable: -7295281854090697490
+      World_Shop_Merchant: -8192726544138728621
+      World_Village_Shop_Stall: -8954183913112510102
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
