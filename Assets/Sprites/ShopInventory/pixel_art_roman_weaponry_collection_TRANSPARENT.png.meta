@@ -127,15 +127,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_0
+      name: Icon_Gladius_Hispaniensis
       rect:
         serializedVersion: 2
-        x: 138
-        y: 687
-        width: 84
-        height: 440
+        x: 139
+        y: 688
+        width: 82
+        height: 438
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,15 +149,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_1
+      name: Icon_Pugio
       rect:
         serializedVersion: 2
-        x: 361
-        y: 687
-        width: 74
-        height: 358
+        x: 362
+        y: 688
+        width: 72
+        height: 356
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,15 +171,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_2
+      name: Icon_Pilum
       rect:
         serializedVersion: 2
-        x: 622
-        y: 679
-        width: 43
-        height: 501
+        x: 623
+        y: 680
+        width: 41
+        height: 499
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -193,15 +193,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_3
+      name: Icon_Spatha
       rect:
         serializedVersion: 2
-        x: 814
-        y: 672
-        width: 103
-        height: 524
+        x: 815
+        y: 673
+        width: 101
+        height: 522
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,15 +215,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_4
+      name: Icon_Sica
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 679
-        width: 108
-        height: 419
+        x: 1051
+        y: 680
+        width: 106
+        height: 417
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -240,12 +240,12 @@ TextureImporter:
       name: pixel_art_roman_weaponry_collection_TRANSPARENT_5
       rect:
         serializedVersion: 2
-        x: 129
-        y: 114
-        width: 101
-        height: 457
+        x: 130
+        y: 115
+        width: 99
+        height: 455
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,15 +259,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_6
+      name: Icon_Retiarius_Trident
       rect:
         serializedVersion: 2
-        x: 330
-        y: 98
-        width: 135
-        height: 517
+        x: 333
+        y: 101
+        width: 133
+        height: 515
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -281,15 +281,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_7
+      name: Icon_Arcus_Romanus
       rect:
         serializedVersion: 2
-        x: 575
-        y: 98
-        width: 116
-        height: 502
+        x: 576
+        y: 99
+        width: 114
+        height: 500
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -303,15 +303,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_8
+      name: Icon_Eastern_Composite_Bo
       rect:
         serializedVersion: 2
-        x: 796
-        y: 94
-        width: 97
-        height: 506
+        x: 797
+        y: 95
+        width: 95
+        height: 504
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -325,15 +325,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_roman_weaponry_collection_TRANSPARENT_9
+      name: Icon_Funda_Sling
       rect:
         serializedVersion: 2
-        x: 995
-        y: 132
-        width: 176
-        height: 408
+        x: 996
+        y: 133
+        width: 174
+        height: 406
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -350,7 +350,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f9092d7043610704083c36a72a1f64b2
     internalID: 0
     vertices: []
     indices: 
@@ -358,18 +358,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      pixel_art_roman_weaponry_collection_TRANSPARENT_0: 1461573007922227591
-      pixel_art_roman_weaponry_collection_TRANSPARENT_1: 1638541962657467840
-      pixel_art_roman_weaponry_collection_TRANSPARENT_2: 6319437009605710911
-      pixel_art_roman_weaponry_collection_TRANSPARENT_3: -1495041541085200181
-      pixel_art_roman_weaponry_collection_TRANSPARENT_4: 7724727699294714906
+      Icon_Arcus_Romanus: 3012693776038647133
+      Icon_Eastern_Composite_Bo: -5994188835109674476
+      Icon_Funda_Sling: -1170807924607297399
+      Icon_Gladius_Hispaniensis: 1461573007922227591
+      Icon_Pilum: 6319437009605710911
+      Icon_Pugio: 1638541962657467840
+      Icon_Retiarius_Trident: -3005398391561974693
+      Icon_Sica: 7724727699294714906
+      Icon_Spatha: -1495041541085200181
       pixel_art_roman_weaponry_collection_TRANSPARENT_5: -2163673954754918659
-      pixel_art_roman_weaponry_collection_TRANSPARENT_6: -3005398391561974693
-      pixel_art_roman_weaponry_collection_TRANSPARENT_7: 3012693776038647133
-      pixel_art_roman_weaponry_collection_TRANSPARENT_8: -5994188835109674476
-      pixel_art_roman_weaponry_collection_TRANSPARENT_9: -1170807924607297399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

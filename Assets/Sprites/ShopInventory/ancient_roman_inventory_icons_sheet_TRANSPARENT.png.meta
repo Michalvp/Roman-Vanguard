@@ -145,7 +145,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_0
+      name: Icon_Panis
       rect:
         serializedVersion: 2
         x: 63
@@ -153,7 +153,7 @@ TextureImporter:
         width: 242
         height: 179
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,7 +167,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_1
+      name: Icon_Puls
       rect:
         serializedVersion: 2
         x: 371
@@ -175,7 +175,7 @@ TextureImporter:
         width: 242
         height: 189
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,7 +189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_2
+      name: Icon_Moretum
       rect:
         serializedVersion: 2
         x: 668
@@ -197,7 +197,7 @@ TextureImporter:
         width: 236
         height: 181
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,7 +211,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_3
+      name: Icon_Garum_Ration
       rect:
         serializedVersion: 2
         x: 996
@@ -219,7 +219,7 @@ TextureImporter:
         width: 192
         height: 249
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_4
+      name: Icon_Posca
       rect:
         serializedVersion: 2
         x: 60
@@ -241,7 +241,7 @@ TextureImporter:
         width: 245
         height: 274
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,7 +255,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_5
+      name: Icon_Mulsum
       rect:
         serializedVersion: 2
         x: 368
@@ -263,7 +263,7 @@ TextureImporter:
         width: 240
         height: 275
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,7 +277,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_6
+      name: Icon_Ferrum_Ingot
       rect:
         serializedVersion: 2
         x: 653
@@ -285,7 +285,7 @@ TextureImporter:
         width: 236
         height: 210
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_7
+      name: Icon_Lignum
       rect:
         serializedVersion: 2
         x: 950
@@ -307,7 +307,7 @@ TextureImporter:
         width: 258
         height: 230
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,7 +321,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_8
+      name: Icon_Corium
       rect:
         serializedVersion: 2
         x: 52
@@ -329,7 +329,7 @@ TextureImporter:
         width: 260
         height: 227
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,7 +343,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_9
+      name: Icon_Linum_Cloth
       rect:
         serializedVersion: 2
         x: 357
@@ -351,7 +351,7 @@ TextureImporter:
         width: 241
         height: 209
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,7 +365,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_10
+      name: Icon_Cos_Sharpening_Stone
       rect:
         serializedVersion: 2
         x: 653
@@ -373,7 +373,7 @@ TextureImporter:
         width: 247
         height: 208
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,7 +387,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_11
+      name: Icon_Fascia_Bandage
       rect:
         serializedVersion: 2
         x: 959
@@ -395,7 +395,7 @@ TextureImporter:
         width: 192
         height: 216
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -409,7 +409,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_12
+      name: Icon_Currency_Denarius
       rect:
         serializedVersion: 2
         x: 62
@@ -417,7 +417,7 @@ TextureImporter:
         width: 213
         height: 224
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -431,7 +431,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_13
+      name: Icon_Currency_Sestertius
       rect:
         serializedVersion: 2
         x: 368
@@ -439,7 +439,7 @@ TextureImporter:
         width: 214
         height: 221
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_14
+      name: Icon_Currency_As
       rect:
         serializedVersion: 2
         x: 670
@@ -461,7 +461,7 @@ TextureImporter:
         width: 207
         height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -475,7 +475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ancient_roman_inventory_icons_sheet_TRANSPARENT_15
+      name: Icon_Currency_Aureus
       rect:
         serializedVersion: 2
         x: 956
@@ -483,7 +483,7 @@ TextureImporter:
         width: 227
         height: 232
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -500,7 +500,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4f4bd3605d32cd841993067d4753f65b
     internalID: 0
     vertices: []
     indices: 
@@ -510,22 +510,22 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_0: 1909491626120799292
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_1: -109381978448308528
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_10: 618010702123526165
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_11: 7884271218938729390
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_12: -6444730671781457541
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_13: 505021836523467043
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_14: 1675405701173305202
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_15: 3909989942009481257
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_2: -7367796941733737204
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_3: 3110085488186097215
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_4: 6201912677769792733
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_5: -7841873376677910322
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_6: 7400121178380070031
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_7: 2608922404536361687
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_8: 7657845816086870151
-      ancient_roman_inventory_icons_sheet_TRANSPARENT_9: -7722085171871285759
+      Icon_Corium: 7657845816086870151
+      Icon_Cos_Sharpening_Stone: 618010702123526165
+      Icon_Currency_As: 1675405701173305202
+      Icon_Currency_Aureus: 3909989942009481257
+      Icon_Currency_Denarius: -6444730671781457541
+      Icon_Currency_Sestertius: 505021836523467043
+      Icon_Fascia_Bandage: 7884271218938729390
+      Icon_Ferrum_Ingot: 7400121178380070031
+      Icon_Garum_Ration: 3110085488186097215
+      Icon_Lignum: 2608922404536361687
+      Icon_Linum_Cloth: -7722085171871285759
+      Icon_Moretum: -7367796941733737204
+      Icon_Mulsum: -7841873376677910322
+      Icon_Panis: 1909491626120799292
+      Icon_Posca: 6201912677769792733
+      Icon_Puls: -109381978448308528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

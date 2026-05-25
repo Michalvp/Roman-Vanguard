@@ -133,7 +133,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_0
+      name: ShopStall
       rect:
         serializedVersion: 2
         x: 52
@@ -141,7 +141,7 @@ TextureImporter:
         width: 510
         height: 448
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,7 +155,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_1
+      name: Merchant
       rect:
         serializedVersion: 2
         x: 554
@@ -163,7 +163,7 @@ TextureImporter:
         width: 153
         height: 368
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_2
+      name: SPrompt
       rect:
         serializedVersion: 2
         x: 696
@@ -185,7 +185,7 @@ TextureImporter:
         width: 74
         height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,7 +199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_3
+      name: ShopPanel
       rect:
         serializedVersion: 2
         x: 786
@@ -207,7 +207,7 @@ TextureImporter:
         width: 427
         height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,7 +221,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_4
+      name: InventoryPanel
       rect:
         serializedVersion: 2
         x: 45
@@ -229,7 +229,7 @@ TextureImporter:
         width: 525
         height: 408
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_5
+      name: EmptySlot
       rect:
         serializedVersion: 2
         x: 636
@@ -251,7 +251,7 @@ TextureImporter:
         width: 147
         height: 148
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -273,7 +273,7 @@ TextureImporter:
         width: 148
         height: 147
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -295,7 +295,7 @@ TextureImporter:
         width: 148
         height: 146
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -309,7 +309,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_8
+      name: WeaponSlot
       rect:
         serializedVersion: 2
         x: 694
@@ -317,7 +317,7 @@ TextureImporter:
         width: 161
         height: 158
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -331,7 +331,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_9
+      name: ArmorSlot
       rect:
         serializedVersion: 2
         x: 945
@@ -339,7 +339,7 @@ TextureImporter:
         width: 157
         height: 158
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -353,7 +353,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_10
+      name: PlayerDenarii
       rect:
         serializedVersion: 2
         x: 354
@@ -361,7 +361,7 @@ TextureImporter:
         width: 206
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -375,7 +375,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roman_market_game_ui_mockup_TRANSPARENT_11
+      name: CurrencyDisplay
       rect:
         serializedVersion: 2
         x: 613
@@ -383,7 +383,7 @@ TextureImporter:
         width: 575
         height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -400,7 +400,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6fa20724a8e25214996df57d3961509d
     internalID: 0
     vertices: []
     indices: 
@@ -410,18 +410,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      roman_market_game_ui_mockup_TRANSPARENT_0: -8954183913112510102
-      roman_market_game_ui_mockup_TRANSPARENT_1: -8192726544138728621
-      roman_market_game_ui_mockup_TRANSPARENT_10: 7826523013224318437
-      roman_market_game_ui_mockup_TRANSPARENT_11: -1960793913933337257
-      roman_market_game_ui_mockup_TRANSPARENT_2: -1415182470789127101
-      roman_market_game_ui_mockup_TRANSPARENT_3: 78355509138458532
-      roman_market_game_ui_mockup_TRANSPARENT_4: -7980592320860133732
-      roman_market_game_ui_mockup_TRANSPARENT_5: -3076071180910458155
+      ArmorSlot: -5087273306397375634
+      CurrencyDisplay: -1960793913933337257
+      EmptySlot: -3076071180910458155
+      InventoryPanel: -7980592320860133732
+      Merchant: -8192726544138728621
+      PlayerDenarii: 7826523013224318437
+      SPrompt: -1415182470789127101
+      ShopPanel: 78355509138458532
+      ShopStall: -8954183913112510102
+      WeaponSlot: 535911120593011231
       roman_market_game_ui_mockup_TRANSPARENT_6: -9076403834429753274
       roman_market_game_ui_mockup_TRANSPARENT_7: -7295281854090697490
-      roman_market_game_ui_mockup_TRANSPARENT_8: 535911120593011231
-      roman_market_game_ui_mockup_TRANSPARENT_9: -5087273306397375634
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_0
+      name: Icon_Scutum
       rect:
         serializedVersion: 2
         x: 63
@@ -129,7 +129,7 @@ TextureImporter:
         width: 214
         height: 395
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,7 +143,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_1
+      name: Icon_Lorica_Hamata
       rect:
         serializedVersion: 2
         x: 329
@@ -151,7 +151,7 @@ TextureImporter:
         width: 279
         height: 347
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,7 +165,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_2
+      name: Icon_Lorica_Segmentata
       rect:
         serializedVersion: 2
         x: 639
@@ -173,7 +173,7 @@ TextureImporter:
         width: 329
         height: 351
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,7 +187,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_3
+      name: Icon_Manica
       rect:
         serializedVersion: 2
         x: 1013
@@ -195,7 +195,7 @@ TextureImporter:
         width: 180
         height: 308
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,7 +209,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_4
+      name: Icon_Galea_Gladiatoria
       rect:
         serializedVersion: 2
         x: 37
@@ -217,7 +217,7 @@ TextureImporter:
         width: 230
         height: 345
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,7 +231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_5
+      name: Icon_Padded_Leather_Tuni
       rect:
         serializedVersion: 2
         x: 326
@@ -239,7 +239,7 @@ TextureImporter:
         width: 282
         height: 307
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,7 +253,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_6
+      name: UI_EquipmentSlot_Weapon_Empty
       rect:
         serializedVersion: 2
         x: 654
@@ -261,7 +261,7 @@ TextureImporter:
         width: 255
         height: 266
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixel_art_rpg_equipment_icons_TRANSPARENT_7
+      name: UI_EquipmentSlot_Armor_Empty
       rect:
         serializedVersion: 2
         x: 946
@@ -283,7 +283,7 @@ TextureImporter:
         width: 254
         height: 266
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e6b8444d2f57a0a4dab5946f62846dec
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pixel_art_rpg_equipment_icons_TRANSPARENT_0: -106201657693006676
-      pixel_art_rpg_equipment_icons_TRANSPARENT_1: -6124589784310450283
-      pixel_art_rpg_equipment_icons_TRANSPARENT_2: 4755712773813446120
-      pixel_art_rpg_equipment_icons_TRANSPARENT_3: -3843315776999402181
-      pixel_art_rpg_equipment_icons_TRANSPARENT_4: 8098819466438991446
-      pixel_art_rpg_equipment_icons_TRANSPARENT_5: -3036821032266782541
-      pixel_art_rpg_equipment_icons_TRANSPARENT_6: 561587136745648831
-      pixel_art_rpg_equipment_icons_TRANSPARENT_7: -981700303774817789
+      Icon_Galea_Gladiatoria: 8098819466438991446
+      Icon_Lorica_Hamata: -6124589784310450283
+      Icon_Lorica_Segmentata: 4755712773813446120
+      Icon_Manica: -3843315776999402181
+      Icon_Padded_Leather_Tuni: -3036821032266782541
+      Icon_Scutum: -106201657693006676
+      UI_EquipmentSlot_Armor_Empty: -981700303774817789
+      UI_EquipmentSlot_Weapon_Empty: 561587136745648831
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
