@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: a51466399af66f74d8110190f682c06d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8954183913112510102
+    second: roman_market_game_ui_mockup_TRANSPARENT_0
+  - first:
+      213: -8192726544138728621
+    second: roman_market_game_ui_mockup_TRANSPARENT_1
+  - first:
+      213: -1415182470789127101
+    second: roman_market_game_ui_mockup_TRANSPARENT_2
+  - first:
+      213: 78355509138458532
+    second: roman_market_game_ui_mockup_TRANSPARENT_3
+  - first:
+      213: -7980592320860133732
+    second: roman_market_game_ui_mockup_TRANSPARENT_4
+  - first:
+      213: -3076071180910458155
+    second: roman_market_game_ui_mockup_TRANSPARENT_5
+  - first:
+      213: -9076403834429753274
+    second: roman_market_game_ui_mockup_TRANSPARENT_6
+  - first:
+      213: -7295281854090697490
+    second: roman_market_game_ui_mockup_TRANSPARENT_7
+  - first:
+      213: 535911120593011231
+    second: roman_market_game_ui_mockup_TRANSPARENT_8
+  - first:
+      213: -5087273306397375634
+    second: roman_market_game_ui_mockup_TRANSPARENT_9
+  - first:
+      213: 7826523013224318437
+    second: roman_market_game_ui_mockup_TRANSPARENT_10
+  - first:
+      213: -1960793913933337257
+    second: roman_market_game_ui_mockup_TRANSPARENT_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 742
+        width: 510
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61696d1c295cb380800000000000000
+      internalID: -8954183913112510102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_1
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 742
+        width: 153
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35b82b27d969d4e80800000000000000
+      internalID: -8192726544138728621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_2
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 1081
+        width: 74
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34421407a034c5ce0800000000000000
+      internalID: -1415182470789127101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_3
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 755
+        width: 427
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a78460abef561100800000000000000
+      internalID: 78355509138458532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_4
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 225
+        width: 525
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c96ebe1319d3f3190800000000000000
+      internalID: -7980592320860133732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_5
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 497
+        width: 147
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da04060f899f45d0800000000000000
+      internalID: -3076071180910458155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_6
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 497
+        width: 148
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64832da2dc22a0280800000000000000
+      internalID: -9076403834429753274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_7
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 497
+        width: 148
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee422964ec3f1ca90800000000000000
+      internalID: -7295281854090697490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_8
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 289
+        width: 161
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f12c0262350ff6700800000000000000
+      internalID: 535911120593011231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_9
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 289
+        width: 157
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e638bd0a1ef5669b0800000000000000
+      internalID: -5087273306397375634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_10
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 87
+        width: 206
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5c7adb6356d9c60800000000000000
+      internalID: 7826523013224318437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roman_market_game_ui_mockup_TRANSPARENT_11
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 95
+        width: 575
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75d6142f25cd9c4e0800000000000000
+      internalID: -1960793913933337257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      roman_market_game_ui_mockup_TRANSPARENT_0: -8954183913112510102
+      roman_market_game_ui_mockup_TRANSPARENT_1: -8192726544138728621
+      roman_market_game_ui_mockup_TRANSPARENT_10: 7826523013224318437
+      roman_market_game_ui_mockup_TRANSPARENT_11: -1960793913933337257
+      roman_market_game_ui_mockup_TRANSPARENT_2: -1415182470789127101
+      roman_market_game_ui_mockup_TRANSPARENT_3: 78355509138458532
+      roman_market_game_ui_mockup_TRANSPARENT_4: -7980592320860133732
+      roman_market_game_ui_mockup_TRANSPARENT_5: -3076071180910458155
+      roman_market_game_ui_mockup_TRANSPARENT_6: -9076403834429753274
+      roman_market_game_ui_mockup_TRANSPARENT_7: -7295281854090697490
+      roman_market_game_ui_mockup_TRANSPARENT_8: 535911120593011231
+      roman_market_game_ui_mockup_TRANSPARENT_9: -5087273306397375634
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
