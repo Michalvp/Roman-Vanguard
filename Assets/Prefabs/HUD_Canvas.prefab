@@ -788,14 +788,14 @@ MonoBehaviour:
   inventoryKey: 101
   rootPanel: {fileID: 1462467940453421571}
   slotParent: {fileID: 8498345381970472123}
-  slotPrefab: {fileID: 0}
-  selectedIcon: {fileID: 0}
-  selectedNameText: {fileID: 0}
-  selectedDescriptionText: {fileID: 0}
-  selectedStatsText: {fileID: 0}
-  useOrEquipButton: {fileID: 0}
-  equippedWeaponText: {fileID: 0}
-  equippedArmorText: {fileID: 0}
+  slotPrefab: {fileID: 5203265183099990399, guid: 508f78ef5bdee3a49a8866961f3751b5, type: 3}
+  selectedIcon: {fileID: 2687381947256393754}
+  selectedNameText: {fileID: 523700252387366184}
+  selectedDescriptionText: {fileID: 1844901411213541244}
+  selectedStatsText: {fileID: 8959601126320133778}
+  useOrEquipButton: {fileID: 3388863283886828630}
+  equippedWeaponText: {fileID: 3199037735569825906}
+  equippedArmorText: {fileID: 7609876939791282403}
 --- !u!1 &1303644084315305453
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3042353376633367467
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1046,7 +1046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -780, y: -450}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5933725843401384987
@@ -1183,7 +1183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1000, y: -380}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8527812968709610659
@@ -2670,7 +2670,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5896335348811367647
 GameObject:
@@ -2845,7 +2845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -800, y: -380}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1556660298478559558
@@ -3078,7 +3078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -970, y: -450}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5880567564143972436
