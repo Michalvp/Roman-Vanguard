@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Gladius Hispaniensis
   description: Balanced short sword for close Roman infantry fighting.
-  icon: {fileID: 0}
+  icon: {fileID: 1461573007922227591, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 1
   priceDenarii: 35

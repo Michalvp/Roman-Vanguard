@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Ferrum Ingot
   description: Iron ingot for future crafting or upgrades.
-  icon: {fileID: 0}
+  icon: {fileID: 7400121178380070031, guid: 72f7d0ba9e76920468d7409957a3aab9, type: 3}
   itemType: 3
   classRequirement: 0
   priceDenarii: 15

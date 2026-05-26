@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Rudis Training Sword
   description: Wooden training sword. Weak but fast.
-  icon: {fileID: 0}
+  icon: {fileID: -2163673954754918659, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 2
   priceDenarii: 10

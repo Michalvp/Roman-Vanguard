@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Pilum
   description: Heavy Roman javelin. In this system it works as a strong legionary
     weapon.
-  icon: {fileID: 0}
+  icon: {fileID: 6319437009605710911, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 1
   priceDenarii: 24

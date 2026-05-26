@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Padded Leather Tunic
   description: Light archer armor. Lower defense but better movement.
-  icon: {fileID: 0}
+  icon: {fileID: -3036821032266782541, guid: 4e5a47f9c9140424a949b153002af23e, type: 3}
   itemType: 1
   classRequirement: 3
   priceDenarii: 20

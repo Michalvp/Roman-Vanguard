@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Galea Gladiatoria
   description: Gladiator helmet. Good defensive boost.
-  icon: {fileID: 0}
+  icon: {fileID: 8098819466438991446, guid: 4e5a47f9c9140424a949b153002af23e, type: 3}
   itemType: 1
   classRequirement: 2
   priceDenarii: 28

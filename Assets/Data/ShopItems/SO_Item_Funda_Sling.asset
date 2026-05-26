@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Funda Sling
   description: Simple sling. Cheap, fast, and light.
-  icon: {fileID: 0}
+  icon: {fileID: -1170807924607297399, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 3
   priceDenarii: 18

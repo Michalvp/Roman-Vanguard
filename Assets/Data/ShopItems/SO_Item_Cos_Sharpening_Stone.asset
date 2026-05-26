@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Cos Sharpening Stone
   description: Sharpening stone for future weapon upgrades.
-  icon: {fileID: 0}
+  icon: {fileID: 618010702123526165, guid: 72f7d0ba9e76920468d7409957a3aab9, type: 3}
   itemType: 3
   classRequirement: 0
   priceDenarii: 12

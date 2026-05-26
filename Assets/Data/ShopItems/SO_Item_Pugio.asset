@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Pugio
   description: Small side dagger. Light, cheap, and usable by any class.
-  icon: {fileID: 0}
+  icon: {fileID: 1638541962657467840, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 0
   priceDenarii: 12

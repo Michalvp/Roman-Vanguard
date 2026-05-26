@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Spatha
   description: Longer sword with better reach and high damage.
-  icon: {fileID: 0}
+  icon: {fileID: -1495041541085200181, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 1
   priceDenarii: 55

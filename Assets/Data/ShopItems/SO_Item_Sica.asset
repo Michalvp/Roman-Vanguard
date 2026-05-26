@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Sica
   description: Curved gladiator blade. Good for critical strikes.
-  icon: {fileID: 0}
+  icon: {fileID: 7724727699294714906, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 2
   priceDenarii: 32

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Lorica Hamata
   description: Chainmail armor. Reliable protection with moderate weight.
-  icon: {fileID: 0}
+  icon: {fileID: -6124589784310450283, guid: 4e5a47f9c9140424a949b153002af23e, type: 3}
   itemType: 1
   classRequirement: 1
   priceDenarii: 45

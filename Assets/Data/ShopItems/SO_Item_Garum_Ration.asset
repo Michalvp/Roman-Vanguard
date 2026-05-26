@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Garum Ration
   description: Fish sauce ration. Salty but useful.
-  icon: {fileID: 0}
+  icon: {fileID: 3110085488186097215, guid: 72f7d0ba9e76920468d7409957a3aab9, type: 3}
   itemType: 2
   classRequirement: 0
   priceDenarii: 4

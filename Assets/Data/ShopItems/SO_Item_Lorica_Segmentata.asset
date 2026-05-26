@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Lorica Segmentata
   description: Segmented Roman armor. Excellent defense but heavy.
-  icon: {fileID: 0}
+  icon: {fileID: 4755712773813446120, guid: 4e5a47f9c9140424a949b153002af23e, type: 3}
   itemType: 1
   classRequirement: 1
   priceDenarii: 75

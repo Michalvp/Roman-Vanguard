@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
   itemName: Eastern Composite Bow
   description: Expensive composite bow with high power and critical chance.
-  icon: {fileID: 0}
+  icon: {fileID: -5994188835109674476, guid: 4c6ca2059aa23414787f17acb9d45f11, type: 3}
   itemType: 0
   classRequirement: 3
   priceDenarii: 60
