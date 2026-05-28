@@ -2030,7 +2030,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 10
@@ -8498,7 +8498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopUI
   rootPanel: {fileID: 1962029871}
   itemListParent: {fileID: 975730220}
-  rowPrefab: {fileID: 0}
+  rowPrefab: {fileID: 3367179109905337182, guid: 97eddec6505347e4c89f2af583be9c5c, type: 3}
   selectedIcon: {fileID: 0}
   selectedNameText: {fileID: 0}
   selectedDescriptionText: {fileID: 0}
