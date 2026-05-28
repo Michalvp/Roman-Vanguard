@@ -22,6 +22,7 @@ public class InventorySlotUI : MonoBehaviour
         {
             iconImage.enabled = hasItem && slot.item.icon != null;
             iconImage.sprite = hasItem ? slot.item.icon : null;
+            iconImage.preserveAspect = true;
         }
 
         if (quantityText != null)
@@ -35,7 +36,11 @@ public class InventorySlotUI : MonoBehaviour
         if (button != null)
         {
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => inventoryUI.SelectSlot(this.slotIndex));
+            button.onClick.AddListener(() =>
+            {
+                if (this.inventoryUI != null)
+                    this.inventoryUI.SelectSlot(this.slotIndex);
+            });
         }
     }
 }

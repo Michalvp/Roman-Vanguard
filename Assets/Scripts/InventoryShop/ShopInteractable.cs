@@ -9,7 +9,7 @@ public class ShopInteractable : MonoBehaviour, IInteractable
     [Header("UI")]
     public ShopUI shopUI;
 
-    [Header("Visual Feedback")]
+    [Header("Optional Visual Feedback")]
     public GameObject highlightObject;
     public GameObject pressSPromptObject;
 
@@ -24,7 +24,13 @@ public class ShopInteractable : MonoBehaviour, IInteractable
             return;
         }
 
-        shopUI.OpenShop(this);
+        // Same key behavior:
+        // Press S near closed shop -> open it.
+        // Press S while shop is open -> close it.
+        if (shopUI.IsOpen)
+            shopUI.CloseShop();
+        else
+            shopUI.OpenShop(this);
     }
 
     public void SetHighlight(bool isActive)

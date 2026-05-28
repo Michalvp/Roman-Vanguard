@@ -51,8 +51,12 @@ public class ShopItemData : ScriptableObject
 
     public bool CanUseWithClass(CharacterClassData currentClass)
     {
-        if (classRequirement == RomanClassRequirement.Any) return true;
-        if (currentClass == null) return false;
+        if (classRequirement == RomanClassRequirement.Any)
+            return true;
+
+        if (currentClass == null)
+            return false;
+
         return currentClass.className == classRequirement.ToString();
     }
 

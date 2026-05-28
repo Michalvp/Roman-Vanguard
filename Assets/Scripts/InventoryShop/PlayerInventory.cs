@@ -35,7 +35,6 @@ public class PlayerInventory : MonoBehaviour
     {
         stats = GetComponent<PlayerStats>();
         controller = GetComponent<PlayerController>();
-
         RecalculateEquipmentStats();
         NotifyChanged();
     }
@@ -98,18 +97,44 @@ public class PlayerInventory : MonoBehaviour
         return false;
     }
 
+    public bool HasFreeSpaceFor(ShopItemData item)
+    {
+        if (item == null)
+            return false;
+
+        EnsureSlotCount();
+
+        if (item.stackable)
+        {
+            foreach (InventorySlot slot in slots)
+            {
+                if (!slot.IsEmpty && slot.item == item && slot.quantity < item.maxStack)
+                    return true;
+            }
+        }
+
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.IsEmpty)
+                return true;
+        }
+
+        return false;
+    }
+
     public void UseSlot(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= slots.Count)
             return;
 
         InventorySlot slot = slots[slotIndex];
+
         if (slot.IsEmpty)
             return;
 
         ShopItemData item = slot.item;
 
-        if (!item.CanUseWithClass(controller != null ? controller.classData : CharacterClassData.SelectedClass))
+        if (!item.CanUseWithClass(GetCurrentClass()))
         {
             Debug.Log($"{item.itemName} cannot be used by this class.");
             return;
@@ -141,7 +166,7 @@ public class PlayerInventory : MonoBehaviour
         if (item == null || !item.IsEquipment)
             return;
 
-        if (!item.CanUseWithClass(controller != null ? controller.classData : CharacterClassData.SelectedClass))
+        if (!item.CanUseWithClass(GetCurrentClass()))
         {
             Debug.Log($"{item.itemName} is not allowed for this class.");
             return;
@@ -164,6 +189,7 @@ public class PlayerInventory : MonoBehaviour
             return;
 
         InventorySlot slot = slots[slotIndex];
+
         if (slot.IsEmpty)
             return;
 
@@ -175,29 +201,15 @@ public class PlayerInventory : MonoBehaviour
         NotifyChanged();
     }
 
-    public bool HasFreeSpaceFor(ShopItemData item)
+    private CharacterClassData GetCurrentClass()
     {
-        if (item == null)
-            return false;
+        if (controller == null)
+            controller = GetComponent<PlayerController>();
 
-        EnsureSlotCount();
+        if (controller != null && controller.classData != null)
+            return controller.classData;
 
-        if (item.stackable)
-        {
-            foreach (InventorySlot slot in slots)
-            {
-                if (!slot.IsEmpty && slot.item == item && slot.quantity < item.maxStack)
-                    return true;
-            }
-        }
-
-        foreach (InventorySlot slot in slots)
-        {
-            if (slot.IsEmpty)
-                return true;
-        }
-
-        return false;
+        return CharacterClassData.SelectedClass;
     }
 
     private void RecalculateEquipmentStats()
