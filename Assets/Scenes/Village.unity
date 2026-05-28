@@ -3293,7 +3293,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b018066527dbe0e448c31bd8630db132, type: 2}
   - {fileID: 11400000, guid: 9aff51ae815fb874693aa1e9bbb0f108, type: 2}
   - {fileID: 11400000, guid: b0810f98d3724434788c300922b419cc, type: 2}
-  shopUI: {fileID: 0}
+  shopUI: {fileID: 1541154225}
   highlightObject: {fileID: 0}
   pressSPromptObject: {fileID: 0}
 --- !u!61 &483046228
