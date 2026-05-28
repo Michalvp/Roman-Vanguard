@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class ShopUI : MonoBehaviour
 {
+    public static ShopUI Instance;
+
     [Header("Main UI")]
     public GameObject rootPanel;
     public Transform itemListParent;
@@ -22,13 +24,19 @@ public class ShopUI : MonoBehaviour
     public Button buyButton;
     public Button closeButton;
 
+    public bool IsOpen => rootPanel != null && rootPanel.activeSelf;
+
     private ShopInteractable currentShop;
     private ShopItemData selectedItem;
 
     private void Awake()
     {
+        Instance = this;
+
         if (rootPanel != null)
             rootPanel.SetActive(false);
+
+        GameUIState.SetShopOpen(false);
 
         if (buyButton != null)
             buyButton.onClick.AddListener(BuySelectedItem);
@@ -37,13 +45,28 @@ public class ShopUI : MonoBehaviour
             closeButton.onClick.AddListener(CloseShop);
     }
 
+    private void OnDisable()
+    {
+        GameUIState.SetShopOpen(false);
+    }
+
     public void OpenShop(ShopInteractable shop)
     {
+        if (rootPanel == null)
+        {
+            Debug.LogWarning("ShopUI is missing Root Panel.");
+            return;
+        }
+
+        // Do not stack inventory and shop on top of each other.
+        if (InventoryUI.Instance != null && InventoryUI.Instance.IsOpen)
+            InventoryUI.Instance.CloseInventory();
+
         currentShop = shop;
         selectedItem = null;
 
-        if (rootPanel != null)
-            rootPanel.SetActive(true);
+        rootPanel.SetActive(true);
+        GameUIState.SetShopOpen(true);
 
         BuildShopList();
         UpdateSelectedInfo();
@@ -55,8 +78,18 @@ public class ShopUI : MonoBehaviour
         if (rootPanel != null)
             rootPanel.SetActive(false);
 
+        GameUIState.SetShopOpen(false);
         currentShop = null;
         selectedItem = null;
+        UpdateSelectedInfo();
+    }
+
+    public void ToggleShop(ShopInteractable shop)
+    {
+        if (IsOpen)
+            CloseShop();
+        else
+            OpenShop(shop);
     }
 
     private void BuildShopList()
@@ -91,6 +124,7 @@ public class ShopUI : MonoBehaviour
         {
             selectedIcon.enabled = hasItem && selectedItem.icon != null;
             selectedIcon.sprite = hasItem ? selectedItem.icon : null;
+            selectedIcon.preserveAspect = true;
         }
 
         if (selectedNameText != null)
@@ -134,7 +168,8 @@ public class ShopUI : MonoBehaviour
 
         CharacterClassData currentClass = CharacterClassData.SelectedClass;
         PlayerController player = Object.FindFirstObjectByType<PlayerController>();
-        if (player != null)
+
+        if (player != null && player.classData != null)
             currentClass = player.classData;
 
         if (!selectedItem.CanUseWithClass(currentClass))

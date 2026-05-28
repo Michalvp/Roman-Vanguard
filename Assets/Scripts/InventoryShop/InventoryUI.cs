@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI Instance;
+
     [Header("Input")]
     public KeyCode inventoryKey = KeyCode.E;
 
@@ -23,12 +25,18 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI equippedWeaponText;
     public TextMeshProUGUI equippedArmorText;
 
+    public bool IsOpen => rootPanel != null && rootPanel.activeSelf;
+
     private int selectedSlotIndex = -1;
 
     private void Awake()
     {
+        Instance = this;
+
         if (rootPanel != null)
             rootPanel.SetActive(false);
+
+        GameUIState.SetInventoryOpen(false);
 
         if (useOrEquipButton != null)
             useOrEquipButton.onClick.AddListener(UseSelectedSlot);
@@ -44,24 +52,58 @@ public class InventoryUI : MonoBehaviour
     {
         if (PlayerInventory.Instance != null)
             PlayerInventory.Instance.OnInventoryChanged -= Refresh;
+
+        GameUIState.SetInventoryOpen(false);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(inventoryKey))
-            ToggleInventory();
+        if (!Input.GetKeyDown(inventoryKey))
+            return;
+
+        // Do not open inventory on top of the shop.
+        // Close the shop first, then press E again if you want inventory.
+        if (!IsOpen && ShopUI.Instance != null && ShopUI.Instance.IsOpen)
+            return;
+
+        ToggleInventory();
     }
 
     public void ToggleInventory()
     {
+        if (IsOpen)
+            CloseInventory();
+        else
+            OpenInventory();
+    }
+
+    public void OpenInventory()
+    {
         if (rootPanel == null)
+        {
+            Debug.LogWarning("InventoryUI is missing Root Panel.");
             return;
+        }
 
-        bool newState = !rootPanel.activeSelf;
-        rootPanel.SetActive(newState);
+        // Safety: inventory and shop should not cover each other.
+        if (ShopUI.Instance != null && ShopUI.Instance.IsOpen)
+            ShopUI.Instance.CloseShop();
 
-        if (newState)
-            Refresh();
+        rootPanel.SetActive(true);
+        GameUIState.SetInventoryOpen(true);
+
+        selectedSlotIndex = -1;
+        Refresh();
+    }
+
+    public void CloseInventory()
+    {
+        if (rootPanel != null)
+            rootPanel.SetActive(false);
+
+        GameUIState.SetInventoryOpen(false);
+        selectedSlotIndex = -1;
+        UpdateSelectedInfo();
     }
 
     public void Refresh()
@@ -97,6 +139,7 @@ public class InventoryUI : MonoBehaviour
             selectedSlotIndex < PlayerInventory.Instance.slots.Count)
         {
             InventorySlot slot = PlayerInventory.Instance.slots[selectedSlotIndex];
+
             if (!slot.IsEmpty)
                 item = slot.item;
         }
@@ -107,6 +150,7 @@ public class InventoryUI : MonoBehaviour
         {
             selectedIcon.enabled = hasItem && item.icon != null;
             selectedIcon.sprite = hasItem ? item.icon : null;
+            selectedIcon.preserveAspect = true;
         }
 
         if (selectedNameText != null)
@@ -120,15 +164,26 @@ public class InventoryUI : MonoBehaviour
 
         if (useOrEquipButton != null)
         {
-            useOrEquipButton.interactable = hasItem;
+            bool canUseButton =
+                hasItem &&
+                (item.itemType == RomanItemType.Weapon ||
+                 item.itemType == RomanItemType.Armor ||
+                 item.itemType == RomanItemType.Consumable);
+
+            useOrEquipButton.interactable = canUseButton;
 
             TextMeshProUGUI buttonText = useOrEquipButton.GetComponentInChildren<TextMeshProUGUI>();
+
             if (buttonText != null)
             {
-                if (!hasItem) buttonText.text = "Use";
-                else if (item.itemType == RomanItemType.Weapon || item.itemType == RomanItemType.Armor) buttonText.text = "Equip";
-                else if (item.itemType == RomanItemType.Consumable) buttonText.text = "Use";
-                else buttonText.text = "Cannot Use";
+                if (!hasItem)
+                    buttonText.text = "Use";
+                else if (item.itemType == RomanItemType.Weapon || item.itemType == RomanItemType.Armor)
+                    buttonText.text = "Equip";
+                else if (item.itemType == RomanItemType.Consumable)
+                    buttonText.text = "Use";
+                else
+                    buttonText.text = "Cannot Use";
             }
         }
     }

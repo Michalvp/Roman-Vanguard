@@ -22,6 +22,7 @@ public class ShopItemRowUI : MonoBehaviour
         {
             iconImage.enabled = item.icon != null;
             iconImage.sprite = item.icon;
+            iconImage.preserveAspect = true;
         }
 
         if (nameText != null)
@@ -39,7 +40,11 @@ public class ShopItemRowUI : MonoBehaviour
         if (button != null)
         {
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => shopUI.SelectItem(item));
+            button.onClick.AddListener(() =>
+            {
+                if (this.shopUI != null)
+                    this.shopUI.SelectItem(this.item);
+            });
         }
     }
 }

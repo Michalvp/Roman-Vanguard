@@ -39,14 +39,19 @@ public class PlayerStats : MonoBehaviour
         }
 
         Instance = this;
+
+        if (maxHealth <= 0)
+            maxHealth = baseMaxHealth;
+
+        if (currentHealth <= 0)
+            currentHealth = maxHealth;
     }
 
     public void SetClassBaseStats(CharacterClassData data)
     {
-        if (data == null)
-            return;
+        if (data != null)
+            baseMaxHealth = data.maxHealth;
 
-        baseMaxHealth = data.maxHealth;
         RecalculateMaxHealth(healToFull: true);
     }
 
@@ -91,10 +96,10 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-            int maxHealthDifference = maxHealth - oldMax;
+            int difference = maxHealth - oldMax;
 
-            if (maxHealthDifference > 0)
-                currentHealth += maxHealthDifference;
+            if (difference > 0)
+                currentHealth += difference;
 
             currentHealth = Mathf.Clamp(currentHealth, 1, maxHealth);
         }
@@ -125,9 +130,8 @@ public class PlayerStats : MonoBehaviour
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.3f);
 
         baseMaxHealth += 10;
-        maxHealth += 10;
-        currentHealth = maxHealth;
         bonusDamage += 2;
+        RecalculateMaxHealth(healToFull: true);
 
         Debug.Log($"Level Up! Now at level {currentLevel}");
     }

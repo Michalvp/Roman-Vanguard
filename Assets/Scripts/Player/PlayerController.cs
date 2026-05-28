@@ -80,6 +80,23 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Menus should stop player movement/combat.
+        // Exception: if shop is open, we still allow HandleInteraction so S can close it.
+        if (GameUIState.IsAnyBlockingMenuOpen)
+        {
+            StopHorizontalMovement();
+            UpdateAnimations();
+
+            if (GameUIState.IsShopOpen)
+                HandleInteraction();
+
+            if (invincibilityTimer > 0)
+                invincibilityTimer -= Time.deltaTime;
+
+            HandleInvincibilityVisuals();
+            return;
+        }
+
         UpdateAnimations();
 
         if (isDashing)
@@ -112,6 +129,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameUIState.IsAnyBlockingMenuOpen)
+        {
+            StopHorizontalMovement();
+            CheckGround();
+            return;
+        }
+
         if (isDashing)
             return;
 
@@ -153,6 +177,12 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (stats == null)
+            stats = GetComponent<PlayerStats>();
+
+        if (stats == null)
+            return;
+
         if (invincibilityTimer > 0)
             return;
 
@@ -173,27 +203,27 @@ public class PlayerController : MonoBehaviour
 
     public float GetTotalMoveSpeed()
     {
-        return Mathf.Max(1f, moveSpeed + stats.bonusMoveSpeed);
+        return Mathf.Max(1f, moveSpeed + (stats != null ? stats.bonusMoveSpeed : 0f));
     }
 
     public int GetTotalAttackDamage()
     {
-        return Mathf.Max(1, attackDamage + stats.bonusDamage);
+        return Mathf.Max(1, attackDamage + (stats != null ? stats.bonusDamage : 0));
     }
 
     public float GetTotalAttackRate()
     {
-        return Mathf.Max(0.2f, attackRate + stats.bonusAttackRate);
+        return Mathf.Max(0.2f, attackRate + (stats != null ? stats.bonusAttackRate : 0f));
     }
 
     public float GetTotalAttackRange()
     {
-        return Mathf.Max(0.1f, attackRange + stats.bonusAttackRange);
+        return Mathf.Max(0.1f, attackRange + (stats != null ? stats.bonusAttackRange : 0f));
     }
 
     public float GetTotalCriticalChance()
     {
-        return Mathf.Clamp01(criticalChance + stats.bonusCriticalChance);
+        return Mathf.Clamp01(criticalChance + (stats != null ? stats.bonusCriticalChance : 0f));
     }
 
     #endregion
@@ -237,10 +267,15 @@ public class PlayerController : MonoBehaviour
             foreach (Collider2D foundObject in foundObjects)
             {
                 IInteractable interactable = foundObject.GetComponent<IInteractable>();
+
+                if (interactable == null)
+                    interactable = foundObject.GetComponentInParent<IInteractable>();
+
                 if (interactable == null)
                     continue;
 
                 float distance = Vector2.Distance(transform.position, foundObject.transform.position);
+
                 if (distance < bestDistance)
                 {
                     bestDistance = distance;
@@ -292,6 +327,14 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * GetTotalMoveSpeed(), rb.linearVelocity.y);
     }
 
+    private void StopHorizontalMovement()
+    {
+        moveInput = 0f;
+
+        if (rb != null)
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+    }
+
     private void CheckGround()
     {
         if (groundCheck == null)
@@ -329,6 +372,7 @@ public class PlayerController : MonoBehaviour
             arrow.transform.localScale = new Vector3(-1, 1, 1);
 
         Arrow arrowScript = arrow.GetComponent<Arrow>();
+
         if (arrowScript != null)
             arrowScript.setdamage(totalDamage);
     }
@@ -348,6 +392,7 @@ public class PlayerController : MonoBehaviour
                 totalDamage *= 3;
 
             Enemy enemyScript = enemy.GetComponent<Enemy>();
+
             if (enemyScript != null)
                 enemyScript.takedamage(totalDamage);
 
@@ -360,6 +405,7 @@ public class PlayerController : MonoBehaviour
         int totalDamage = GetTotalAttackDamage();
 
         bool isCritical = Random.value < GetTotalCriticalChance();
+
         if (isCritical)
         {
             totalDamage = Mathf.RoundToInt(totalDamage * 2f);
@@ -406,6 +452,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject arrow = Instantiate(arrowPrefab, attackPoint.position, Quaternion.identity);
             Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
+
             float direction = isFacingRight ? 1f : -1f;
             float verticalSpread = i * 2f;
 
@@ -416,6 +463,7 @@ public class PlayerController : MonoBehaviour
                 arrow.transform.localScale = new Vector3(-1, 1, 1);
 
             Arrow arrowScript = arrow.GetComponent<Arrow>();
+
             if (arrowScript != null)
                 arrowScript.setdamage(CalculateDamageWithCritical());
         }
