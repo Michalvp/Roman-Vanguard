@@ -28,6 +28,7 @@ public class ShopUI : MonoBehaviour
 
     private ShopInteractable currentShop;
     private ShopItemData selectedItem;
+    private ShopItemRowUI selectedRow;
 
     private void Awake()
     {
@@ -64,6 +65,7 @@ public class ShopUI : MonoBehaviour
 
         currentShop = shop;
         selectedItem = null;
+        selectedRow = null;
 
         rootPanel.SetActive(true);
         GameUIState.SetShopOpen(true);
@@ -81,6 +83,13 @@ public class ShopUI : MonoBehaviour
         GameUIState.SetShopOpen(false);
         currentShop = null;
         selectedItem = null;
+
+        if (selectedRow != null)
+        {
+            selectedRow.SetSelected(false);
+            selectedRow = null;
+        }
+
         UpdateSelectedInfo();
     }
 
@@ -110,10 +119,27 @@ public class ShopUI : MonoBehaviour
         }
     }
 
+    public void SelectItem(ShopItemRowUI row, ShopItemData item)
+    {
+        if (selectedRow != null)
+        {
+            selectedRow.SetSelected(false);
+        }
+
+        selectedRow = row;
+        selectedItem = item;
+
+        if (selectedRow != null)
+        {
+            selectedRow.SetSelected(true);
+        }
+
+        UpdateSelectedInfo();
+    }
+
     public void SelectItem(ShopItemData item)
     {
-        selectedItem = item;
-        UpdateSelectedInfo();
+        SelectItem(null, item);
     }
 
     private void UpdateSelectedInfo()
