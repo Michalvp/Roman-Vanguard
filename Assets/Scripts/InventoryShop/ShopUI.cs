@@ -20,6 +20,9 @@ public class ShopUI : MonoBehaviour
     public TextMeshProUGUI selectedClassText;
     public TextMeshProUGUI playerMoneyText;
 
+    [Header("Feedback")]
+    public TextMeshProUGUI feedbackText;
+
     [Header("Buttons")]
     public Button buyButton;
     public Button closeButton;
@@ -73,6 +76,7 @@ public class ShopUI : MonoBehaviour
         BuildShopList();
         UpdateSelectedInfo();
         UpdateMoneyText();
+        ClearFeedback();
     }
 
     public void CloseShop()
@@ -91,6 +95,7 @@ public class ShopUI : MonoBehaviour
         }
 
         UpdateSelectedInfo();
+        ClearFeedback();
     }
 
     public void ToggleShop(ShopInteractable shop)
@@ -134,6 +139,7 @@ public class ShopUI : MonoBehaviour
             selectedRow.SetSelected(true);
         }
 
+        ClearFeedback();
         UpdateSelectedInfo();
     }
 
@@ -200,25 +206,42 @@ public class ShopUI : MonoBehaviour
 
         if (!selectedItem.CanUseWithClass(currentClass))
         {
-            Debug.Log($"{selectedItem.itemName} cannot be bought by your current class.");
+            ShowFeedback($"{selectedItem.itemName} cannot be bought by your current class.", success: false);
             return;
         }
 
         if (!PlayerInventory.Instance.HasFreeSpaceFor(selectedItem))
         {
-            Debug.Log("Inventory is full.");
+            ShowFeedback("Inventory is full.", success: false);
             return;
         }
 
         if (!PlayerStats.Instance.TrySpendDenarii(selectedItem.priceDenarii))
         {
-            Debug.Log("Not enough denarii.");
+            ShowFeedback("Not enough denarii.", success: false);
             return;
         }
 
         PlayerInventory.Instance.AddItem(selectedItem, 1);
         UpdateMoneyText();
 
-        Debug.Log($"Bought {selectedItem.itemName}");
+        ShowFeedback("Success!", success: true);
+    }
+
+    private void ShowFeedback(string message, bool success)
+    {
+        if (feedbackText == null)
+            return;
+
+        feedbackText.text = message;
+        feedbackText.color = success ? new Color(0.18f, 0.80f, 0.44f) : new Color(0.90f, 0.22f, 0.22f);
+    }
+
+    private void ClearFeedback()
+    {
+        if (feedbackText == null)
+            return;
+
+        feedbackText.text = string.Empty;
     }
 }
