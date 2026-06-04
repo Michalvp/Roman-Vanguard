@@ -9,6 +9,7 @@ public class ShopItemRowUI : MonoBehaviour
     public TextMeshProUGUI priceText;
     public TextMeshProUGUI classText;
     public Button button;
+    public GameObject selectionHighlight;
 
     private ShopUI shopUI;
     private ShopItemData item;
@@ -34,6 +35,9 @@ public class ShopItemRowUI : MonoBehaviour
         if (classText != null)
             classText.text = item.GetClassText();
 
+        if (selectionHighlight != null)
+            selectionHighlight.SetActive(false);
+
         if (button == null)
             button = GetComponent<Button>();
 
@@ -43,8 +47,16 @@ public class ShopItemRowUI : MonoBehaviour
             button.onClick.AddListener(() =>
             {
                 if (this.shopUI != null)
-                    this.shopUI.SelectItem(this.item);
+                    this.shopUI.SelectItem(this, this.item);
             });
+        }
+    }
+
+    public void SetSelected(bool isSelected)
+    {
+        if (selectionHighlight != null)
+        {
+            selectionHighlight.SetActive(isSelected);
         }
     }
 }
