@@ -26,6 +26,7 @@ public class ShopUI : MonoBehaviour
     [Header("Buttons")]
     public Button buyButton;
     public Button closeButton;
+    public Button inventoryButton;
 
     public bool IsOpen => rootPanel != null && rootPanel.activeSelf;
 
@@ -47,6 +48,16 @@ public class ShopUI : MonoBehaviour
 
         if (closeButton != null)
             closeButton.onClick.AddListener(CloseShop);
+
+        if (inventoryButton != null)
+        {
+            inventoryButton.onClick.AddListener(() =>
+            {
+                CloseShop();
+                if (InventoryUI.Instance != null)
+                    InventoryUI.Instance.OpenInventory(true);
+            });
+        }
     }
 
     private void OnDisable()
