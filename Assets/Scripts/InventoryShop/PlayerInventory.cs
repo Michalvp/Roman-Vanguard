@@ -31,7 +31,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad removed to keep player non-persistent
         // Load saved inventory if exists
         SaveLoadManager.LoadInventory(this);
         EnsureSlotCount();
