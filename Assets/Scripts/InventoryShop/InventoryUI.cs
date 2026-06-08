@@ -50,7 +50,19 @@ public class InventoryUI : MonoBehaviour
     private void OnEnable()
     {
         if (PlayerInventory.Instance != null)
+        {
+            PlayerInventory.Instance.OnInventoryChanged -= Refresh;
             PlayerInventory.Instance.OnInventoryChanged += Refresh;
+        }
+    }
+
+    private void Start()
+    {
+        if (PlayerInventory.Instance != null)
+        {
+            PlayerInventory.Instance.OnInventoryChanged -= Refresh;
+            PlayerInventory.Instance.OnInventoryChanged += Refresh;
+        }
     }
 
     private void OnDisable()
@@ -134,7 +146,23 @@ public class InventoryUI : MonoBehaviour
 
     public void SelectSlot(int index)
     {
+        // Deselect previous slot if any
+        if (selectedSlotIndex >= 0 && selectedSlotIndex < slotParent.childCount)
+        {
+            var prev = slotParent.GetChild(selectedSlotIndex).GetComponent<InventorySlotUI>();
+            if (prev != null)
+                prev.SetSelected(false);
+        }
+
         selectedSlotIndex = index;
+        // Highlight newly selected slot
+        if (selectedSlotIndex >= 0 && selectedSlotIndex < slotParent.childCount)
+        {
+            var cur = slotParent.GetChild(selectedSlotIndex).GetComponent<InventorySlotUI>();
+            if (cur != null)
+                cur.SetSelected(true);
+        }
+
         UpdateSelectedInfo();
     }
 
@@ -257,6 +285,6 @@ public class InventoryUI : MonoBehaviour
             PlayerStats.Instance.AddDenarii(sellPrice);
 
         PlayerInventory.Instance.RemoveOne(selectedSlotIndex);
-        // Refresh() is called automatically because of OnInventoryChanged event
+        Refresh();
     }
 }
