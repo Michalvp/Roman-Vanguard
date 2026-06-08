@@ -20,6 +20,7 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI selectedDescriptionText;
     public TextMeshProUGUI selectedStatsText;
     public Button useOrEquipButton;
+    public Button sellButton;
 
     [Header("Equipped Text")]
     public TextMeshProUGUI equippedWeaponText;
@@ -28,6 +29,7 @@ public class InventoryUI : MonoBehaviour
     public bool IsOpen => rootPanel != null && rootPanel.activeSelf;
 
     private int selectedSlotIndex = -1;
+    private bool isSellingMode = false;
 
     private void Awake()
     {
@@ -40,6 +42,9 @@ public class InventoryUI : MonoBehaviour
 
         if (useOrEquipButton != null)
             useOrEquipButton.onClick.AddListener(UseSelectedSlot);
+
+        if (sellButton != null)
+            sellButton.onClick.AddListener(SellSelectedSlot);
     }
 
     private void OnEnable()
@@ -77,8 +82,9 @@ public class InventoryUI : MonoBehaviour
             OpenInventory();
     }
 
-    public void OpenInventory()
+    public void OpenInventory(bool sellingMode = false)
     {
+        isSellingMode = sellingMode;
         if (rootPanel == null)
         {
             Debug.LogWarning("InventoryUI is missing Root Panel.");
@@ -100,6 +106,8 @@ public class InventoryUI : MonoBehaviour
     {
         if (rootPanel != null)
             rootPanel.SetActive(false);
+
+        isSellingMode = false;
 
         GameUIState.SetInventoryOpen(false);
         selectedSlotIndex = -1;
@@ -162,28 +170,46 @@ public class InventoryUI : MonoBehaviour
         if (selectedStatsText != null)
             selectedStatsText.text = hasItem ? item.GetStatsText() : "";
 
+        // First, set both buttons to inactive
         if (useOrEquipButton != null)
+            useOrEquipButton.gameObject.SetActive(false);
+            
+        if (sellButton != null)
+            sellButton.gameObject.SetActive(false);
+
+        // Then activate the correct one if we have an item
+        if (hasItem)
         {
-            bool canUseButton =
-                hasItem &&
-                (item.itemType == RomanItemType.Weapon ||
-                 item.itemType == RomanItemType.Armor ||
-                 item.itemType == RomanItemType.Consumable);
-
-            useOrEquipButton.interactable = canUseButton;
-
-            TextMeshProUGUI buttonText = useOrEquipButton.GetComponentInChildren<TextMeshProUGUI>();
-
-            if (buttonText != null)
+            if (isSellingMode)
             {
-                if (!hasItem)
-                    buttonText.text = "Use";
-                else if (item.itemType == RomanItemType.Weapon || item.itemType == RomanItemType.Armor)
-                    buttonText.text = "Equip";
-                else if (item.itemType == RomanItemType.Consumable)
-                    buttonText.text = "Use";
-                else
-                    buttonText.text = "Cannot Use";
+                if (sellButton != null)
+                    sellButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (useOrEquipButton != null)
+                {
+                    useOrEquipButton.gameObject.SetActive(true);
+                    
+                    bool canUseButton =
+                        (item.itemType == RomanItemType.Weapon ||
+                         item.itemType == RomanItemType.Armor ||
+                         item.itemType == RomanItemType.Consumable);
+
+                    useOrEquipButton.interactable = canUseButton;
+
+                    TextMeshProUGUI buttonText = useOrEquipButton.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (buttonText != null)
+                    {
+                        if (item.itemType == RomanItemType.Weapon || item.itemType == RomanItemType.Armor)
+                            buttonText.text = "Equip";
+                        else if (item.itemType == RomanItemType.Consumable)
+                            buttonText.text = "Use";
+                        else
+                            buttonText.text = "Cannot Use";
+                    }
+                }
             }
         }
     }
@@ -211,5 +237,26 @@ public class InventoryUI : MonoBehaviour
 
         PlayerInventory.Instance.UseSlot(selectedSlotIndex);
         Refresh();
+    }
+
+    private void SellSelectedSlot()
+    {
+        if (PlayerInventory.Instance == null || !isSellingMode)
+            return;
+
+        if (selectedSlotIndex < 0 || selectedSlotIndex >= PlayerInventory.Instance.slots.Count)
+            return;
+
+        InventorySlot slot = PlayerInventory.Instance.slots[selectedSlotIndex];
+        if (slot == null || slot.IsEmpty)
+            return;
+
+        int sellPrice = Mathf.Max(1, slot.item.priceDenarii / 2); // Sell for half price
+
+        if (PlayerStats.Instance != null)
+            PlayerStats.Instance.AddDenarii(sellPrice);
+
+        PlayerInventory.Instance.RemoveOne(selectedSlotIndex);
+        // Refresh() is called automatically because of OnInventoryChanged event
     }
 }
