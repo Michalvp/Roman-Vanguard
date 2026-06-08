@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
@@ -34,6 +35,7 @@ public class InventoryUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
 
         if (rootPanel != null)
             rootPanel.SetActive(false);

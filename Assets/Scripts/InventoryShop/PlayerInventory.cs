@@ -1,6 +1,8 @@
+using System.IO;
+using UnityEngine;
+
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Awake()
     {
+        // Ensure singleton pattern and persist across scenes
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -28,6 +31,9 @@ public class PlayerInventory : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+        // Load saved inventory if exists
+        SaveLoadManager.LoadInventory(this);
         EnsureSlotCount();
     }
 
@@ -39,7 +45,7 @@ public class PlayerInventory : MonoBehaviour
         NotifyChanged();
     }
 
-    private void EnsureSlotCount()
+    public void EnsureSlotCount()
     {
         while (slots.Count < capacity)
             slots.Add(new InventorySlot());
@@ -221,8 +227,10 @@ public class PlayerInventory : MonoBehaviour
             stats.ApplyEquipmentBonuses(equippedWeapon, equippedArmor);
     }
 
-    private void NotifyChanged()
+    public void NotifyChanged()
     {
         OnInventoryChanged?.Invoke();
+        // Persist inventory state after any change
+        SaveLoadManager.SaveInventory(this);
     }
 }
