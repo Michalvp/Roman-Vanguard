@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 namespace InventoryShop
 {
-    // Ensures the inventory is (re)loaded whenever a new scene finishes loading.
-    // Attach this to any GameObject in the initial scene (e.g., the same holder used by InventorySingleton).
     public class InventoryPersistence : MonoBehaviour
     {
         private void Awake()

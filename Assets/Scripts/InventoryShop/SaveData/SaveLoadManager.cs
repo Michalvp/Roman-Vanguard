@@ -107,4 +107,18 @@ public static class SaveLoadManager
             Debug.LogError($"Failed to load inventory: {ex.Message}");
         }
     }
+    public static void DeleteSaveFile()
+    {
+        string path = Path.Combine(Application.persistentDataPath, SaveFileName);
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log($"Save file deleted at {path}");
+        }
+        else
+        {
+            Debug.LogWarning($"No save file found at {path} to delete.");
+        }
+    }
 }
+
