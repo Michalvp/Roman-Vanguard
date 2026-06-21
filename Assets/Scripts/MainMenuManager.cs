@@ -1,61 +1,64 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for scene transitions
+using UnityEngine.SceneManagement;
+using System.IO;
+using TMPro; // Required for TextMeshPro components
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("UI Elements")]
+    [Header("UI Panels")]
     public GameObject controlsPopup;
     public GameObject slotsPanel;
     public GameObject overwritePopup;
+
+    [Header("Slot Settings")]
+    [Tooltip("Assign the 5 TextMeshProUGUI text components located next to the slot buttons.")]
+    public TextMeshProUGUI[] slotTexts;
 
     private bool isNewGameMode = true;
     private int selectedSlot = -1;
 
     private void Start()
     {
-        // Ensure all popup panels are disabled on start
         if (controlsPopup != null) controlsPopup.SetActive(false);
         if (slotsPanel != null) slotsPanel.SetActive(false);
         if (overwritePopup != null) overwritePopup.SetActive(false);
     }
 
+    // --- BASIC BUTTON METHODS --- //
+
     public void ShowControls()
     {
-        if (controlsPopup != null)
-        {
-            controlsPopup.SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning("ControlsPopup is not assigned in MainMenuManager!");
-        }
+        if (controlsPopup != null) controlsPopup.SetActive(true);
     }
 
     public void HideControls()
     {
-        if (controlsPopup != null)
-        {
-            controlsPopup.SetActive(false);
-        }
+        if (controlsPopup != null) controlsPopup.SetActive(false);
     }
+
     public void QuitGame()
     {
-        Debug.Log("Game has been quit!");
-
-        Application.Quit();
+        Debug.Log("Game has been quit.");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
     }
 
-    //Opens save slots when New Game is clicked. Sets the mode to New Game so that the correct actions are taken when a slot is selected.
+    // --- SLOT PANEL LOGIC --- //
+
     public void OpenNewGameSlots()
     {
         isNewGameMode = true;
+        UpdateSlotTexts();
         if (slotsPanel != null) slotsPanel.SetActive(true);
     }
 
-    //Opens save slots when Load Game is clicked. Sets the mode to Load Game so that the correct actions are taken when a slot is selected.
     public void OpenLoadGameSlots()
     {
         isNewGameMode = false;
+        UpdateSlotTexts();
         if (slotsPanel != null) slotsPanel.SetActive(true);
     }
 
@@ -67,16 +70,14 @@ public class MainMenuManager : MonoBehaviour
     public void SelectSlot(int slotIndex)
     {
         selectedSlot = slotIndex;
-        bool isSlotEmpty = CheckIfSlotIsEmpty(slotIndex);
+        bool isSlotEmpty = !HasSaveData(slotIndex);
 
         if (isNewGameMode)
         {
-            // If it's a new game and slot is empty, start immediately
             if (isSlotEmpty)
             {
                 StartNewGame(slotIndex);
             }
-            // If slot is taken, show overwrite confirmation
             else
             {
                 if (overwritePopup != null) overwritePopup.SetActive(true);
@@ -84,14 +85,12 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
-            // If it's load game mode and slot has data, load it
             if (!isSlotEmpty)
             {
                 LoadExistingGame(slotIndex);
             }
             else
             {
-                // Optionally show a warning UI here that the slot is empty
                 Debug.LogWarning("Selected slot is empty. Cannot load.");
             }
         }
@@ -108,36 +107,89 @@ public class MainMenuManager : MonoBehaviour
         if (overwritePopup != null) overwritePopup.SetActive(false);
     }
 
+    // --- SCENE LOADING & SAVE INITIALIZATION --- //
+
     private void StartNewGame(int slotIndex)
     {
         Debug.Log("Starting new game on slot: " + slotIndex);
 
-        // Save the active slot globally so other scripts know which slot to use
+        // Save the active slot globally so SaveLoadManager can use it later
         PlayerPrefs.SetInt("CurrentSaveSlot", slotIndex);
-
-        // Mark this slot as "not empty" for future checks
-        PlayerPrefs.SetInt("SlotHasData_" + slotIndex, 1);
         PlayerPrefs.Save();
 
-        // Load class selection scene
+        // Initialize an empty/dummy save file to mark the slot as used
+        CreateInitialSaveFile(slotIndex);
+
         SceneManager.LoadScene("ClassSelection");
     }
 
     private void LoadExistingGame(int slotIndex)
     {
         Debug.Log("Loading game from slot: " + slotIndex);
-
-        // Save the active slot globally
         PlayerPrefs.SetInt("CurrentSaveSlot", slotIndex);
+        PlayerPrefs.Save();
 
-        // Load village scene
         SceneManager.LoadScene("Village");
     }
 
-    //Temporary method to check if a slot is empty. In a real implementation, this would likely check for the existence of a save file or specific save data.
-    private bool CheckIfSlotIsEmpty(int slotIndex)
+    // --- FILE SYSTEM (JSON) UTILITIES --- //
+
+    private string GetSaveFilePath(int slotIndex)
     {
-        // Returns true if the key doesn't exist or is set to 0
-        return PlayerPrefs.GetInt("SlotHasData_" + slotIndex, 0) == 0;
+        // Creates a path like: C:/Users/User/AppData/LocalLow/YourStudio/RomanVanguard/save_slot_1.json
+        return Path.Combine(Application.persistentDataPath, "save_slot_" + slotIndex + ".json");
     }
+
+    private bool HasSaveData(int slotIndex)
+    {
+        return File.Exists(GetSaveFilePath(slotIndex));
+    }
+
+    // Reads the JSON files and updates the 5 TextMeshPro fields in the UI.
+    private void UpdateSlotTexts()
+    {
+        for (int i = 0; i < slotTexts.Length; i++)
+        {
+            int slotNumber = i + 1;
+
+            if (HasSaveData(slotNumber))
+            {
+                string path = GetSaveFilePath(slotNumber);
+                string jsonContent = File.ReadAllText(path);
+
+                // Deserializes JSON into a temporary object to grab the metadata
+                GameSaveData data = JsonUtility.FromJson<GameSaveData>(jsonContent);
+
+                // Formats the text string appropriately
+                slotTexts[i].text = $"In use - Class: {data.characterClassName}, Last played: {data.lastPlayedDate}";
+            }
+            else
+            {
+                slotTexts[i].text = "Not in use";
+            }
+        }
+    }
+
+    private void CreateInitialSaveFile(int slotIndex)
+    {
+        GameSaveData initialData = new GameSaveData();
+        initialData.lastPlayedDate = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+        initialData.characterClassName = "Selecting...";
+
+        string json = JsonUtility.ToJson(initialData, true); // true param formats JSON with indents
+        File.WriteAllText(GetSaveFilePath(slotIndex), json);
+    }
+}
+
+// Data container class reflecting the structure of the JSON file
+[System.Serializable]
+public class GameSaveData
+{
+    public string lastPlayedDate;
+    public string characterClassName;
+
+    // Future variables to populate in SaveLoadManager:
+    // public int romanCoins;
+    // public List<string> unlockedSkills;
+    // public List<string> inventoryItemIDs;
 }
