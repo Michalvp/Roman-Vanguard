@@ -51,11 +51,7 @@ public class MainMenuManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Game has been quit.");
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                    Application.Quit();
-        #endif
+        Application.Quit();
     }
 
     // --- SLOT PANEL LOGIC --- //
