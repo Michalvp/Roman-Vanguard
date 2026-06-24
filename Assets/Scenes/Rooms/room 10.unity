@@ -3083,6 +3083,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1160946044284742457, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1417755129}
+    - target: {fileID: 1160946044284742457, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CancelContinue
+      objectReference: {fileID: 0}
     - target: {fileID: 1873932260367434888, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3103,9 +3111,33 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2511459739875774581, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1417755130}
+    - target: {fileID: 2511459739875774581, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CancelRetreat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519650833895744140, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1417755129}
+    - target: {fileID: 2519650833895744140, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmContinue
+      objectReference: {fileID: 0}
     - target: {fileID: 2687381947256393754, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391742664612111297, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1417755130}
+    - target: {fileID: 3391742664612111297, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmRetreat
       objectReference: {fileID: 0}
     - target: {fileID: 3863382563215782146, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3400,6 +3432,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+--- !u!1 &605706903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8611150017440434389, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+  m_PrefabInstance: {fileID: 605706902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &605706904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4031038775935539148, guid: 1101dbca0bb1946448d76ce48437c0ac, type: 3}
+  m_PrefabInstance: {fileID: 605706902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &625396748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7644,6 +7686,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 625913131677720297, guid: c226640426fbbdd4bb6b126e4a9d0729, type: 3}
+      propertyPath: continuePopup
+      value: 
+      objectReference: {fileID: 605706903}
+    - target: {fileID: 987118849053141047, guid: c226640426fbbdd4bb6b126e4a9d0729, type: 3}
+      propertyPath: retreatPopup
+      value: 
+      objectReference: {fileID: 605706904}
     - target: {fileID: 2794196102470253268, guid: c226640426fbbdd4bb6b126e4a9d0729, type: 3}
       propertyPath: m_LocalPosition.x
       value: 71.03358
@@ -7693,6 +7743,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c226640426fbbdd4bb6b126e4a9d0729, type: 3}
+--- !u!114 &1417755129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 625913131677720297, guid: c226640426fbbdd4bb6b126e4a9d0729, type: 3}
+  m_PrefabInstance: {fileID: 1417755128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3d57f07e15d4b40b871b1c963a05ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mappicker
+--- !u!114 &1417755130 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 987118849053141047, guid: c226640426fbbdd4bb6b126e4a9d0729, type: 3}
+  m_PrefabInstance: {fileID: 1417755128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e40a1dd562e8f4894c41e153721842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Returntovillage
 --- !u!1 &1425135485
 GameObject:
   m_ObjectHideFlags: 0

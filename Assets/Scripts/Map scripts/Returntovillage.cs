@@ -5,6 +5,8 @@ public class Returntovillage : MonoBehaviour, IInteractable
 {
     public GameObject glowObject;
 
+    public GameObject retreatPopup;
+
     public void SetHighlight(bool isActive)
     {
         if (glowObject != null)
@@ -14,6 +16,27 @@ public class Returntovillage : MonoBehaviour, IInteractable
     }
 
     public void Interact()
+    {
+        if (retreatPopup != null)
+            {
+            retreatPopup.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Retreat popup is not assigned in the inspector.");
+        }
+        
+    }
+
+    public void CancelRetreat()
+    {
+        if (retreatPopup != null)
+        {
+            retreatPopup.SetActive(false);
+        }
+    }
+
+    public void ConfirmRetreat()
     {
         Debug.Log("Player interacted with retreat statue. Saving progress...");
 
