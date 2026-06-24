@@ -26,13 +26,14 @@ public class Mappicker : MonoBehaviour,IInteractable
     }
     public void Interact()
     {
-            LevelCompleted();
+        LevelCompleted();
     }
     private void LevelCompleted()
     {
         completedLevels++;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerStats>().currentHealth = player.GetComponent<PlayerStats>().maxHealth;
+        SaveLoadManager.SaveGame(FindFirstObjectByType<PlayerController>(), FindFirstObjectByType<PlayerStats>(), FindFirstObjectByType<PlayerInventory>());
         randomnum = Random.Range(0, 100);
         if (randomnum < 100 - completedLevels * 25)
         {

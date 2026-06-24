@@ -7,6 +7,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("UI Panels")]
     public GameObject controlsPopup;
+    public GameObject creatrosPopup;
     public GameObject slotsPanel;
     public GameObject overwritePopup;
 
@@ -20,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         if (controlsPopup != null) controlsPopup.SetActive(false);
+        if (creatrosPopup != null) creatrosPopup.SetActive(false);
         if (slotsPanel != null) slotsPanel.SetActive(false);
         if (overwritePopup != null) overwritePopup.SetActive(false);
     }
@@ -36,14 +38,24 @@ public class MainMenuManager : MonoBehaviour
         if (controlsPopup != null) controlsPopup.SetActive(false);
     }
 
+    public void ShowCreators()
+    {
+        if (creatrosPopup != null) creatrosPopup.SetActive(true);
+    }
+
+    public void HideCreators()
+    {
+        if (creatrosPopup != null) creatrosPopup.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Game has been quit.");
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                    Application.Quit();
+        #endif
     }
 
     // --- SLOT PANEL LOGIC --- //
@@ -179,17 +191,4 @@ public class MainMenuManager : MonoBehaviour
         string json = JsonUtility.ToJson(initialData, true); // true param formats JSON with indents
         File.WriteAllText(GetSaveFilePath(slotIndex), json);
     }
-}
-
-// Data container class reflecting the structure of the JSON file
-[System.Serializable]
-public class GameSaveData
-{
-    public string lastPlayedDate;
-    public string characterClassName;
-
-    // Future variables to populate in SaveLoadManager:
-    // public int romanCoins;
-    // public List<string> unlockedSkills;
-    // public List<string> inventoryItemIDs;
 }

@@ -14,7 +14,7 @@ public class ClassSelectionManager : MonoBehaviour
     public TextMeshProUGUI tutorialIntroText; 
 
     [Header("Scene Management")]
-    public string tutorialSceneName = "Village"; // Name of the tutorial scene to load - changed to Village for testing purposes, should be the tutorial scene name in final version
+    public string tutorialSceneName = "Level0"; // Name of the tutorial scene to load - changed to Village for testing purposes, should be the tutorial scene name in final version
 
     private CharacterClassData pendingClass;
     private string pendingDeityName;
@@ -40,6 +40,8 @@ public class ClassSelectionManager : MonoBehaviour
 
             //Save the selected class to a static variable for later use in the tutorial level
             CharacterClassData.SelectedClass = pendingClass;
+
+            SaveLoadManager.SaveGame(FindFirstObjectByType<PlayerController>(), FindFirstObjectByType<PlayerStats>(), FindFirstObjectByType<PlayerInventory>());
 
             //Hide selection panel and show tutorial intro
             selectionPanel.SetActive(false);

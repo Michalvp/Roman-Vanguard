@@ -23,24 +23,30 @@ public class PlayerInventory : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure singleton pattern and persist across scenes
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
             return;
         }
 
         Instance = this;
-        // DontDestroyOnLoad removed to keep player non-persistent
-        // Load saved inventory if exists
-        SaveLoadManager.LoadInventory(this);
         EnsureSlotCount();
+    }
+
+    private void OnDestroy()
+    {
+        // Clear the singleton reference when the scene unloads and the Player is destroyed.
+        // This prevents memory leaks and missing reference errors in the next scene.
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
     private void Start()
     {
-        stats = GetComponent<PlayerStats>();
-        controller = GetComponent<PlayerController>();
+        stats = FindFirstObjectByType<PlayerStats>();
+        controller = FindFirstObjectByType<PlayerController>();
         RecalculateEquipmentStats();
         NotifyChanged();
     }
@@ -231,6 +237,6 @@ public class PlayerInventory : MonoBehaviour
     {
         OnInventoryChanged?.Invoke();
         // Persist inventory state after any change
-        SaveLoadManager.SaveInventory(this);
+        //SaveLoadManager.SaveGame(FindFirstObjectByType<PlayerController>(), FindFirstObjectByType<PlayerStats>(), this);
     }
 }

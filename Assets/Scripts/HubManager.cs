@@ -25,6 +25,14 @@ public class HubManager : MonoBehaviour
             else if (className == "Archer") dianaStatue.SetActive(true);
             else if (className == "Gladiator") herculesStatue.SetActive(true);
         }
+        else if(FindFirstObjectByType<PlayerController>().classData != null)
+        {
+            string className = FindFirstObjectByType<PlayerController>().classData.className;
+            Debug.Log($"Hub: Loading statue for {className}");
+            if (className == "Legionary") minervaStatue.SetActive(true);
+            else if (className == "Archer") dianaStatue.SetActive(true);
+            else if (className == "Gladiator") herculesStatue.SetActive(true);
+        }
         else
         {
             Debug.LogWarning("Hub: No class selected! Did you start from the Menu?");
