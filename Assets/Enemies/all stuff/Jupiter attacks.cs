@@ -11,6 +11,12 @@ public class Jupiterattacks : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject Lightning;
     [SerializeField] private Transform Player;
+
+    [SerializeField] private int damage;
+    [SerializeField] private int hp;
+    [SerializeField] private int maxhp;
+    [SerializeField] private Sprite attack1;
+    [SerializeField] private Sprite attack2;
     private int timepassed = 0;
     private int randomnumber = 40;
     private short attack = 0;

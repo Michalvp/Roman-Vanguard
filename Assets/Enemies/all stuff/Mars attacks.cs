@@ -6,6 +6,9 @@ public class Marsattacks : MonoBehaviour
     [SerializeField] private GameObject Sword;
     [SerializeField] private int HP;
     [SerializeField] private int MaxHP;
+    [SerializeField] private int damage;
+    [SerializeField] private Sprite attack1;
+    [SerializeField] private Sprite attack2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

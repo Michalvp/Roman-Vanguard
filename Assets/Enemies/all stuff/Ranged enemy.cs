@@ -32,7 +32,7 @@ public class Rangedenemy : Enemy
     {
         GameObject currentBullet = Instantiate(bullet, transform);
         currentBullet.transform.position = transform.position;
-        currentBullet.GetComponent<Arrow>().setdamage(damage);
+        currentBullet.GetComponent<Arrow>().setdamage(damage, "enemy");
         if (currentBullet.GetComponent<Collider2D>())
             Destroy(currentBullet, 3);
         

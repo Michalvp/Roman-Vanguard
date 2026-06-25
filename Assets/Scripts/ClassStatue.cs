@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 
@@ -6,6 +7,7 @@ public class ClassStatue : MonoBehaviour, IInteractable
     public bool isHubVersion = false;
     public CharacterClassData classToGrant;
     public string deityName;
+    [SerializeField] public Sprite player;
     [TextArea(3, 10)] // Allows for multi-line editing in Inspector
     public string classDescription;
     public GameObject glowObject;
@@ -17,6 +19,7 @@ public class ClassStatue : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        Debug.Log($"Interacted with {deityName} statue, granting class: {classToGrant.className}");
         if (isHubVersion)
         {
             //Manage the skill tree UI for the hub version

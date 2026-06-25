@@ -175,8 +175,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8723718, g: 0.9411765, b: 0.03529414, a: 1}
+  m_Sprite: {fileID: -2940995535662453924, guid: bf90c56c10f2dc9418b8143fcb6da433, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -223,7 +223,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.9, y: 10.59}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -243,8 +243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca79651a14c07840b938c5bd32b4c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassStatue
+  isHubVersion: 0
   classToGrant: {fileID: 11400000, guid: 51414353a2c81cc4fbeb7e34ec78435f, type: 2}
   deityName: Diana
+  player: {fileID: -7132172409892320828, guid: 30e298ed073ab7246abae0cec6158d49, type: 3}
   classDescription: Diana, the Huntress, grants you the swiftness of the Archer.
     Navigate the battlefield like a shadow and strike from afar with the celestial
     bow. This path grants great mobility and range, though your spirit is fragile

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SO_Gladiator
   m_EditorClassIdentifier: Assembly-CSharp::CharacterClassData
   className: Gladiator
-  classPreviewColor: {r: 0.114012085, g: 0.47512895, b: 0.90188676, a: 1}
+  player_sprite: {fileID: 2538556775230885592, guid: 17e5ceef3bd81eb44896e471b90e56d6, type: 3}
+  player_attack_sprite: {fileID: -5031740972694696869, guid: 4d15619de7f82c54c9403b0ea6a3b192, type: 3}
+  player_movement_sprite: {fileID: -1627738668496622612, guid: 75d5aaa0afb703a4593e05780f4f8dc6, type: 3}
   speed: 8.5
   jumpForce: 12
   dashForce: 12

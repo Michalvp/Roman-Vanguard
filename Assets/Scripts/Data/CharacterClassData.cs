@@ -1,14 +1,16 @@
 using UnityEngine;
 
 // This attribute allows you to create new class files from the Right-Click menu
+
 [CreateAssetMenu(fileName = "NewClassData", menuName = "Roman Vanguard/Class Data")]
+
 public class CharacterClassData : ScriptableObject
 {
     public static CharacterClassData SelectedClass;
 
     [Header("Visuals")]
     public string className;
-    public Color classPreviewColor = Color.white; // Temporary, until you have sprites
+    public Sprite player_sprite;
 
     [Header("Movement")]
     public float speed = 8f;
@@ -24,4 +26,6 @@ public class CharacterClassData : ScriptableObject
     public float attackRange = 0.5f;
     public float attackRate = 2f;
     public float criticalChance = 0.1f; 
+
+
 }

@@ -175,8 +175,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.11372549, g: 0.4745098, b: 0.9019608, a: 1}
+  m_Sprite: {fileID: -8031500236088903858, guid: 0a90c6afbe7eb0040aac3db74b4b64d7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -223,7 +223,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.52, y: 10.52}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -243,8 +243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca79651a14c07840b938c5bd32b4c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassStatue
-  classToGrant: {fileID: 11400000, guid: 4bbf9076488bd8d46a9c83dd51ad57c8, type: 2}
+  isHubVersion: 0
+  classToGrant: {fileID: 11400000, guid: 733f482c453377b4db991a824c29a89c, type: 2}
   deityName: Hercules
+  player: {fileID: 2538556775230885592, guid: 17e5ceef3bd81eb44896e471b90e56d6, type: 3}
   classDescription: Hercules, the Champion, grants you the raw power of the Gladiator.
     Dominate the arena of war with the mighty trident, keeping your foes at a distance
     with superior reach. This path offers the highest damage per strike for those

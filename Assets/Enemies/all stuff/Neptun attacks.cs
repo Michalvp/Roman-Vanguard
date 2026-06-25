@@ -12,6 +12,8 @@ public class Neptunattacks : MonoBehaviour
     [SerializeField] private GameObject Water;
     [SerializeField] private int HP;
     [SerializeField] private int MaxHP;
+    [SerializeField] private Sprite attack1;
+    [SerializeField] private Sprite attack2;
     private int watercooldown=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -19,6 +19,7 @@ public class Returntovillage : MonoBehaviour, IInteractable
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerStats>().currentHealth = player.GetComponent<PlayerStats>().maxHealth;
         SceneManager.LoadScene("Village");
+        player.GetComponent<Transform>().position = new Vector3(0, 0, 0);
     }
     public void SetHighlight(bool isActive)
     {

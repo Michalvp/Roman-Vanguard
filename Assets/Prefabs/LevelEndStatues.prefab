@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 8618175722616541355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.9, y: 1.41231, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -108,12 +108,20 @@ PrefabInstance:
       value: Mars Statue
       objectReference: {fileID: 0}
     - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 4.5212
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2.2433
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.466423
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.91231
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
       propertyPath: m_LocalPosition.z
@@ -136,6 +144,14 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 15.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -152,8 +168,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 521b06854c14c114daa7801f80822c25, type: 3}
---- !u!4 &4366154164761760013 stripped
-Transform:
+--- !u!224 &4366154164761760013 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 9093102968048885497, guid: 521b06854c14c114daa7801f80822c25, type: 3}
   m_PrefabInstance: {fileID: 4802670005540687860}
   m_PrefabAsset: {fileID: 0}

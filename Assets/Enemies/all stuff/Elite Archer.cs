@@ -33,7 +33,7 @@ public class EliteArcher : Enemy
         GameObject currentBullet = Instantiate(bullet, transform);
         //currentBullet.transform.position = transform.position;
         //currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * -20, 0), ForceMode2D.Impulse);
-        currentBullet.GetComponent<Arrow>().setdamage(damage);
+        currentBullet.GetComponent<Arrow>().setdamage(damage, "enemy");
         if (currentBullet.GetComponent<Collider2D>())
             Destroy(currentBullet, 3);
 

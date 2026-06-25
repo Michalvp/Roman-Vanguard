@@ -46,11 +46,6 @@ public class Meleeenemywithshield : Enemy
         soldiermov.position = new Vector3(soldiermov.position.x + movementspeed * Time.deltaTime * direction, soldiermov.position.y, soldiermov.position.z);
         soldiermov.localScale = new Vector3(Mathf.Abs(startingscale.x) * direction, startingscale.y, startingscale.z);
     }
-    public bool ifhitwall()
-    {
-        RaycastHit2D collidingwall = Physics2D.BoxCast(boxCollider2.bounds.center + 5 * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * 20, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 5, playermask);
-        return collidingwall.collider != null;
-    }
     void Update()
     {
         timepassed2++;

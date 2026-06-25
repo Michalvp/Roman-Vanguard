@@ -60,5 +60,6 @@ public class Mappicker : MonoBehaviour,IInteractable
             } while (randomnum == SceneManager.GetActiveScene().buildIndex+1);
             SceneManager.LoadScene("room " + randomnum);
         }
+        player.GetComponent<Transform>().position = new Vector3(0, 0, 0);
     }
 }

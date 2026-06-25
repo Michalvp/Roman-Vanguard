@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     public GameObject arrowPrefab;
     public float arrowSpeed = 20f;
 
+    [Header("Visuals")]
+    public Sprite attack;
+
     #endregion
 
     #region Private State
@@ -142,7 +145,10 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         CheckGround();
     }
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     #endregion
 
     #region Public API
@@ -154,7 +160,6 @@ public class PlayerController : MonoBehaviour
 
         classData = data;
         CharacterClassData.SelectedClass = data;
-
         moveSpeed = data.speed;
         jumpForce = data.jumpForce;
         dashForce = data.dashForce;
@@ -170,9 +175,7 @@ public class PlayerController : MonoBehaviour
 
         if (stats != null)
             stats.SetClassBaseStats(data);
-
-        if (spriteRenderer != null)
-            spriteRenderer.color = data.classPreviewColor;
+        spriteRenderer.sprite = data.player_sprite;
     }
 
     public void TakeDamage(int damage)
@@ -316,15 +319,13 @@ public class PlayerController : MonoBehaviour
                 spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
             }
         }
-        else
-        {
-            spriteRenderer.color = classData != null ? classData.classPreviewColor : Color.white;
-        }
+        
     }
 
     private void HandleMovement()
     {
         rb.linearVelocity = new Vector2(moveInput * GetTotalMoveSpeed(), rb.linearVelocity.y);
+        
     }
 
     private void StopHorizontalMovement()
@@ -374,7 +375,7 @@ public class PlayerController : MonoBehaviour
         Arrow arrowScript = arrow.GetComponent<Arrow>();
 
         if (arrowScript != null)
-            arrowScript.setdamage(totalDamage);
+            arrowScript.setdamage(totalDamage, "player");
     }
 
     private void MeleeAttack(bool isSpecial = false)
@@ -465,7 +466,7 @@ public class PlayerController : MonoBehaviour
             Arrow arrowScript = arrow.GetComponent<Arrow>();
 
             if (arrowScript != null)
-                arrowScript.setdamage(CalculateDamageWithCritical());
+                arrowScript.setdamage(CalculateDamageWithCritical(), "player");
         }
     }
 
