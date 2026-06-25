@@ -206,27 +206,32 @@ public class PlayerController : MonoBehaviour
 
     public float GetTotalMoveSpeed()
     {
-        return Mathf.Max(1f, moveSpeed + (stats != null ? stats.bonusMoveSpeed : 0f));
+        return Mathf.Max(1f, moveSpeed + (stats != null ? stats.bonusMoveSpeed : 0f) + (stats != null ? stats.skillspeedBonus : 0f));
     }
 
     public int GetTotalAttackDamage()
     {
-        return Mathf.Max(1, attackDamage + (stats != null ? stats.bonusDamage : 0));
+        return Mathf.Max(1, attackDamage + stats.levelBonusDamage + (stats != null ? stats.bonusDamage : 0) + (stats != null ? stats.skillDamageBonus : 0));
     }
 
     public float GetTotalAttackRate()
     {
-        return Mathf.Max(0.2f, attackRate + (stats != null ? stats.bonusAttackRate : 0f));
+        return Mathf.Max(0.2f, attackRate + (stats != null ? stats.bonusAttackRate : 0f) + (stats != null ? stats.skillattackSpeedBonus : 0f));
     }
 
     public float GetTotalAttackRange()
     {
-        return Mathf.Max(0.1f, attackRange + (stats != null ? stats.bonusAttackRange : 0f));
+        return Mathf.Max(0.1f, attackRange + (stats != null ? stats.bonusAttackRange : 0f) + (stats != null ? stats.skillattackRangeBonus : 0f));
     }
 
     public float GetTotalCriticalChance()
     {
-        return Mathf.Clamp01(criticalChance + (stats != null ? stats.bonusCriticalChance : 0f));
+        return Mathf.Clamp01(criticalChance + (stats != null ? stats.bonusCriticalChance : 0f) + (stats != null ? stats.skillcriticalChanceBonus : 0f));
+    }
+
+    public float GetTotalDashForce()
+    {
+        return Mathf.Max(0f, dashForce + (stats != null ? stats.skilldashBonus : 0f));
     }
 
     #endregion
@@ -495,7 +500,7 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = 0f;
 
         float dashDirection = isFacingRight ? 1f : -1f;
-        rb.linearVelocity = new Vector2(dashDirection * dashForce, 0f);
+        rb.linearVelocity = new Vector2(dashDirection * GetTotalDashForce(), 0f);
 
         invincibilityTimer = dashDuration;
 

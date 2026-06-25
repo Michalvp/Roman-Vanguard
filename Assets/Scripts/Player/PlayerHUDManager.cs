@@ -1,6 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHUDManager : MonoBehaviour
 {
@@ -22,6 +23,15 @@ public class PlayerHUDManager : MonoBehaviour
     public TextMeshProUGUI skillNameText;
     public Slider skillCooldownSlider;
 
+
+    [Header("UI Screens")]
+    public GameObject deathScreen;
+
+    public GameObject pauseScreen;
+    public GameObject controlsPopup;
+    public GameObject quitToMenuPopup;
+    public GameObject quitGamePopup;
+
     private PlayerController player;
 
     void Start()
@@ -33,6 +43,23 @@ public class PlayerHUDManager : MonoBehaviour
     void Update()
     {
         if (PlayerStats.Instance == null) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseScreen.activeSelf)
+            {
+                pauseScreen.SetActive(false);
+                controlsPopup.SetActive(false);
+                quitToMenuPopup.SetActive(false);
+                quitGamePopup.SetActive(false);
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                pauseScreen.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
 
         UpdateDynamicUI();
     }
@@ -66,6 +93,11 @@ public class PlayerHUDManager : MonoBehaviour
         healthSlider.maxValue = PlayerStats.Instance.maxHealth;
         healthSlider.value = PlayerStats.Instance.currentHealth;
         healthText.text = $"{PlayerStats.Instance.currentHealth} / {PlayerStats.Instance.maxHealth} HP";
+
+        if (PlayerStats.Instance.currentHealth <= 0)
+        {
+            ShowDeathScreen();
+        }
 
         // 3. XP Bar
         xpSlider.maxValue = PlayerStats.Instance.xpToNextLevel;
@@ -105,4 +137,63 @@ public class PlayerHUDManager : MonoBehaviour
             skillCooldownSlider.value = 1f;
         }
     }
+
+    public void ShowDeathScreen()
+    {
+        deathScreen.SetActive(true);
+    }
+
+    public void ReturnToHubAfterDeath()
+    {
+        deathScreen.SetActive(false);
+        SceneManager.LoadScene("Village");
+    }
+
+    public void ClosePauseMenu()
+    {
+        pauseScreen.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void OpenControlsPopup()
+    {
+        controlsPopup.SetActive(true);
+    }
+
+    public void CloseControlsPopup()
+    {
+        controlsPopup.SetActive(false);
+    }
+
+    public void OpenQuitToMenuPopup()
+    {
+        quitToMenuPopup.SetActive(true);
+    }
+
+    public void CloseQuitToMenuPopup()
+    {
+        quitToMenuPopup.SetActive(false);
+    }
+
+    public void OpenQuitGamePopup()
+    {
+        quitGamePopup.SetActive(true);
+    }
+
+    public void CloseQuitGamePopup()
+    {
+        quitGamePopup.SetActive(false);
+    }
+
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Game has been quit.");
+        Application.Quit();
+    }
+
 }

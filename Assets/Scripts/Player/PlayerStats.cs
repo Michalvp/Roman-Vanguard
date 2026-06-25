@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerStats : MonoBehaviour
     public int currentXP = 0;
     public int xpToNextLevel = 100;
     public int skillPoints = 0;
+    public int levelBonusDamage = 0;
+    public int levelBonusHealth = 0;
 
     [Header("Health")]
     public int baseMaxHealth = 100;
@@ -26,6 +29,18 @@ public class PlayerStats : MonoBehaviour
     public float bonusAttackRate = 0f;
     public float bonusAttackRange = 0f;
     public float bonusCriticalChance = 0f;
+
+    [Header("Skill Bonuses")]
+    public int skillHealthBonus = 0;
+    public int skillDamageBonus = 0;
+    public float skillattackRangeBonus = 0f;
+    public float skillspeedBonus = 0f;
+    public float skilldashBonus = 0f;
+    public float skillattackSpeedBonus = 0f;
+    public float skillcriticalChanceBonus = 0f;
+
+    [Header("Save Data")]
+    public List<SkillData> unlockedSkills = new List<SkillData>();
 
     [Header("Class Special Abilities")]
     public bool hasSpecialAbility = false;
@@ -85,10 +100,29 @@ public class PlayerStats : MonoBehaviour
         bonusCriticalChance += item.criticalChanceBonus;
     }
 
-    private void RecalculateMaxHealth(bool healToFull)
+    public void ApplySkillEffects(SkillData skill)
+    {
+        if (skill == null) return;
+        skillHealthBonus += skill.healthBonus;
+        skillDamageBonus += skill.damageBonus;
+        skillattackRangeBonus += skill.attackRangeBonus;
+        skillspeedBonus += skill.speedBonus;
+        skilldashBonus += skill.dashBonus;
+        skillattackSpeedBonus += skill.attackSpeedBonus;
+        skillcriticalChanceBonus += skill.criticalChanceBonus;
+
+        RecalculateMaxHealth(true);
+
+        if (skill.unlocksSpecialAbility)
+        {
+            hasSpecialAbility = true;
+        }
+    }
+
+    public void RecalculateMaxHealth(bool healToFull)
     {
         int oldMax = maxHealth;
-        maxHealth = Mathf.Max(1, baseMaxHealth + bonusMaxHealth);
+        maxHealth = Mathf.Max(1, baseMaxHealth + bonusMaxHealth + skillHealthBonus + levelBonusHealth);
 
         if (healToFull)
         {
@@ -129,8 +163,8 @@ public class PlayerStats : MonoBehaviour
         currentXP -= xpToNextLevel;
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.3f);
 
-        baseMaxHealth += 10;
-        bonusDamage += 2;
+        levelBonusHealth += 10;
+        levelBonusDamage += 2;
         RecalculateMaxHealth(healToFull: true);
 
         Debug.Log($"Level Up! Now at level {currentLevel}");

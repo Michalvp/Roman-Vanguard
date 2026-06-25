@@ -1,26 +1,12 @@
-using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Returntovillage : MonoBehaviour, IInteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject glowObject;
-    private GameObject finish;
-    void Start()
-    {
-        finish = GameObject.FindGameObjectWithTag("Finish");
-    }
 
-    // Update is called once per frame
-    public void Interact()
-    {
-        Mappicker.completedLevels = -1;
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<PlayerStats>().currentHealth = player.GetComponent<PlayerStats>().maxHealth;
-        SceneManager.LoadScene("Village");
-        player.GetComponent<Transform>().position = new Vector3(0, 0, 0);
-    }
+    public GameObject retreatPopup;
+
     public void SetHighlight(bool isActive)
     {
         if (glowObject != null)
@@ -28,8 +14,54 @@ public class Returntovillage : MonoBehaviour, IInteractable
             glowObject.SetActive(isActive);
         }
     }
-    void Update()
+
+    public void Interact()
     {
+        if (retreatPopup != null)
+            {
+            retreatPopup.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Retreat popup is not assigned in the inspector.");
+        }
         
+    }
+
+    public void CancelRetreat()
+    {
+        if (retreatPopup != null)
+        {
+            retreatPopup.SetActive(false);
+        }
+    }
+
+    public void ConfirmRetreat()
+    {
+        Debug.Log("Player interacted with retreat statue. Saving progress...");
+
+        PlayerController controller = FindFirstObjectByType<PlayerController>();
+        PlayerStats stats = FindFirstObjectByType<PlayerStats>();
+        PlayerInventory inventory = FindFirstObjectByType<PlayerInventory>();
+
+        // Heal player to max before capturing save state
+        if (stats != null)
+        {
+            stats.currentHealth = stats.maxHealth;
+        }
+
+        // Reset dungeon progression counter
+        Mappicker.completedLevels = -1;
+
+        if (controller != null && stats != null && inventory != null)
+        {
+            SaveLoadManager.SaveGame(controller, stats, inventory);
+        }
+        else
+        {
+            Debug.LogError("Retreat save aborted: missing player references.");
+        }
+
+        SceneManager.LoadScene("Village");
     }
 }

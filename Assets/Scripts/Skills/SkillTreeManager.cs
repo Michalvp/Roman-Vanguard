@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SkillTreeManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class SkillTreeManager : MonoBehaviour
     public TextMeshProUGUI costText;
     public Button unlockButton;
     public TextMeshProUGUI unlockButtonText;
+
 
     private SkillData selectedSkill;
 
@@ -78,10 +80,29 @@ public class SkillTreeManager : MonoBehaviour
         dianaTree.SetActive(false);
         herculesTree.SetActive(false);
 
-        string selected = CharacterClassData.SelectedClass.className;
-        if (selected == "Legionary") minervaTree.SetActive(true);
-        else if (selected == "Archer") dianaTree.SetActive(true);
-        else if (selected == "Gladiator") herculesTree.SetActive(true);
+        if (CharacterClassData.SelectedClass != null)
+        {
+            string selected = CharacterClassData.SelectedClass.className;
+            if (selected == "Legionary") minervaTree.SetActive(true);
+            else if (selected == "Archer") dianaTree.SetActive(true);
+            else if (selected == "Gladiator") herculesTree.SetActive(true);
+        }
+        else if (GameObject.FindWithTag("Player") != null)
+        {
+            PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            if (playerController.classData != null)
+            {
+                string selected = playerController.classData.className;
+                if (selected == "Legionary") minervaTree.SetActive(true);
+                else if (selected == "Archer") dianaTree.SetActive(true);
+                else if (selected == "Gladiator") herculesTree.SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No class data found for the player.");
+        }
+
 
         RefreshAllButtons();
     }
@@ -146,32 +167,17 @@ public class SkillTreeManager : MonoBehaviour
 
         PlayerStats.Instance.skillPoints -= selectedSkill.cost;
         selectedSkill.isUnlocked = true;
+        if (!PlayerStats.Instance.unlockedSkills.Contains(selectedSkill))
+        {
+            PlayerStats.Instance.unlockedSkills.Add(selectedSkill);
+        }
+        // Apply effects 
+        PlayerStats.Instance.ApplySkillEffects(selectedSkill);
 
-        // Apply effects (Logic from previous steps)
-        ApplySkillEffects(selectedSkill);
-
+        SaveLoadManager.SaveGame(FindFirstObjectByType<PlayerController>(), FindFirstObjectByType<PlayerStats>(), FindFirstObjectByType<PlayerInventory>());
         confirmPopup.SetActive(false);
         RefreshAllButtons();
     }
 
-    private void ApplySkillEffects(SkillData skill)
-    {
-        // Permanently add bonuses to global stats
-        PlayerStats.Instance.maxHealth += skill.healthBonus;
-        PlayerStats.Instance.currentHealth += skill.healthBonus;
-        PlayerStats.Instance.bonusDamage += skill.damageBonus;
-        PlayerStats.Instance.hasSpecialAbility = skill.unlocksSpecialAbility;
-
-
-        PlayerController player = Object.FindFirstObjectByType<PlayerController>();
-        if (player != null)
-        {
-            player.attackRange += skill.attackRangeBonus;
-            player.attackRate += skill.attackSpeedBonus;
-            player.moveSpeed += skill.speedBonus;
-            player.dashForce += skill.dashBonus;
-            player.criticalChance += skill.criticalChanceBonus;
-
-        }
-    }
+    
 }

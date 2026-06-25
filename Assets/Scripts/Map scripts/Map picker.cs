@@ -7,6 +7,8 @@ public class Mappicker : MonoBehaviour,IInteractable
     public static int completedLevels =-1;
     private int randomnum;
     public GameObject glowObject;
+
+    public GameObject continuePopup;
     void Start()
     {
         Debug.Log(completedLevels);
@@ -26,13 +28,21 @@ public class Mappicker : MonoBehaviour,IInteractable
     }
     public void Interact()
     {
-            LevelCompleted();
+        if (continuePopup != null)
+        {
+            continuePopup.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Continue popup is not assigned in the inspector.");
+        }
     }
     private void LevelCompleted()
     {
         completedLevels++;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerStats>().currentHealth = player.GetComponent<PlayerStats>().maxHealth;
+        SaveLoadManager.SaveGame(FindFirstObjectByType<PlayerController>(), FindFirstObjectByType<PlayerStats>(), FindFirstObjectByType<PlayerInventory>());
         randomnum = Random.Range(0, 100);
         if (randomnum < 100 - completedLevels * 25)
         {
@@ -61,5 +71,18 @@ public class Mappicker : MonoBehaviour,IInteractable
             SceneManager.LoadScene("room " + randomnum);
         }
         player.GetComponent<Transform>().position = new Vector3(0, 0, 0);
+    }
+
+    public void CancelContinue()
+    {
+        if (continuePopup != null)
+        {
+            continuePopup.SetActive(false);
+        }
+    }
+
+    public void ConfirmContinue()
+    {
+        LevelCompleted();
     }
 }
