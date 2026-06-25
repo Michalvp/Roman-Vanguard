@@ -2,89 +2,207 @@ using UnityEngine;
 
 public class EliteMeleeenemywithshield : Enemy
 {
-
-    // Start is called before the first frame update
     [SerializeField] private float movementspeed = 5f;
     [SerializeField] private Transform maxrightpoint;
     [SerializeField] private Transform maxleftpoint;
     [SerializeField] private Transform soldiermov;
     [SerializeField] private float shootingspeed = 10f;
-    [SerializeField] private float size = 1;
-    [SerializeField] private float range = 1;
+    [SerializeField] private float size = 1f;
+    [SerializeField] private float range = 1f;
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject weapon;
-    private float timepassed = 0;
-    private bool attacking = false;
-    void Start()
-    {
-        weapon.GetComponent<Spear>().setdamage(damage);
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-    private Vector3 startingscale;
-    bool movingleft = true;
     [SerializeField] private LayerMask playermask;
     [SerializeField] private BoxCollider2D boxCollider2;
+
+    private float timepassed;
+    private bool attacking;
+    private Vector3 startingscale;
+    private bool movingleft = true;
+    private Spear spear;
+
     private void Awake()
     {
-        startingscale = soldiermov.localScale;
+        if (soldiermov != null)
+        {
+            startingscale = soldiermov.localScale;
+        }
+
+        if (weapon != null)
+        {
+            spear = weapon.GetComponent<Spear>();
+        }
     }
-    int timepassed2 = 0;
-    bool playerinsight()
+
+    private void Start()
     {
-        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + size * range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
+        if (spear != null)
+        {
+            spear.setdamage(damage);
+        }
+
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private bool playerinsight()
+    {
+        if (boxCollider2 == null)
+        {
+            return false;
+        }
+
+        RaycastHit2D inshootingsight = Physics2D.BoxCast(
+            boxCollider2.bounds.center +
+            size * range * transform.right * transform.localScale.x,
+            new Vector3(
+                boxCollider2.bounds.size.x * range,
+                boxCollider2.bounds.size.y,
+                boxCollider2.bounds.size.z
+            ),
+            0f,
+            Vector2.left,
+            0f,
+            playermask
+        );
 
         return inshootingsight.collider != null;
+    }
 
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider2.bounds.center + transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z));
-    }
     private void Move(int direction)
     {
-        soldiermov.position = new Vector3(soldiermov.position.x + movementspeed * Time.deltaTime * direction, soldiermov.position.y, soldiermov.position.z);
-        soldiermov.localScale = new Vector3(Mathf.Abs(startingscale.x) * direction, startingscale.y, startingscale.z);
+        if (soldiermov == null)
+        {
+            return;
+        }
+
+        soldiermov.position = new Vector3(
+            soldiermov.position.x +
+            movementspeed * Time.deltaTime * direction,
+            soldiermov.position.y,
+            soldiermov.position.z
+        );
+
+        soldiermov.localScale = new Vector3(
+            Mathf.Abs(startingscale.x) * direction,
+            startingscale.y,
+            startingscale.z
+        );
     }
+
     public bool ifhitwall()
     {
-        RaycastHit2D collidingwall = Physics2D.BoxCast(boxCollider2.bounds.center + 5 * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * 20, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 5, playermask);
+        if (boxCollider2 == null)
+        {
+            return false;
+        }
+
+        RaycastHit2D collidingwall = Physics2D.BoxCast(
+            boxCollider2.bounds.center +
+            5f * transform.right * transform.localScale.x,
+            new Vector3(
+                boxCollider2.bounds.size.x * 20f,
+                boxCollider2.bounds.size.y,
+                boxCollider2.bounds.size.z
+            ),
+            0f,
+            Vector2.left,
+            5f,
+            playermask
+        );
+
         return collidingwall.collider != null;
     }
-    void Update()
+
+    private void Update()
     {
+        Patrol();
 
+        timepassed += Time.deltaTime;
+        attacking = playerinsight();
+
+        if (attacking)
         {
+            BeginSpearAttack();
+        }
+    }
 
-            if (movingleft)
+    private void BeginSpearAttack()
+    {
+        if (spear == null)
+        {
+            return;
+        }
+
+        spear.direction = movingleft ? -1 : 1;
+
+        if (!spear.attack && !spear.returning)
+        {
+            AudioManager.Instance?.PlayEnemyAttack(
+                EnemyAttackSoundGroup.Melee
+            );
+
+            spear.attack = true;
+        }
+    }
+
+    private void Patrol()
+    {
+        if (soldiermov == null ||
+            maxleftpoint == null ||
+            maxrightpoint == null)
+        {
+            return;
+        }
+
+        if (movingleft)
+        {
+            if (soldiermov.position.x >= maxleftpoint.position.x)
             {
-                if (soldiermov.position.x >= maxleftpoint.position.x)
-                { Move(-1);
-                    weapon.GetComponent<Spear>().direction = -1;
-                }
-                else
+                Move(-1);
+
+                if (spear != null)
                 {
-
-                    movingleft = !movingleft;
-
+                    spear.direction = -1;
                 }
             }
             else
             {
-                if (soldiermov.position.x <= maxrightpoint.position.x)
-                { Move(1);
-                    weapon.GetComponent<Spear>().direction = 1;
-                }
-                else
-                { movingleft = !movingleft; }
-            }
-
-            timepassed++;
-
-            if (playerinsight())
-            {
-                weapon.GetComponent<Spear>().attack = true;
+                movingleft = false;
             }
         }
+        else
+        {
+            if (soldiermov.position.x <= maxrightpoint.position.x)
+            {
+                Move(1);
+
+                if (spear != null)
+                {
+                    spear.direction = 1;
+                }
+            }
+            else
+            {
+                movingleft = true;
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (boxCollider2 == null)
+        {
+            return;
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(
+            boxCollider2.bounds.center +
+            transform.right * transform.localScale.x,
+            new Vector3(
+                boxCollider2.bounds.size.x * range,
+                boxCollider2.bounds.size.y,
+                boxCollider2.bounds.size.z
+            )
+        );
     }
 }

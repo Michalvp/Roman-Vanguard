@@ -1,59 +1,107 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Neptunattacks : MonoBehaviour
 {
-    private int timepassed = 0;
-    private short randomnumber = 40;
-    private short attack = 0;
-    private short attackcooldown = 10;
     [SerializeField] private GameObject Waterburst;
     [SerializeField] private GameObject Water;
     [SerializeField] private int HP;
     [SerializeField] private int MaxHP;
-    private int watercooldown=0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private float timepassed;
+    private short randomnumber = 40;
+    private short attack;
+    private short attackcooldown = 10;
+    private int watercooldown;
+
+    private void Update()
     {
-        
+        timepassed += Time.deltaTime;
+
+        if (timepassed <= randomnumber)
+        {
+            return;
+        }
+
+        if (watercooldown == 0)
+        {
+            attack = (short)UnityEngine.Random.Range(0, 2);
+        }
+        else
+        {
+            attack = 0;
+            watercooldown -= randomnumber;
+        }
+
+        randomnumber = (short)UnityEngine.Random.Range(
+            10 + attackcooldown,
+            30 + attackcooldown
+        );
+
+        if (MaxHP * 0.5f > HP)
+        {
+            attackcooldown = 0;
+        }
+
+        AudioManager.Instance?.PlayEnemyAttack(
+            EnemyAttackSoundGroup.Boss
+        );
+
+        if (attack == 0)
+        {
+            CreateWaterBurst();
+        }
+        else
+        {
+            CreateRisingWater();
+        }
+
+        timepassed = 0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CreateWaterBurst()
     {
-        timepassed++;
-        if (timepassed * Time.deltaTime > randomnumber)
+        if (Waterburst == null)
         {
-            if (watercooldown ==0)
-            attack = (short)UnityEngine.Random.Range(0, 2);
-            else
-            {
-                attack = 0;
-                watercooldown -= randomnumber;
-            }
-            randomnumber = (short)UnityEngine.Random.Range(10 + attackcooldown, 30 + attackcooldown);
-            if (MaxHP * 0.5f > HP)
-            {
-                attackcooldown = 0;
-            }
-            if (attack == 0)
-            {
-                Debug.Log("waterburst");
-                GameObject lightning = Instantiate(Waterburst, transform);
-                lightning.transform.position = new Vector3(transform.position.x - 5, transform.position.y+3, transform.position.z);
-                lightning.transform.localScale = new Vector3(0.1f, 0.1f, 0);
-                if (lightning.GetComponent<Collider2D>())
-                    Destroy(lightning, 3);
-            }
-            else
-            {
-                watercooldown = 50;
-                GameObject water = Instantiate(Water, transform);
-                water.transform.localScale = new Vector3(20, 0.5f, 1);
-                water.transform.position = new Vector3(transform.position.x - 50, transform.position.y - 15, transform.position.z);
-            }
-            timepassed = 0;
+            return;
         }
+
+        Debug.Log("waterburst");
+
+        GameObject waterBurst =
+            Instantiate(Waterburst, transform);
+
+        waterBurst.transform.position = new Vector3(
+            transform.position.x - 5f,
+            transform.position.y + 3f,
+            transform.position.z
+        );
+
+        waterBurst.transform.localScale =
+            new Vector3(0.1f, 0.1f, 0f);
+
+        if (waterBurst.GetComponent<Collider2D>() != null)
+        {
+            Destroy(waterBurst, 3f);
+        }
+    }
+
+    private void CreateRisingWater()
+    {
+        if (Water == null)
+        {
+            return;
+        }
+
+        watercooldown = 50;
+
+        GameObject water = Instantiate(Water, transform);
+        water.transform.localScale =
+            new Vector3(20f, 0.5f, 1f);
+
+        water.transform.position = new Vector3(
+            transform.position.x - 50f,
+            transform.position.y - 15f,
+            transform.position.z
+        );
     }
 }

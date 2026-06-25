@@ -5,30 +5,38 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int health = 150;
     [SerializeField] protected int damage = 20;
     [SerializeField] private int armor = 10;
-    protected GameObject player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected GameObject player;
+
     public void setstats(int health, int damage, int armor)
     {
         this.health = health;
         this.damage = damage;
         this.armor = armor;
     }
-    public void takedamage(int damage)
+
+    public void takedamage(int incomingDamage)
     {
-        Debug.Log("Enemy took " + (damage - armor) + " damage");
-        health -= (damage - armor);
+        int finalDamage = Mathf.Max(1, incomingDamage - armor);
+
+        Debug.Log("Enemy took " + finalDamage + " damage");
+        health -= finalDamage;
+
         if (health <= 0)
         {
-            player.GetComponent<PlayerStats>().AddXP(10*(Mappicker.completedLevels+1));
+            if (player == null)
+            {
+                player = GameObject.FindGameObjectWithTag("Player");
+            }
+
+            PlayerStats playerStats =
+                player != null ? player.GetComponent<PlayerStats>() : null;
+
+            if (playerStats != null)
+            {
+                playerStats.AddXP(10 * (Mappicker.completedLevels + 1));
+            }
+
             Destroy(gameObject);
         }
     }

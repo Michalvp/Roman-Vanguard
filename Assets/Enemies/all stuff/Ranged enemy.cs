@@ -2,88 +2,174 @@ using UnityEngine;
 
 public class Rangedenemy : Enemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float movementspeed = 5f;
     [SerializeField] private float shootingspeed = 5f;
-    [SerializeField] private float size = 10;
-    [SerializeField] private float range = 10;
+    [SerializeField] private float size = 10f;
+    [SerializeField] private float range = 10f;
     [SerializeField] private Animator anim;
-    private float timepassed = 0;
     [SerializeField] private LayerMask playermask;
     [SerializeField] private Transform projstart;
     [SerializeField] private BoxCollider2D boxCollider2;
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
     [SerializeField] private Transform maxrightpoint;
     [SerializeField] private Transform maxleftpoint;
     [SerializeField] private Transform soldiermov;
-    private Vector3 startingscale;
     [SerializeField] private GameObject bullet;
-    bool movingleft = true;
+
+    private float timepassed;
+    private Vector3 startingscale;
+    private bool movingleft = true;
+
     private void Awake()
     {
-        startingscale = soldiermov.localScale;
+        if (soldiermov != null)
+        {
+            startingscale = soldiermov.localScale;
+        }
     }
-    // Update is called once per frame
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     public void rangedattack(int direction)
     {
-        GameObject currentBullet = Instantiate(bullet, transform);
-        currentBullet.transform.position = transform.position;
-        currentBullet.GetComponent<Arrow>().setdamage(damage);
-        if (currentBullet.GetComponent<Collider2D>())
-            Destroy(currentBullet, 3);
-        
-    }
-    bool playerinsight()
-    {
-        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center  + range  * transform.right * transform.localScale.x, new Vector2(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y), 0, Vector2.left, 0, playermask);
-        return inshootingsight.collider != null;
+        if (bullet == null)
+        {
+            return;
+        }
 
+        // PDF guide proposal:
+        // A ranged sound is played once when the projectile is created.
+        AudioManager.Instance?.PlayEnemyAttack(
+            EnemyAttackSoundGroup.Ranged
+        );
+
+        Transform spawnParent = transform;
+        GameObject currentBullet = Instantiate(bullet, spawnParent);
+
+        currentBullet.transform.position =
+            projstart != null ? projstart.position : transform.position;
+
+        Arrow arrow = currentBullet.GetComponent<Arrow>();
+
+        if (arrow != null)
+        {
+            arrow.setdamage(damage);
+        }
+
+        if (currentBullet.GetComponent<Collider2D>() != null)
+        {
+            Destroy(currentBullet, 3f);
+        }
     }
-    private void OnDrawGizmos()
+
+    private bool playerinsight()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider2.bounds.center  + range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z));
+        if (boxCollider2 == null)
+        {
+            return false;
+        }
+
+        RaycastHit2D inshootingsight = Physics2D.BoxCast(
+            boxCollider2.bounds.center +
+            range * transform.right * transform.localScale.x,
+            new Vector2(
+                boxCollider2.bounds.size.x * size,
+                boxCollider2.bounds.size.y
+            ),
+            0f,
+            Vector2.left,
+            0f,
+            playermask
+        );
+
+        return inshootingsight.collider != null;
     }
+
     private void Move(int direction)
     {
-        soldiermov.position = new Vector3(soldiermov.position.x + movementspeed * Time.deltaTime * direction, soldiermov.position.y, soldiermov.position.z);
-        soldiermov.localScale = new Vector3(Mathf.Abs(startingscale.x) * direction, startingscale.y, startingscale.z);
+        if (soldiermov == null)
+        {
+            return;
+        }
+
+        soldiermov.position = new Vector3(
+            soldiermov.position.x +
+            movementspeed * Time.deltaTime * direction,
+            soldiermov.position.y,
+            soldiermov.position.z
+        );
+
+        soldiermov.localScale = new Vector3(
+            Mathf.Abs(startingscale.x) * direction,
+            startingscale.y,
+            startingscale.z
+        );
     }
-    void Update()
+
+    private void Update()
     {
+        Patrol();
+
+        timepassed += Time.deltaTime;
+
+        if (playerinsight() && timepassed >= shootingspeed)
+        {
+            rangedattack(movingleft ? 1 : -1);
+            timepassed = 0f;
+        }
+    }
+
+    private void Patrol()
+    {
+        if (soldiermov == null ||
+            maxleftpoint == null ||
+            maxrightpoint == null)
+        {
+            return;
+        }
+
         if (movingleft)
         {
             if (soldiermov.position.x >= maxleftpoint.position.x)
-            { Move(-1); }
+            {
+                Move(-1);
+            }
             else
             {
-
-                movingleft = !movingleft;
-
+                movingleft = false;
             }
         }
         else
         {
             if (soldiermov.position.x <= maxrightpoint.position.x)
-            { Move(1); }
-            else
-            { movingleft = !movingleft; }
-        }
-        timepassed++;
-        if (playerinsight())
-        {
-            if (timepassed * Time.deltaTime >= shootingspeed)
             {
-                if (movingleft)
-                    rangedattack(1);
-                else
-                    rangedattack(-1);
-                timepassed = 0;
+                Move(1);
+            }
+            else
+            {
+                movingleft = true;
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (boxCollider2 == null)
+        {
+            return;
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(
+            boxCollider2.bounds.center +
+            range * transform.right * transform.localScale.x,
+            new Vector3(
+                boxCollider2.bounds.size.x * size,
+                boxCollider2.bounds.size.y,
+                boxCollider2.bounds.size.z
+            )
+        );
     }
 }

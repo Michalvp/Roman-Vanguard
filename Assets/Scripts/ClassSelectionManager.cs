@@ -48,6 +48,8 @@ public class ClassSelectionManager : MonoBehaviour
 
             tutorialIntroText.text = $"You have chosen the blessing of {pendingDeityName}.\nOn this first adventure you will learn your new skills.";
             tutorialIntroPanel.SetActive(true);
+
+            AudioManager.Instance?.PlayClassChosen();
         }
     }
 

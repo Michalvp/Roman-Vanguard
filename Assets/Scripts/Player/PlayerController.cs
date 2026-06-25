@@ -81,7 +81,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Menus should stop player movement/combat.
-        // Exception: if shop is open, we still allow HandleInteraction so S can close it.
+        // Exception: if shop is open, we still allow HandleInteraction
+        // so the S key can close it.
         if (GameUIState.IsAnyBlockingMenuOpen)
         {
             StopHorizontalMovement();
@@ -103,19 +104,25 @@ public class PlayerController : MonoBehaviour
             return;
 
         HandleInput();
+        HandleFootstepAudio();
         HandleJump();
         HandleInteraction();
 
-        if (Time.time >= nextAttackTime && Input.GetButtonDown("Fire1"))
+        if (Time.time >= nextAttackTime &&
+            Input.GetButtonDown("Fire1"))
         {
             Attack();
-            nextAttackTime = Time.time + 1f / GetTotalAttackRate();
+            nextAttackTime =
+                Time.time + 1f / GetTotalAttackRate();
         }
 
-        if (Input.GetButtonDown("Fire2") && stats.hasSpecialAbility && Time.time >= nextSpecialAttackTime)
+        if (Input.GetButtonDown("Fire2") &&
+            stats.hasSpecialAbility &&
+            Time.time >= nextSpecialAttackTime)
         {
             UseSpecialAttack();
-            nextAttackTime = Time.time + 1f / GetTotalAttackRate();
+            nextAttackTime =
+                Time.time + 1f / GetTotalAttackRate();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
@@ -186,49 +193,99 @@ public class PlayerController : MonoBehaviour
         if (invincibilityTimer > 0)
             return;
 
-        int reducedDamage = Mathf.Max(1, damage - stats.bonusDefense);
+        int reducedDamage =
+            Mathf.Max(1, damage - stats.bonusDefense);
+
         stats.currentHealth -= reducedDamage;
 
-        Debug.Log($"Player took {reducedDamage} damage after armor reduction.");
+        Debug.Log(
+            $"Player took {reducedDamage} damage after armor reduction.");
 
         invincibilityTimer = invincibilityDuration;
 
+        // A killing hit plays only the death sound.
         if (stats.currentHealth <= 0)
+        {
             Die();
+            return;
+        }
+
+        // A normal hit plays the player hurt sound.
+        AudioManager.Instance?.PlayPlayerHurt();
     }
 
-    public float GetNextAttackTime() => nextAttackTime;
-    public float GetNextSpecialAttackTime() => nextSpecialAttackTime;
-    public float GetLastSpecialCooldownDuration() => lastSpecialCooldownDuration;
+    public float GetNextAttackTime()
+    {
+        return nextAttackTime;
+    }
+
+    public float GetNextSpecialAttackTime()
+    {
+        return nextSpecialAttackTime;
+    }
+
+    public float GetLastSpecialCooldownDuration()
+    {
+        return lastSpecialCooldownDuration;
+    }
 
     public float GetTotalMoveSpeed()
     {
-        return Mathf.Max(1f, moveSpeed + (stats != null ? stats.bonusMoveSpeed : 0f) + (stats != null ? stats.skillspeedBonus : 0f));
+        return Mathf.Max(
+            1f,
+            moveSpeed +
+            (stats != null ? stats.bonusMoveSpeed : 0f) +
+            (stats != null ? stats.skillspeedBonus : 0f)
+        );
     }
 
     public int GetTotalAttackDamage()
     {
-        return Mathf.Max(1, attackDamage + stats.levelBonusDamage + (stats != null ? stats.bonusDamage : 0) + (stats != null ? stats.skillDamageBonus : 0));
+        return Mathf.Max(
+            1,
+            attackDamage +
+            stats.levelBonusDamage +
+            (stats != null ? stats.bonusDamage : 0) +
+            (stats != null ? stats.skillDamageBonus : 0)
+        );
     }
 
     public float GetTotalAttackRate()
     {
-        return Mathf.Max(0.2f, attackRate + (stats != null ? stats.bonusAttackRate : 0f) + (stats != null ? stats.skillattackSpeedBonus : 0f));
+        return Mathf.Max(
+            0.2f,
+            attackRate +
+            (stats != null ? stats.bonusAttackRate : 0f) +
+            (stats != null ? stats.skillattackSpeedBonus : 0f)
+        );
     }
 
     public float GetTotalAttackRange()
     {
-        return Mathf.Max(0.1f, attackRange + (stats != null ? stats.bonusAttackRange : 0f) + (stats != null ? stats.skillattackRangeBonus : 0f));
+        return Mathf.Max(
+            0.1f,
+            attackRange +
+            (stats != null ? stats.bonusAttackRange : 0f) +
+            (stats != null ? stats.skillattackRangeBonus : 0f)
+        );
     }
 
     public float GetTotalCriticalChance()
     {
-        return Mathf.Clamp01(criticalChance + (stats != null ? stats.bonusCriticalChance : 0f) + (stats != null ? stats.skillcriticalChanceBonus : 0f));
+        return Mathf.Clamp01(
+            criticalChance +
+            (stats != null ? stats.bonusCriticalChance : 0f) +
+            (stats != null ? stats.skillcriticalChanceBonus : 0f)
+        );
     }
 
     public float GetTotalDashForce()
     {
-        return Mathf.Max(0f, dashForce + (stats != null ? stats.skilldashBonus : 0f));
+        return Mathf.Max(
+            0f,
+            dashForce +
+            (stats != null ? stats.skilldashBonus : 0f)
+        );
     }
 
     #endregion
@@ -257,12 +314,29 @@ public class PlayerController : MonoBehaviour
     private void HandleJump()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        {
+            rb.linearVelocity =
+                new Vector2(rb.linearVelocity.x, jumpForce);
+
+            AudioManager.Instance?.PlayJump();
+        }
+    }
+
+    private void HandleFootstepAudio()
+    {
+        if (isGrounded && Mathf.Abs(moveInput) > 0.1f)
+            AudioManager.Instance?.PlayFootstep();
     }
 
     private void HandleInteraction()
     {
-        Collider2D[] foundObjects = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactableLayer);
+        Collider2D[] foundObjects =
+            Physics2D.OverlapCircleAll(
+                transform.position,
+                interactionRange,
+                interactableLayer
+            );
+
         IInteractable nearest = null;
 
         if (foundObjects.Length > 0)
@@ -271,15 +345,22 @@ public class PlayerController : MonoBehaviour
 
             foreach (Collider2D foundObject in foundObjects)
             {
-                IInteractable interactable = foundObject.GetComponent<IInteractable>();
+                IInteractable interactable =
+                    foundObject.GetComponent<IInteractable>();
 
                 if (interactable == null)
-                    interactable = foundObject.GetComponentInParent<IInteractable>();
+                {
+                    interactable =
+                        foundObject.GetComponentInParent<IInteractable>();
+                }
 
                 if (interactable == null)
                     continue;
 
-                float distance = Vector2.Distance(transform.position, foundObject.transform.position);
+                float distance = Vector2.Distance(
+                    transform.position,
+                    foundObject.transform.position
+                );
 
                 if (distance < bestDistance)
                 {
@@ -300,8 +381,11 @@ public class PlayerController : MonoBehaviour
                 currentInteractable.SetHighlight(true);
         }
 
-        if (Input.GetKeyDown(interactionKey) && currentInteractable != null)
+        if (Input.GetKeyDown(interactionKey) &&
+            currentInteractable != null)
+        {
             currentInteractable.Interact();
+        }
     }
 
     private void HandleInvincibilityVisuals()
@@ -313,23 +397,35 @@ public class PlayerController : MonoBehaviour
         {
             if (invincibilityTimer > 1f)
             {
-                spriteRenderer.color = new Color(1f, 0.2f, 0.2f, 1f);
+                spriteRenderer.color =
+                    new Color(1f, 0.2f, 0.2f, 1f);
             }
             else
             {
-                float alpha = Mathf.Sin(Time.time * 20f) > 0 ? 1f : 0.2f;
-                spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
+                float alpha =
+                    Mathf.Sin(Time.time * 20f) > 0
+                        ? 1f
+                        : 0.2f;
+
+                spriteRenderer.color =
+                    new Color(1f, 1f, 1f, alpha);
             }
         }
         else
         {
-            spriteRenderer.color = classData != null ? classData.classPreviewColor : Color.white;
+            spriteRenderer.color =
+                classData != null
+                    ? classData.classPreviewColor
+                    : Color.white;
         }
     }
 
     private void HandleMovement()
     {
-        rb.linearVelocity = new Vector2(moveInput * GetTotalMoveSpeed(), rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(
+            moveInput * GetTotalMoveSpeed(),
+            rb.linearVelocity.y
+        );
     }
 
     private void StopHorizontalMovement()
@@ -337,7 +433,10 @@ public class PlayerController : MonoBehaviour
         moveInput = 0f;
 
         if (rb != null)
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        {
+            rb.linearVelocity =
+                new Vector2(0f, rb.linearVelocity.y);
+        }
     }
 
     private void CheckGround()
@@ -345,13 +444,24 @@ public class PlayerController : MonoBehaviour
         if (groundCheck == null)
             return;
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(
+            groundCheck.position,
+            groundCheckRadius,
+            groundLayer
+        );
     }
 
     private void Attack()
     {
         if (anim != null)
             anim.SetTrigger("Attack");
+
+        // AudioManager selects the correct sound by class name.
+        AudioManager.Instance?.PlayPlayerAttack(
+            classData != null
+                ? classData.className
+                : string.Empty
+        );
 
         if (isRangedClass)
             Shoot();
@@ -364,17 +474,29 @@ public class PlayerController : MonoBehaviour
         if (arrowPrefab == null || attackPoint == null)
             return;
 
-        GameObject arrow = Instantiate(arrowPrefab, attackPoint.position, Quaternion.identity);
-        Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
+        GameObject arrow = Instantiate(
+            arrowPrefab,
+            attackPoint.position,
+            Quaternion.identity
+        );
+
+        Rigidbody2D arrowRb =
+            arrow.GetComponent<Rigidbody2D>();
 
         float direction = isFacingRight ? 1f : -1f;
         int totalDamage = CalculateDamageWithCritical();
 
         if (arrowRb != null)
-            arrowRb.linearVelocity = new Vector2(direction * arrowSpeed, 0f);
+        {
+            arrowRb.linearVelocity =
+                new Vector2(direction * arrowSpeed, 0f);
+        }
 
         if (!isFacingRight)
-            arrow.transform.localScale = new Vector3(-1, 1, 1);
+        {
+            arrow.transform.localScale =
+                new Vector3(-1f, 1f, 1f);
+        }
 
         Arrow arrowScript = arrow.GetComponent<Arrow>();
 
@@ -387,21 +509,29 @@ public class PlayerController : MonoBehaviour
         if (attackPoint == null)
             return;
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, GetTotalAttackRange(), enemyLayers);
+        Collider2D[] hitEnemies =
+            Physics2D.OverlapCircleAll(
+                attackPoint.position,
+                GetTotalAttackRange(),
+                enemyLayers
+            );
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            int totalDamage = CalculateDamageWithCritical();
+            int totalDamage =
+                CalculateDamageWithCritical();
 
             if (isSpecial)
                 totalDamage *= 3;
 
-            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            Enemy enemyScript =
+                enemy.GetComponent<Enemy>();
 
             if (enemyScript != null)
                 enemyScript.takedamage(totalDamage);
 
-            Debug.Log($"Attacking for {totalDamage} damage!");
+            Debug.Log(
+                $"Attacking for {totalDamage} damage!");
         }
     }
 
@@ -409,11 +539,16 @@ public class PlayerController : MonoBehaviour
     {
         int totalDamage = GetTotalAttackDamage();
 
-        bool isCritical = Random.value < GetTotalCriticalChance();
+        // Explicit UnityEngine prefix avoids Random ambiguity.
+        bool isCritical =
+            UnityEngine.Random.value <
+            GetTotalCriticalChance();
 
         if (isCritical)
         {
-            totalDamage = Mathf.RoundToInt(totalDamage * 2f);
+            totalDamage =
+                Mathf.RoundToInt(totalDamage * 2f);
+
             Debug.Log("Critical hit!");
         }
 
@@ -427,20 +562,31 @@ public class PlayerController : MonoBehaviour
 
         if (classData.className == "Archer")
         {
-            lastSpecialCooldownDuration = (1f / GetTotalAttackRate()) * 1.5f;
-            nextSpecialAttackTime = Time.time + lastSpecialCooldownDuration;
+            lastSpecialCooldownDuration =
+                (1f / GetTotalAttackRate()) * 1.5f;
+
+            nextSpecialAttackTime =
+                Time.time + lastSpecialCooldownDuration;
+
             MultiShot();
         }
         else if (classData.className == "Legionary")
         {
-            lastSpecialCooldownDuration = (1f / GetTotalAttackRate()) * 2f;
-            nextSpecialAttackTime = Time.time + lastSpecialCooldownDuration;
+            lastSpecialCooldownDuration =
+                (1f / GetTotalAttackRate()) * 2f;
+
+            nextSpecialAttackTime =
+                Time.time + lastSpecialCooldownDuration;
+
             VanguardStrike();
         }
         else if (classData.className == "Gladiator")
         {
             lastSpecialCooldownDuration = 15f;
-            nextSpecialAttackTime = Time.time + lastSpecialCooldownDuration;
+
+            nextSpecialAttackTime =
+                Time.time + lastSpecialCooldownDuration;
+
             SpartanRage();
         }
     }
@@ -455,22 +601,44 @@ public class PlayerController : MonoBehaviour
 
         for (int i = -1; i <= 1; i++)
         {
-            GameObject arrow = Instantiate(arrowPrefab, attackPoint.position, Quaternion.identity);
-            Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
+            GameObject arrow = Instantiate(
+                arrowPrefab,
+                attackPoint.position,
+                Quaternion.identity
+            );
 
-            float direction = isFacingRight ? 1f : -1f;
+            Rigidbody2D arrowRb =
+                arrow.GetComponent<Rigidbody2D>();
+
+            float direction =
+                isFacingRight ? 1f : -1f;
+
             float verticalSpread = i * 2f;
 
             if (arrowRb != null)
-                arrowRb.linearVelocity = new Vector2(direction * arrowSpeed, verticalSpread);
+            {
+                arrowRb.linearVelocity =
+                    new Vector2(
+                        direction * arrowSpeed,
+                        verticalSpread
+                    );
+            }
 
             if (!isFacingRight)
-                arrow.transform.localScale = new Vector3(-1, 1, 1);
+            {
+                arrow.transform.localScale =
+                    new Vector3(-1f, 1f, 1f);
+            }
 
-            Arrow arrowScript = arrow.GetComponent<Arrow>();
+            Arrow arrowScript =
+                arrow.GetComponent<Arrow>();
 
             if (arrowScript != null)
-                arrowScript.setdamage(CalculateDamageWithCritical());
+            {
+                arrowScript.setdamage(
+                    CalculateDamageWithCritical()
+                );
+            }
         }
     }
 
@@ -498,8 +666,13 @@ public class PlayerController : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
 
-        float dashDirection = isFacingRight ? 1f : -1f;
-        rb.linearVelocity = new Vector2(dashDirection * GetTotalDashForce(), 0f);
+        float dashDirection =
+            isFacingRight ? 1f : -1f;
+
+        rb.linearVelocity = new Vector2(
+            dashDirection * GetTotalDashForce(),
+            0f
+        );
 
         invincibilityTimer = dashDuration;
 
@@ -509,12 +682,18 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);
+
         canDash = true;
     }
 
     private void Die()
     {
-        Debug.Log("Ave Caesar, morituri te salutant! The player died.");
+        // Play this before disabling the controller.
+        AudioManager.Instance?.PlayPlayerDeath();
+
+        Debug.Log(
+            "Ave Caesar, morituri te salutant! The player died.");
+
         enabled = false;
 
         if (rb != null)
@@ -526,10 +705,25 @@ public class PlayerController : MonoBehaviour
         if (anim == null || rb == null)
             return;
 
-        anim.SetFloat("Speed", Mathf.Abs(moveInput));
-        anim.SetBool("isGrounded", isGrounded);
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
-        anim.SetBool("isDashing", isDashing);
+        anim.SetFloat(
+            "Speed",
+            Mathf.Abs(moveInput)
+        );
+
+        anim.SetBool(
+            "isGrounded",
+            isGrounded
+        );
+
+        anim.SetFloat(
+            "yVelocity",
+            rb.linearVelocity.y
+        );
+
+        anim.SetBool(
+            "isDashing",
+            isDashing
+        );
     }
 
     private void Flip()
@@ -549,14 +743,26 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             stats.AddDenarii(5);
-            Debug.Log("Collected a coin! Total denarii: " + stats.denarii);
+
+            Debug.Log(
+                "Collected a coin! Total denarii: " +
+                stats.denarii
+            );
+
+            AudioManager.Instance?.PlayCoinPickup();
+
             Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Treasure"))
         {
             stats.AddDenarii(100);
-            Debug.Log("Collected treasure! Total denarii: " + stats.denarii);
+
+            Debug.Log(
+                "Collected treasure! Total denarii: " +
+                stats.denarii
+            );
+
             Destroy(collision.gameObject);
         }
     }
@@ -570,16 +776,28 @@ public class PlayerController : MonoBehaviour
         if (groundCheck != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+            Gizmos.DrawWireSphere(
+                groundCheck.position,
+                groundCheckRadius
+            );
         }
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, interactionRange);
+
+        Gizmos.DrawWireSphere(
+            transform.position,
+            interactionRange
+        );
 
         if (attackPoint != null)
         {
             Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+            Gizmos.DrawWireSphere(
+                attackPoint.position,
+                attackRange
+            );
         }
     }
 

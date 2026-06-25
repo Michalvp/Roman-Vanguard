@@ -2,27 +2,32 @@ using UnityEngine;
 
 public class Swordscript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float delayBeforeFalling = 3f;
+    [SerializeField] private float fallStep = 0.5f;
+    [SerializeField] private float fallStepInterval = 0.01f;
 
-    // Update is called once per frame
-    private int timepassed = 0;
-    private bool move = false;
-    void Update()
+    private float timepassed;
+    private bool move;
+
+    private void Update()
     {
-        timepassed++;
-        if (move == false && timepassed * Time.deltaTime> 3)
+        timepassed += Time.deltaTime;
+
+        if (!move && timepassed > delayBeforeFalling)
         {
             move = true;
-            timepassed = 0;
+            timepassed = 0f;
         }
-        if (move&&timepassed * Time.deltaTime > 0.01f)
+
+        if (move && timepassed > fallStepInterval)
         {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-                timepassed = 0;
+            transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y - fallStep,
+                transform.position.z
+            );
+
+            timepassed = 0f;
         }
     }
 }
