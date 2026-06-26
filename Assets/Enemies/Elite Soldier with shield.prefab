@@ -543,8 +543,8 @@ MonoBehaviour:
   maxleftpoint: {fileID: 4322907601119119214}
   soldiermov: {fileID: 7489802135760661223}
   shootingspeed: 10
-  size: 1
-  range: 2
+  size: 2
+  range: 5
   anim: {fileID: 4692689610640744371}
   weapon: {fileID: 3801294321288353966}
   playermask:

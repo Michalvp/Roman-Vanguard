@@ -587,7 +587,7 @@ MonoBehaviour:
   soldiermov: {fileID: 5897082854047643589}
   shootingspeed: 10
   size: 2
-  range: 3
+  range: 7
   anim: {fileID: 4101714477967045053}
   weapon: {fileID: 5390212255057392647}
   playermask:

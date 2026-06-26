@@ -505,7 +505,7 @@ MonoBehaviour:
   soldiermov: {fileID: 3473954550242312694}
   shootingspeed: 2
   size: 1
-  range: 0
+  range: 4
   anim: {fileID: 1186297910884065905}
   enemy: {fileID: 7125252959262947508}
   playermask:
@@ -546,7 +546,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.7910547, y: 4.8248935}
+  m_Offset: {x: -0.6558887, y: 4.8248935}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -556,7 +556,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.766221, y: 13.630532}
+  m_Size: {x: 9.036553, y: 13.630532}
   m_EdgeRadius: 0
 --- !u!50 &7125252959262947508
 Rigidbody2D:
