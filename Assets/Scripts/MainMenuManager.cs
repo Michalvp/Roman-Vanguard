@@ -136,7 +136,6 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Loading game from slot: " + slotIndex);
         PlayerPrefs.SetInt("CurrentSaveSlot", slotIndex);
         PlayerPrefs.Save();
-
         SceneManager.LoadScene("Village");
     }
 

@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private bool isGrounded;
     private bool isFacingRight = true;
+    [SerializeField]    private GameObject Gladiator;
+    [SerializeField]    private GameObject Archer;
+    [SerializeField]    private GameObject Legionary;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private IInteractable currentInteractable;
@@ -68,7 +71,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         stats = GetComponent<PlayerStats>();
 
@@ -144,11 +146,11 @@ public class PlayerController : MonoBehaviour
 
         HandleMovement();
         CheckGround();
-    }
+    }/*
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }
+    }*/
     #endregion
 
     #region Public API
@@ -176,6 +178,29 @@ public class PlayerController : MonoBehaviour
         if (stats != null)
             stats.SetClassBaseStats(data);
         spriteRenderer.sprite = data.player_sprite;
+
+            if (data.className == "Gladiator")
+            {
+                Gladiator.SetActive(true);
+                Archer.SetActive(false);
+                Legionary.SetActive(false);
+                anim = Gladiator.GetComponent<Animator>();
+        }
+            else if (data.className == "Archer")
+            {
+                Gladiator.SetActive(false);
+                Archer.SetActive(true);
+                Legionary.SetActive(false);
+                anim = Archer.GetComponent<Animator>();
+        }
+            else if (data.className == "Legionary")
+            {
+                Gladiator.SetActive(false);
+                Archer.SetActive(false);
+                Legionary.SetActive(true);
+                anim = Legionary.GetComponent<Animator>();
+        }
+        
     }
 
     public void TakeDamage(int damage)
@@ -516,10 +541,7 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Debug.Log("Ave Caesar, morituri te salutant! The player died.");
-        enabled = false;
 
-        if (rb != null)
-            rb.linearVelocity = Vector2.zero;
     }
 
     private void UpdateAnimations()
@@ -529,7 +551,7 @@ public class PlayerController : MonoBehaviour
 
         anim.SetFloat("Speed", Mathf.Abs(moveInput));
         anim.SetBool("isGrounded", isGrounded);
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
+        //anim.SetFloat("yVelocity", rb.linearVelocity.y);
         anim.SetBool("isDashing", isDashing);
     }
 

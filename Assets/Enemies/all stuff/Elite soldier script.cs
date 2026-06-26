@@ -104,6 +104,7 @@ public class Elitesoldierscript : Enemy
             {
                 if (timepassed * Time.deltaTime >= shootingspeed)
                 {
+                    anim.SetTrigger("Attack");
                     timepassed = 0;
                     player.GetComponent<PlayerController>().TakeDamage(damage);
                     // player takes damage

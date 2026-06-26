@@ -33,7 +33,7 @@ public class PlayerHUDManager : MonoBehaviour
     public GameObject quitGamePopup;
 
     private PlayerController player;
-
+    private float speed;
     void Start()
     {
         player = Object.FindFirstObjectByType<PlayerController>();
@@ -141,12 +141,16 @@ public class PlayerHUDManager : MonoBehaviour
     public void ShowDeathScreen()
     {
         deathScreen.SetActive(true);
+
     }
 
     public void ReturnToHubAfterDeath()
     {
         deathScreen.SetActive(false);
+        GameObject playerobj = GameObject.FindWithTag("Player");
+        playerobj.transform.position = new Vector3(0, 2, 0);
         SceneManager.LoadScene("Village");
+        PlayerStats.Instance.currentHealth = PlayerStats.Instance.maxHealth;
     }
 
     public void ClosePauseMenu()

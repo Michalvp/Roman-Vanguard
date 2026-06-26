@@ -76,6 +76,7 @@ public class Rangedenemy : Enemy
         timepassed++;
         if (playerinsight())
         {
+            anim.SetTrigger("Attack");
             if (timepassed * Time.deltaTime >= shootingspeed)
             {
                 if (movingleft)

@@ -43,7 +43,8 @@ public class Returntovillage : MonoBehaviour, IInteractable
         PlayerController controller = FindFirstObjectByType<PlayerController>();
         PlayerStats stats = FindFirstObjectByType<PlayerStats>();
         PlayerInventory inventory = FindFirstObjectByType<PlayerInventory>();
-
+        GameObject player = GameObject.FindWithTag("Player");
+        player.transform.position = new Vector3(0, 2, 0);
         // Heal player to max before capturing save state
         if (stats != null)
         {

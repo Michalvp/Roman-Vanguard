@@ -31,7 +31,7 @@ public class Meleeenemywithshield : Enemy
     int timepassed2 = 0;
     bool playerinsight()
     {
-        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + size * range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
+        RaycastHit2D inshootingsight = Physics2D.BoxCast(boxCollider2.bounds.center + size * range * transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z), 0, Vector2.left, 0, playermask);
 
         return inshootingsight.collider != null;
 
@@ -39,7 +39,7 @@ public class Meleeenemywithshield : Enemy
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider2.bounds.center + transform.right * transform.localScale.x, new Vector3(boxCollider2.bounds.size.x * range, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z));
+        Gizmos.DrawWireCube(boxCollider2.bounds.center + range * size * transform.localScale.x * transform.right, new Vector3(boxCollider2.bounds.size.x * size, boxCollider2.bounds.size.y, boxCollider2.bounds.size.z));
     }
     private void Move(int direction)
     {

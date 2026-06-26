@@ -80,6 +80,7 @@ public class EliteArcher : Enemy
         {
             if (timepassed * Time.deltaTime >= shootingspeed)
             {
+                anim.SetTrigger("Attack");
                 if (movingleft)
                     rangedattack(1);
                 else
